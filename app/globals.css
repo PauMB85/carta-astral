@@ -1,26 +1,203 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-cinzel);
+  --font-italiana: var(--font-italiana);
+  --font-body: var(--font-cormorant);
+
+  /* Cosmos — fondo nocturno */
+  --color-cosmos-violet: #1a0d2e;
+  --color-cosmos-indigo: #0a0518;
+  --color-cosmos-void: #050210;
+
+  /* Oro místico — acento principal */
+  --color-gold-50: #f7e7a8;
+  --color-gold-200: #e8c867;
+  --color-gold-400: #d4af37;
+  --color-gold-700: #a07818;
+
+  /* Auroras — nebulosas atmosféricas */
+  --color-aurora-mystic: #783ca0;
+  --color-aurora-amber: #b47828;
+  --color-aurora-abyss: #3c1e78;
+
+  /* Luz estelar — tipografía */
+  --color-starlight-50: #fffbeb;
+  --color-starlight-100: #fef3c7;
+  --color-starlight-200: #fde68a;
+  --color-starlight-300: #fcd34d;
+
+  /* Acento secundario — púrpura */
+  --color-shadow-purple: rgba(120, 60, 160, 0.08);
+  --color-shadow-purple-border: rgba(180, 130, 200, 0.2);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  color-scheme: dark;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background:
+    radial-gradient(ellipse at top, var(--color-cosmos-violet) 0%, var(--color-cosmos-indigo) 45%, var(--color-cosmos-void) 100%);
+  color: var(--color-starlight-50);
+  font-family: var(--font-body), serif;
+  min-height: 100vh;
+}
+
+/* ───────────── Tipografía ───────────── */
+.font-display {
+  font-family: var(--font-display), serif;
+  letter-spacing: 0.08em;
+}
+.font-italiana {
+  font-family: var(--font-italiana), serif;
+}
+.font-body {
+  font-family: var(--font-body), serif;
+}
+
+/* ───────────── Texto dorado ───────────── */
+.gold-text {
+  background: linear-gradient(180deg, #f7e7a8 0%, #d4af37 55%, #a07818 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.divider-line {
+  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.5), transparent);
+}
+
+/* ───────────── Inputs ───────────── */
+input::placeholder {
+  color: rgba(245, 230, 200, 0.35);
+  font-style: italic;
+}
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="time"]::-webkit-calendar-picker-indicator {
+  filter: invert(0.85) sepia(1) saturate(5) hue-rotate(5deg);
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+/* ───────────── Animaciones ───────────── */
+@keyframes twinkle {
+  0%, 100% { opacity: var(--base-op, 0.8); transform: scale(1); }
+  50% { opacity: 0.15; transform: scale(0.6); }
+}
+@keyframes slow-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes slow-rotate-reverse {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+@keyframes shooting {
+  0%, 100% {
+    transform: translate(0, 0);
+    opacity: 0;
+  }
+  3% { opacity: 0; transform: translate(0, 0); }
+  6% { opacity: 1; transform: translate(0, 0); }
+  16% { opacity: 1; transform: translate(var(--dx, -520px), var(--dy, 520px)); }
+  20% { opacity: 0; transform: translate(var(--dx, -520px), var(--dy, 520px)); }
+}
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes aurora {
+  0%, 100% { opacity: 0.35; transform: translate(0,0) scale(1); }
+  50% { opacity: 0.55; transform: translate(30px, -20px) scale(1.08); }
+}
+@keyframes shimmer-border {
+  0%, 100% { box-shadow: 0 0 20px rgba(212, 175, 55, 0.15), inset 0 0 20px rgba(212, 175, 55, 0.08); }
+  50% { box-shadow: 0 0 40px rgba(212, 175, 55, 0.3), inset 0 0 30px rgba(212, 175, 55, 0.12); }
+}
+@keyframes pulse-soft {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+.twinkle { animation: twinkle var(--dur, 4s) ease-in-out infinite; animation-delay: var(--delay, 0s); }
+.rotate-slow { animation: slow-rotate 120s linear infinite; }
+.rotate-slow-rev { animation: slow-rotate-reverse 180s linear infinite; }
+.float-slow { animation: float-slow 6s ease-in-out infinite; }
+.shooting-star {
+  position: absolute;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  animation: shooting var(--dur, 18s) ease-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+.shooting-star::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--len, 110px);
+  height: 1.5px;
+  background: linear-gradient(
+    to right,
+    rgba(255, 250, 220, 0.95) 0%,
+    rgba(255, 240, 180, 0.55) 30%,
+    rgba(255, 240, 180, 0.15) 65%,
+    transparent 100%
+  );
+  transform: rotate(var(--angle, -42deg));
+  transform-origin: 0 50%;
+  border-radius: 999px;
+  filter: drop-shadow(0 0 3px rgba(255, 240, 180, 0.55));
+}
+.shooting-star::after {
+  content: '';
+  position: absolute;
+  top: -1.75px;
+  left: -1.75px;
+  width: 3.5px;
+  height: 3.5px;
+  border-radius: 999px;
+  background: #fff8dc;
+  box-shadow:
+    0 0 6px 1.5px rgba(255, 248, 220, 0.95),
+    0 0 14px 3px rgba(255, 240, 180, 0.45);
+}
+.fade-up { animation: fade-up 0.8s ease-out both; }
+.aurora-blob { animation: aurora 14s ease-in-out infinite; }
+.shimmer-border { animation: shimmer-border 4s ease-in-out infinite; }
+.pulse-soft { animation: pulse-soft 2.4s ease-in-out infinite; }
+
+/* ───────────── Grano ───────────── */
+.grain::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.06;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  z-index: 1;
+}
+
+/* ───────────── Reduced motion ───────────── */
+@media (prefers-reduced-motion: reduce) {
+  .twinkle,
+  .rotate-slow,
+  .rotate-slow-rev,
+  .float-slow,
+  .shooting-star,
+  .fade-up,
+  .aurora-blob,
+  .shimmer-border,
+  .pulse-soft {
+    animation: none !important;
+  }
+  * {
+    transition-duration: 0.01ms !important;
+  }
 }
