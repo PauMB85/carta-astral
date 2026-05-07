@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Lang } from "@/lib/types";
-import type { Dictionary } from "../_lib/i18n";
-import { v1 } from "../_lib/theme";
+import type { Dictionary } from "@/lib/i18n";
+import { v1 } from "@/lib/theme";
 
 type Props = {
   lang: Lang;
@@ -86,7 +86,7 @@ function LangLink({
   const isActive = current === targetLang;
   return (
     <Link
-      href={`/new-design?lang=${targetLang}`}
+      href={`/?lang=${targetLang}`}
       replace
       scroll={false}
       aria-current={isActive ? "true" : undefined}

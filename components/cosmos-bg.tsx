@@ -1,4 +1,4 @@
-import { v1 } from "../_lib/theme";
+import { v1 } from "@/lib/theme";
 
 const STARS = (() => {
   let seed = 0xc05705;

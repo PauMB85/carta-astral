@@ -1,21 +1,39 @@
-import { BackgroundCosmos } from "@/components/background/background-cosmos";
-import { Header } from "@/components/carta/header";
-import { CartaAstralForm } from "@/components/carta/carta-astral-form";
-import { OrnamentalDivider } from "@/components/ornaments/ornamental-divider";
+import type { Metadata } from "next";
+import { CosmosBg } from "@/components/cosmos-bg";
+import { SiteHeader } from "@/components/site-header";
+import { Hero } from "@/components/hero";
+import { Pillars } from "@/components/pillars";
+import { ChartFlow } from "@/components/chart-flow";
+import { SiteFooter } from "@/components/site-footer";
+import { getDictionary, pickLang } from "@/lib/i18n";
 
-export default function Page() {
+type Props = {
+  searchParams: Promise<{ lang?: string }>;
+};
+
+export const metadata: Metadata = {
+  title: "Galgo Astral · Carta Astral",
+  description:
+    "Una carta astral trazada a mano por astrólogas iniciadas en el linaje del galgo de la luna.",
+};
+
+export default async function Page({ searchParams }: Props) {
+  const { lang: rawLang } = await searchParams;
+  const lang = pickLang(rawLang);
+  const t = getDictionary(lang);
+
   return (
     <>
-      <BackgroundCosmos />
-      <main className="relative grain px-5 py-10 sm:py-16 max-w-3xl mx-auto">
-        <Header />
-        <CartaAstralForm />
-        <footer className="mt-12 text-center fade-up" style={{ animationDelay: "0.4s" }}>
-          <OrnamentalDivider />
-          <p className="font-body italic text-starlight-100/40 text-xs mt-4 tracking-widest">
-            ad astra per aspera
-          </p>
-        </footer>
+      <CosmosBg />
+      <main
+        className="relative"
+        style={{ color: "#f5ecd6", fontFamily: "var(--font-body), serif" }}
+      >
+        <SiteHeader lang={lang} t={t.nav} />
+        <Hero t={t.hero} />
+        <Pillars t={t.pillars} />
+        <ChartFlow lang={lang} formCopy={t.form} readingCopy={t.reading} />
+        <SiteFooter t={t.footer} />
       </main>
     </>
   );

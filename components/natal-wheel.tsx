@@ -1,4 +1,4 @@
-import { v1 } from "../_lib/theme";
+import { v1 } from "@/lib/theme";
 
 const ZODIAC_SIGILS: ReadonlyArray<{ name: string; paths: ReadonlyArray<string> }> = [
   { name: "Aries", paths: ["M 4 18 Q 4 8 12 8 Q 20 8 20 18", "M 4 18 Q 4 14 7 14", "M 20 18 Q 20 14 17 14"] },

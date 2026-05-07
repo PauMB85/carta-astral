@@ -1,6 +1,6 @@
 import Image from "next/image";
-import type { Dictionary } from "../_lib/i18n";
-import { v1 } from "../_lib/theme";
+import type { Dictionary } from "@/lib/i18n";
+import { v1 } from "@/lib/theme";
 
 type Props = {
   t: Dictionary["footer"];

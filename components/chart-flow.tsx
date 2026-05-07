@@ -12,8 +12,8 @@ import { experimental_useObject as useObject } from "@ai-sdk/react";
 import type { DeepPartial } from "ai";
 import { readingSchema, type Reading } from "@/lib/schema";
 import type { BirthInput, Lang } from "@/lib/types";
-import type { Dictionary } from "../_lib/i18n";
-import { v1 } from "../_lib/theme";
+import type { Dictionary } from "@/lib/i18n";
+import { v1 } from "@/lib/theme";
 
 type Props = {
   lang: Lang;

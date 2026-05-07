@@ -58,5 +58,4 @@ El esquema de la respuesta vive en [`lib/schema.ts`](../lib/schema.ts) (`reading
 
 ## Cómo se traduce esto al producto
 
-- En `/` (página original): el formulario fija siempre `lang: "es"`. La respuesta sale en castellano.
-- En `/new-design`: el toggle ES/EN del header decide el `lang`. Cambiar el idioma después de iniciar una lectura ya empezada no rehace la lectura — el idioma queda fijado al pulsar el botón de envío.
+- El toggle ES/EN del header de `/` decide el `lang` (vía `?lang=es|en`). Cambiar el idioma después de iniciar una lectura ya empezada no rehace la lectura — el idioma queda fijado al pulsar el botón de envío.

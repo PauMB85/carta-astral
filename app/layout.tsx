@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Cinzel, Cormorant_Garamond, Italiana } from "next/font/google";
+import { Cinzel, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 
 const cinzel = Cinzel({
@@ -17,13 +17,6 @@ const cormorant = Cormorant_Garamond({
   display: "swap",
 });
 
-const italiana = Italiana({
-  subsets: ["latin"],
-  variable: "--font-italiana",
-  weight: "400",
-  display: "swap",
-});
-
 export const metadata: Metadata = {
   title: "Carta Astral — el mapa de tu alma entre las estrellas",
   description:
@@ -36,7 +29,7 @@ export default function RootLayout({
   return (
     <html
       lang="es"
-      className={`${cinzel.variable} ${cormorant.variable} ${italiana.variable} h-full antialiased`}
+      className={`${cinzel.variable} ${cormorant.variable} h-full antialiased`}
     >
       <body className="min-h-full">{children}</body>
     </html>
