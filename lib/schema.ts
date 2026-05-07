@@ -50,6 +50,8 @@ export const birthInputSchema = z.object({
   hora: z.string().optional(),
   lugar: z.string().optional(),
   interest: z.enum(["amor", "general"]),
+  lang: z.enum(["es", "en"]).default("es"),
 });
 
 export type BirthInput = z.infer<typeof birthInputSchema>;
+export type Lang = BirthInput["lang"];

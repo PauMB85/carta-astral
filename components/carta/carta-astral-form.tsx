@@ -25,6 +25,7 @@ export function CartaAstralForm() {
       hora: getString(data, "hora") || undefined,
       lugar: getString(data, "lugar") || undefined,
       interest: getString(data, "interest") === "amor" ? "amor" : "general",
+      lang: "es",
     };
     setNombre(payload.nombre ?? null);
     submit(payload);

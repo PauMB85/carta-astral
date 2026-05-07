@@ -1,0 +1,15 @@
+export const v1 = {
+  gold: "#c9a55a",
+  goldBright: "#e7c97a",
+  dark: "#0b0a08",
+  ink: "#1a160d",
+  cream: "#f5ecd6",
+  dim: "rgba(245, 236, 214, 0.55)",
+  goldFaint15: "rgba(201, 165, 90, 0.15)",
+  goldFaint18: "rgba(201, 165, 90, 0.18)",
+  goldFaint25: "rgba(201, 165, 90, 0.25)",
+  goldFaint30: "rgba(201, 165, 90, 0.30)",
+  goldFaint35: "rgba(201, 165, 90, 0.35)",
+  goldFaint60: "rgba(201, 165, 90, 0.60)",
+  goldGlow: "rgba(231, 201, 122, 0.35)",
+} as const;

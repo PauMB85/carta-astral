@@ -2,7 +2,7 @@ export function formatBirthDate(iso: string): string {
   if (!iso) return "";
   const date = new Date(`${iso}T00:00:00`);
   if (Number.isNaN(date.getTime())) return iso;
-  return date.toLocaleDateString("es-ES", {
+  return date.toLocaleDateString("en-US", {
     day: "numeric",
     month: "long",
     year: "numeric",
