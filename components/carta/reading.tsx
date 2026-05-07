@@ -16,6 +16,7 @@ type Props = {
   nombre: string | null;
   isStreaming: boolean;
   error: Error | undefined;
+  rateLimitMessage: string | null;
   onReset: () => void;
 };
 
@@ -24,6 +25,7 @@ export function Reading({
   nombre,
   isStreaming,
   error,
+  rateLimitMessage,
   onReset,
 }: Props) {
   const headingRef = useRef<HTMLHeadingElement>(null);
@@ -62,7 +64,9 @@ export function Reading({
           Tu carta astral
         </h2>
 
-        {error ? (
+        {rateLimitMessage ? (
+          <ReadingErrorState message={rateLimitMessage} />
+        ) : error ? (
           <ReadingErrorState message="Las estrellas están veladas esta noche. Intenta de nuevo en un momento." />
         ) : reading?.status === "needs_more_data" ? (
           <NeedsMoreData

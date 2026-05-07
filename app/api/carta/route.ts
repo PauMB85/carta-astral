@@ -1,20 +1,71 @@
 import { anthropic } from "@ai-sdk/anthropic";
 import { streamText, Output } from "ai";
+import { z } from "zod";
 import { SYSTEM_PROMPT, buildUserPrompt } from "@/lib/prompt";
+import { cartaRatelimit, getClientIdentifier } from "@/lib/ratelimit";
 import { birthInputSchema, readingSchema } from "@/lib/schema";
 
 export const maxDuration = 30;
 
+const MAX_BODY_BYTES = 2048;
+
 export async function POST(req: Request) {
-  const body = await req.json();
+  const contentLength = req.headers.get("content-length");
+  if (contentLength && Number(contentLength) > MAX_BODY_BYTES) {
+    return Response.json(
+      { error: "Payload demasiado grande" },
+      { status: 413 },
+    );
+  }
+
+  const identifier = getClientIdentifier(req);
+  const { success, limit, remaining, reset } =
+    await cartaRatelimit.limit(identifier);
+
+  const headers: Record<string, string> = {
+    "X-RateLimit-Limit": String(limit),
+    "X-RateLimit-Remaining": String(remaining),
+    "X-RateLimit-Reset": String(reset),
+  };
+
+  if (!success) {
+    const retryAfterSeconds = Math.max(
+      1,
+      Math.ceil((reset - Date.now()) / 1000),
+    );
+    return Response.json(
+      {
+        error: "rate_limited",
+        message:
+          "Las estrellas están saturadas en este momento. El cosmos pide unos minutos antes de revelar otra carta.",
+        retryAfter: retryAfterSeconds,
+      },
+      {
+        status: 429,
+        headers: { ...headers, "Retry-After": String(retryAfterSeconds) },
+      },
+    );
+  }
+
+  let body: unknown;
+  try {
+    body = await req.json();
+  } catch {
+    return Response.json(
+      { error: "JSON inválido" },
+      { status: 400, headers },
+    );
+  }
+
   const parsed = birthInputSchema.safeParse(body);
 
   if (!parsed.success) {
-    return new Response(
-      JSON.stringify({
+    return Response.json(
+      {
         error: "Datos inválidos. Necesitamos al menos una fecha de nacimiento.",
-      }),
-      { status: 400, headers: { "Content-Type": "application/json" } },
+        issues: z.flattenError(parsed.error).fieldErrors,
+      },
+      { status: 400, headers },
     );
   }
 

@@ -1,6 +1,12 @@
 "use client";
 
-import { useEffect, useRef, useState, type FormEvent } from "react";
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  type FormEvent,
+} from "react";
 import Image from "next/image";
 import { experimental_useObject as useObject } from "@ai-sdk/react";
 import type { DeepPartial } from "ai";
@@ -16,11 +22,23 @@ type Props = {
 };
 
 export function ChartFlow({ lang, formCopy, readingCopy }: Props) {
+  const [nombre, setNombre] = useState<string | null>(null);
+  const [rateLimited, setRateLimited] = useState(false);
+
+  const customFetch = useCallback<typeof fetch>(async (input, init) => {
+    setRateLimited(false);
+    const response = await fetch(input, init);
+    if (response.status === 429) {
+      setRateLimited(true);
+    }
+    return response;
+  }, []);
+
   const { object, submit, isLoading, error, stop, clear } = useObject({
     api: "/api/carta",
     schema: readingSchema,
+    fetch: customFetch,
   });
-  const [nombre, setNombre] = useState<string | null>(null);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -41,9 +59,10 @@ export function ChartFlow({ lang, formCopy, readingCopy }: Props) {
     stop();
     clear();
     setNombre(null);
+    setRateLimited(false);
   };
 
-  const showReading = Boolean(object) || isLoading;
+  const showReading = Boolean(object) || isLoading || rateLimited;
 
   return (
     <section
@@ -86,6 +105,7 @@ export function ChartFlow({ lang, formCopy, readingCopy }: Props) {
               nombre={nombre}
               isStreaming={isLoading}
               error={error}
+              rateLimited={rateLimited}
               onReset={handleReset}
               t={readingCopy}
             />
@@ -357,6 +377,7 @@ type ReadingViewProps = {
   nombre: string | null;
   isStreaming: boolean;
   error: Error | undefined;
+  rateLimited: boolean;
   onReset: () => void;
   t: Dictionary["reading"];
 };
@@ -366,6 +387,7 @@ function ReadingView({
   nombre,
   isStreaming,
   error,
+  rateLimited,
   onReset,
   t,
 }: ReadingViewProps) {
@@ -403,8 +425,13 @@ function ReadingView({
         </h2>
       </div>
 
-      {error ? (
-        <ReadingError message={t.errorMessage} t={t} />
+      {rateLimited ? (
+        <ReadingError
+          eyebrow={t.rateLimitEyebrow}
+          message={t.rateLimitMessage}
+        />
+      ) : error ? (
+        <ReadingError eyebrow={t.errorEyebrow} message={t.errorMessage} />
       ) : reading?.status === "needs_more_data" ? (
         <NeedsMoreData
           message={reading.message ?? t.missingDataFallback}
@@ -412,7 +439,10 @@ function ReadingView({
           t={t}
         />
       ) : reading?.status === "error" ? (
-        <ReadingError message={reading.message ?? t.genericErrorFallback} t={t} />
+        <ReadingError
+          eyebrow={t.errorEyebrow}
+          message={reading.message ?? t.genericErrorFallback}
+        />
       ) : (
         <ReadingBody reading={reading} isStreaming={isStreaming} t={t} />
       )}
@@ -745,11 +775,11 @@ function NeedsMoreData({
 }
 
 function ReadingError({
+  eyebrow,
   message,
-  t,
 }: {
+  eyebrow: string;
   message: string;
-  t: Dictionary["reading"];
 }) {
   return (
     <div
@@ -769,7 +799,7 @@ function ReadingError({
           fontWeight: 500,
         }}
       >
-        {t.errorEyebrow}
+        {eyebrow}
       </p>
       <p
         className="font-body italic leading-relaxed"

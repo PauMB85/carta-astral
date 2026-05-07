@@ -81,6 +81,9 @@ const DICTIONARIES = {
       missingDataFallback:
         "Necesitamos algún dato más para una lectura precisa.",
       genericErrorFallback: "Algo se interpuso entre tú y los astros.",
+      rateLimitEyebrow: "EL COSMOS PIDE PAUSA",
+      rateLimitMessage:
+        "Las estrellas están saturadas en este momento. El cosmos pide unos minutos antes de revelar otra carta.",
     },
     footer: {
       quote:
@@ -158,6 +161,9 @@ const DICTIONARIES = {
       missingDataFallback:
         "We need a little more information for a precise reading.",
       genericErrorFallback: "Something stood between you and the stars.",
+      rateLimitEyebrow: "THE COSMOS ASKS FOR PAUSE",
+      rateLimitMessage:
+        "The stars are overwhelmed right now. The cosmos asks for a few minutes before revealing another chart.",
     },
     footer: {
       quote:

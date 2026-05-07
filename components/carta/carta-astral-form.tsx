@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useCallback, useState, type FormEvent } from "react";
 import { Calendar, Clock, MapPin, User } from "lucide-react";
 import { experimental_useObject as useObject } from "@ai-sdk/react";
 import { readingSchema, type BirthInput } from "@/lib/schema";
@@ -9,12 +9,35 @@ import { InterestToggle } from "./interest-toggle";
 import { SubmitButton } from "./submit-button";
 import { Reading } from "./reading";
 
+const RATE_LIMIT_FALLBACK =
+  "Las estrellas están saturadas en este momento. El cosmos pide unos minutos antes de revelar otra carta.";
+
 export function CartaAstralForm() {
+  const [nombre, setNombre] = useState<string | null>(null);
+  const [rateLimitMessage, setRateLimitMessage] = useState<string | null>(null);
+
+  const customFetch = useCallback<typeof fetch>(async (input, init) => {
+    setRateLimitMessage(null);
+    const response = await fetch(input, init);
+    if (response.status === 429) {
+      const body = (await response
+        .clone()
+        .json()
+        .catch(() => null)) as { message?: unknown } | null;
+      const message =
+        body && typeof body.message === "string"
+          ? body.message
+          : RATE_LIMIT_FALLBACK;
+      setRateLimitMessage(message);
+    }
+    return response;
+  }, []);
+
   const { object, submit, isLoading, error, stop, clear } = useObject({
     api: "/api/carta",
     schema: readingSchema,
+    fetch: customFetch,
   });
-  const [nombre, setNombre] = useState<string | null>(null);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -35,15 +58,17 @@ export function CartaAstralForm() {
     stop();
     clear();
     setNombre(null);
+    setRateLimitMessage(null);
   };
 
-  if (object || isLoading) {
+  if (object || isLoading || rateLimitMessage) {
     return (
       <Reading
         reading={object}
         nombre={nombre}
         isStreaming={isLoading}
         error={error}
+        rateLimitMessage={rateLimitMessage}
         onReset={handleReset}
       />
     );
