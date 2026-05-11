@@ -90,7 +90,7 @@ const cases = [
   },
 ];
 
-export default function () {
+export default function validation() {
   for (const c of cases) {
     const headers = {
       "Content-Type": "application/json",

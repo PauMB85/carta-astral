@@ -27,7 +27,7 @@ const validPayload = JSON.stringify({
   lang: "es",
 });
 
-export default function () {
+export default function rateLimit() {
   console.log(`rate-limit test using IP ${FAKE_IP}`);
 
   for (let i = 1; i <= TOTAL_REQUESTS; i++) {

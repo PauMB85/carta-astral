@@ -13,7 +13,7 @@ export const options = {
   iterations: 1,
 };
 
-export default function () {
+export default function smoke() {
   const payload = JSON.stringify({
     nombre: "k6-smoke",
     fecha: "1990-06-15",
