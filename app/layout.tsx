@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Cinzel, Cormorant_Garamond } from "next/font/google";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 
 const cinzel = Cinzel({
@@ -31,7 +32,10 @@ export default function RootLayout({
       lang="es"
       className={`${cinzel.variable} ${cormorant.variable} h-full antialiased`}
     >
-      <body className="min-h-full">{children}</body>
+      <body className="min-h-full">
+        {children}
+        <SpeedInsights />
+      </body>
     </html>
   );
 }
