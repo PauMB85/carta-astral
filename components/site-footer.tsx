@@ -18,7 +18,7 @@ export function SiteFooter({ t }: Props) {
         width={1024}
         height={1536}
         aria-hidden="true"
-        className="w-[110px] sm:w-[120px] mx-auto mb-4 opacity-90"
+        className="w-27.5 sm:w-30 mx-auto mb-4 opacity-90"
       />
       <p
         className="font-body italic text-base sm:text-lg max-w-md mx-auto"

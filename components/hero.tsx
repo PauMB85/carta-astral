@@ -16,7 +16,7 @@ export function Hero({ t }: Props) {
         width={1024}
         height={1536}
         aria-hidden="true"
-        className="absolute top-6 left-1/2 -translate-x-1/2 w-[180px] sm:w-[260px] lg:w-[360px] opacity-[0.18] pointer-events-none -z-0"
+        className="absolute top-6 left-1/2 -translate-x-1/2 w-45 sm:w-65 lg:w-90 opacity-18 pointer-events-none z-0"
         style={{ filter: `drop-shadow(0 0 40px rgba(231,201,122,0.25))` }}
       />
 
@@ -60,7 +60,7 @@ export function Hero({ t }: Props) {
       <div className="flex justify-center my-10 sm:my-12 wheel-float">
         <NatalWheel
           size={520}
-          className="w-[280px] sm:w-[400px] lg:w-[520px] h-auto"
+          className="w-70 sm:w-100 lg:w-130 h-auto"
         />
       </div>
 
