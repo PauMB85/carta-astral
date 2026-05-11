@@ -5,7 +5,7 @@ import {
   useEffect,
   useRef,
   useState,
-  type FormEvent,
+  type SubmitEvent,
 } from "react";
 import Image from "next/image";
 import { experimental_useObject as useObject } from "@ai-sdk/react";
@@ -40,7 +40,7 @@ export function ChartFlow({ lang, formCopy, readingCopy }: Props) {
     fetch: customFetch,
   });
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const payload: BirthInput = {
@@ -125,7 +125,7 @@ export function ChartFlow({ lang, formCopy, readingCopy }: Props) {
 type ConsultFormProps = {
   t: Dictionary["form"];
   isLoading: boolean;
-  onSubmit: (event: FormEvent<HTMLFormElement>) => void;
+  onSubmit: (event: SubmitEvent<HTMLFormElement>) => void;
 };
 
 function ConsultForm({ t, isLoading, onSubmit }: ConsultFormProps) {
