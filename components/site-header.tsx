@@ -32,7 +32,7 @@ export function SiteHeader({ lang, t }: Props) {
           <div className="text-base sm:text-lg">{t.brand}</div>
           <div
             className="font-body italic mt-1"
-            style={{ color: v1.gold, fontSize: 11, letterSpacing: "0.1em" }}
+            style={{ color: v1.gold, fontSize: 12, letterSpacing: "0.1em" }}
           >
             {t.brandSub}
           </div>
@@ -57,7 +57,7 @@ export function SiteHeader({ lang, t }: Props) {
       </nav>
 
       <div
-        className="flex justify-end items-center gap-2 order-2 lg:order-3 font-display text-[11px]"
+        className="flex justify-end items-center gap-2 order-2 lg:order-3 font-display text-xs"
         style={{ letterSpacing: "0.2em", fontWeight: 500 }}
       >
         <LangLink targetLang="es" current={lang}>

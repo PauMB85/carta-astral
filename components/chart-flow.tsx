@@ -142,7 +142,7 @@ function ConsultForm({ t, isLoading, onSubmit }: ConsultFormProps) {
           className="font-display mb-4"
           style={{
             color: v1.gold,
-            fontSize: 11,
+            fontSize: 12,
             letterSpacing: "0.4em",
             fontWeight: 500,
           }}
@@ -202,7 +202,7 @@ function ConsultForm({ t, isLoading, onSubmit }: ConsultFormProps) {
             className="font-display block mb-4"
             style={{
               color: v1.gold,
-              fontSize: 11,
+              fontSize: 12,
               letterSpacing: "0.22em",
               fontWeight: 500,
               textTransform: "uppercase",
@@ -287,7 +287,7 @@ function Field({
         className="font-display mb-1"
         style={{
           color: v1.gold,
-          fontSize: 11,
+          fontSize: 12,
           letterSpacing: "0.22em",
           fontWeight: 500,
           textTransform: "uppercase",
@@ -366,7 +366,7 @@ function RadioCard({
           className="font-display block mt-2 uppercase"
           style={{
             color: v1.gold,
-            fontSize: 9,
+            fontSize: 12,
             letterSpacing: "0.2em",
             fontWeight: 500,
           }}
@@ -414,7 +414,7 @@ function ReadingView({
           className="font-display"
           style={{
             color: v1.gold,
-            fontSize: 11,
+            fontSize: 12,
             letterSpacing: "0.4em",
             fontWeight: 500,
           }}
@@ -463,7 +463,7 @@ function ReadingView({
             background: "transparent",
             border: "none",
             color: v1.cream,
-            fontSize: 11,
+            fontSize: 12,
             letterSpacing: "0.32em",
             padding: "14px 28px",
             fontWeight: 500,
@@ -524,7 +524,7 @@ function ReadingBody({
             className="font-display text-center mb-6"
             style={{
               color: v1.gold,
-              fontSize: 11,
+              fontSize: 12,
               letterSpacing: "0.4em",
               fontWeight: 500,
             }}
@@ -609,7 +609,7 @@ function ReadingSectionCard({
           className="font-display"
           style={{
             color: v1.goldBright,
-            fontSize: 11,
+            fontSize: 12,
             letterSpacing: "0.32em",
             fontWeight: 500,
           }}
@@ -655,7 +655,7 @@ function TipsBlock({
         className="font-display text-center mb-4"
         style={{
           color: v1.gold,
-          fontSize: 11,
+          fontSize: 12,
           letterSpacing: "0.4em",
           fontWeight: 500,
         }}
@@ -696,7 +696,7 @@ function ReadingPlaceholder({ t }: { t: Dictionary["reading"] }) {
         className="font-display mt-4"
         style={{
           color: v1.gold,
-          fontSize: 11,
+          fontSize: 12,
           letterSpacing: "0.4em",
           fontWeight: 500,
         }}
@@ -735,7 +735,7 @@ function NeedsMoreData({
         className="font-display"
         style={{
           color: v1.gold,
-          fontSize: 11,
+          fontSize: 12,
           letterSpacing: "0.4em",
           fontWeight: 500,
         }}
@@ -800,7 +800,7 @@ function ReadingError({
         className="font-display mb-2"
         style={{
           color: "rgba(220, 200, 255, 0.85)",
-          fontSize: 11,
+          fontSize: 12,
           letterSpacing: "0.4em",
           fontWeight: 500,
         }}

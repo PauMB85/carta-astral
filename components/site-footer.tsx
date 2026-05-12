@@ -30,7 +30,7 @@ export function SiteFooter({ t }: Props) {
         className="font-display mt-6"
         style={{
           color: v1.gold,
-          fontSize: 10,
+          fontSize: 12,
           letterSpacing: "0.4em",
           fontWeight: 500,
         }}

@@ -25,7 +25,7 @@ export function Hero({ t }: Props) {
         className="font-display relative z-10 mb-6"
         style={{
           color: v1.gold,
-          fontSize: 11,
+          fontSize: 12,
           letterSpacing: "0.4em",
           fontWeight: 500,
         }}
