@@ -94,6 +94,8 @@ Cuando se supera el límite, el route handler devuelve `429` con `Retry-After`, 
 
 ## Diseño
 
+> Guía completa de marca (paleta, tipografía, iconografía, voz) en [docs/brand.md](docs/brand.md).
+
 - **Paleta** vive en [lib/theme.ts](lib/theme.ts) como objeto `v1` (oro `#c9a55a` / oroBright `#e7c97a` / dark `#0b0a08` / cream `#f5ecd6` + variantes faint). Se aplica vía estilos inline en componentes, no via Tailwind utilities
 - **Tipografía**: `font-display` (Cinzel) para eyebrows y CTAs, `font-body` (Cormorant Garamond) para títulos grandes en italic y texto corrido. Las dos clases viven en [globals.css](app/globals.css) y los tokens en `@theme`
 - **Cosmos background**: [cosmos-bg.tsx](components/cosmos-bg.tsx) renderiza `fixed inset-0 -z-10` con un fondo `v1.dark` + radial gradients dorados sutiles + 80 estrellas SVG con PRNG sembrado y animación `v1-twinkle` inline
