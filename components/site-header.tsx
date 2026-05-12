@@ -32,7 +32,7 @@ export function SiteHeader({ lang, t }: Props) {
           <div className="text-base sm:text-lg">{t.brand}</div>
           <div
             className="font-body italic mt-1"
-            style={{ color: v1.gold, fontSize: 12, letterSpacing: "0.1em" }}
+            style={{ color: v1.gold, fontSize: 12 }}
           >
             {t.brandSub}
           </div>

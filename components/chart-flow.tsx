@@ -367,7 +367,6 @@ function RadioCard({
           style={{
             color: v1.gold,
             fontSize: 12,
-            letterSpacing: "0.2em",
             fontWeight: 500,
           }}
         >
@@ -697,7 +696,6 @@ function ReadingPlaceholder({ t }: { t: Dictionary["reading"] }) {
         style={{
           color: v1.gold,
           fontSize: 12,
-          letterSpacing: "0.4em",
           fontWeight: 500,
         }}
       >

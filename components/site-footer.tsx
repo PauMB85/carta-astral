@@ -31,7 +31,7 @@ export function SiteFooter({ t }: Props) {
         style={{
           color: v1.gold,
           fontSize: 12,
-          letterSpacing: "0.4em",
+          letterSpacing: "0.15em",
           fontWeight: 500,
         }}
       >
