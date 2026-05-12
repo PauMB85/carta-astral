@@ -787,7 +787,7 @@ function ReadingError({
 }) {
   return (
     <div
-      className="text-center py-6 px-6"
+      className="text-center p-6"
       role="alert"
       style={{
         background: "rgba(120, 60, 160, 0.08)",
