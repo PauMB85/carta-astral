@@ -336,7 +336,6 @@ function RadioCard({
           style={{
             color: v1.goldBright,
             fontSize: 22,
-            letterSpacing: "0.25em",
             fontWeight: 500,
           }}
         >

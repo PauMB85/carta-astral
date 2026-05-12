@@ -25,7 +25,6 @@ export function Pillars({ t }: Props) {
             style={{
               color: v1.goldBright,
               fontSize: 26,
-              letterSpacing: "0.25em",
               fontWeight: 500,
             }}
           >
