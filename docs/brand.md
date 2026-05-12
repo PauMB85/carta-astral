@@ -47,6 +47,21 @@ Cargadas con `next/font/google` en [app/layout.tsx](../app/layout.tsx):
 
 Las clases utilitarias `font-display` y `font-body` viven en [app/globals.css](../app/globals.css). `font-display` añade `letter-spacing: 0.08em` por defecto.
 
+### Letter spacing (tracking) — eyebrow pattern
+
+El brand cultiva el patrón "small-caps eyebrow con tracking ancho" como acento visual. Los eyebrows en mayúsculas llevan tracking entre `0.18em` y `0.4em` (`RITUAL DE CONSULTA`, `LECTURA SELLADA`, `EL CIELO REVELA`, etc.). Es deliberado y forma parte de la identidad.
+
+Herramientas de análisis estático (React Doctor, axe-core) suelen avisar de wide letter-spacing porque no pueden distinguir entre un eyebrow legítimo y body text con tracking. **Estos avisos son falsos positivos para los eyebrows del brand**. Solo se considera incorrecto aplicar tracking ancho sobre:
+
+- Body text en frases largas
+- Texto en mixed case (italic, lowercase)
+- Captions o sublabels descriptivos
+
+Tracking aceptado en este brand:
+- `0.05em–0.1em`: body text sutil (raro, casi nunca)
+- `0.15em–0.2em`: créditos, etiquetas medianas
+- `0.22em–0.4em`: eyebrows mayúsculas, números romanos, CTAs
+
 ## Iconografía
 
 Vive en `app/` (file-based metadata de Next 16):
