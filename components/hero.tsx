@@ -16,6 +16,7 @@ export function Hero({ t }: Props) {
         width={1024}
         height={1536}
         aria-hidden="true"
+        priority
         className="absolute top-6 left-1/2 -translate-x-1/2 w-45 sm:w-65 lg:w-90 opacity-18 pointer-events-none z-0"
         style={{ filter: `drop-shadow(0 0 40px rgba(231,201,122,0.25))` }}
       />
