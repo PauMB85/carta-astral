@@ -438,16 +438,9 @@ function ReadingView({
           type="button"
           onClick={onReset}
           disabled={isStreaming}
-          className="font-display transition-opacity disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
+          className="font-display bg-transparent border-0 py-3.5 px-7 text-xs font-medium uppercase tracking-[0.32em] transition-opacity disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
           style={{
-            background: "transparent",
-            border: "none",
             color: v1.cream,
-            fontSize: 12,
-            letterSpacing: "0.32em",
-            padding: "14px 28px",
-            fontWeight: 500,
-            textTransform: "uppercase",
             borderBottom: `1px solid ${v1.goldFaint35}`,
             cursor: isStreaming ? "not-allowed" : "pointer",
           }}

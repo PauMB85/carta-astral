@@ -67,18 +67,12 @@ export function Hero({ t }: Props) {
 
       <a
         href="#form"
-        className="inline-flex items-center justify-center font-display whitespace-nowrap transition-colors"
+        className="inline-flex items-center justify-center font-display whitespace-nowrap transition-colors min-h-16 px-14 py-0 text-[13px] font-medium tracking-[0.32em] outline-offset-[-6px]"
         style={{
           border: `1px solid ${v1.gold}`,
           outline: `1px solid ${v1.goldFaint35}`,
-          outlineOffset: "-6px",
           color: v1.goldBright,
-          minHeight: 64,
-          padding: "0 56px",
-          letterSpacing: "0.32em",
-          fontSize: 13,
           background: "rgba(201,165,90,0.04)",
-          fontWeight: 500,
         }}
       >
         <span style={{ paddingTop: 2 }}>{t.cta}</span>
