@@ -19,7 +19,10 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./*"],
+      "@shared/*": ["./src/shared/*"],
+      "@natal/*": ["./src/natal-chart/*"],
+      "@pet/*": ["./src/pet-compatibility/*"]
     }
   },
   "include": [
