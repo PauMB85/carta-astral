@@ -329,9 +329,11 @@ function RadioCard({
   selected: boolean;
   onSelect: () => void;
 }) {
+  const id = `${name}-${value}`;
   return (
-    <label className="cursor-pointer block" data-selected={selected}>
+    <label htmlFor={id} className="cursor-pointer block" data-selected={selected}>
       <input
+        id={id}
         type="radio"
         name={name}
         value={value}
