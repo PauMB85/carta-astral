@@ -27,8 +27,7 @@ app/
   page.tsx              Server Component. Lee searchParams.lang, escoge dictionary, compone el árbol
   globals.css           Paleta como @theme + animaciones + prefers-reduced-motion
 lib/
-  schema.ts             Zod schemas (readingSchema, birthInputSchema). Tipos inferidos
-  types.ts              Reexporta tipos desde schema.ts
+  schema.ts             Zod schemas (readingSchema, birthInputSchema) + tipos inferidos (Reading, BirthInput, Lang)
   prompt.ts             SYSTEM_PROMPT + buildUserPrompt. server-only
   format.ts             Formateo de fecha/hora/lugar para el prompt
   ratelimit.ts          Sliding window 5 req/h por IP (Upstash). server-only. Prefix por NODE_ENV

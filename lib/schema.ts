@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const readingSectionSchema = z.object({
+const readingSectionSchema = z.object({
   title: z.string().describe("Título corto y evocador de la sección"),
   content: z.string().describe("Contenido detallado de 2-4 frases"),
 });
@@ -42,7 +42,6 @@ export const readingSchema = z.object({
 });
 
 export type Reading = z.infer<typeof readingSchema>;
-export type ReadingSection = z.infer<typeof readingSectionSchema>;
 
 const CURRENT_YEAR = new Date().getFullYear();
 

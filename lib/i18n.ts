@@ -1,4 +1,4 @@
-import type { Lang } from "@/lib/types";
+import type { Lang } from "@/lib/schema";
 
 export type Dictionary = (typeof DICTIONARIES)[Lang];
 
