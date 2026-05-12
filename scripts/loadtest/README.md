@@ -13,7 +13,7 @@ El servidor debe estar corriendo:
 ```bash
 bun run dev
 # en otro terminal:
-k6 run loadtest/<test>.js
+k6 run scripts/loadtest/<test>.js
 ```
 
 ## Tests
@@ -39,7 +39,7 @@ Esto significa que puedes correr los tests varias veces seguidas sin esperar a q
 - `BASE_URL` (opcional, default `http://localhost:3000`) — útil para apuntar a Vercel preview, etc.
 
 ```bash
-BASE_URL=https://carta-astral-preview.vercel.app k6 run loadtest/smoke.js
+BASE_URL=https://carta-astral-preview.vercel.app k6 run scripts/loadtest/smoke.js
 ```
 
 ## Qué buscar en la salida

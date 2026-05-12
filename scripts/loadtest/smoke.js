@@ -1,6 +1,6 @@
 // Smoke test: 1 valid request, expect 200 + streaming JSON.
 // Cost: 1 Anthropic call (~$0.001).
-// Run: k6 run loadtest/smoke.js
+// Run: k6 run scripts/loadtest/smoke.js
 import http from "k6/http";
 import { check } from "k6";
 

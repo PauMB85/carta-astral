@@ -1,7 +1,7 @@
 // Rate limit test: 7 sequential requests from the same IP.
 // Expect: first 5 → 200, 6th + 7th → 429 with mystical message + Retry-After header.
 // Cost: 5 Anthropic calls (~$0.005).
-// Run: k6 run loadtest/rate-limit.js
+// Run: k6 run scripts/loadtest/rate-limit.js
 import http from "k6/http";
 import { check } from "k6";
 

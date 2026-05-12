@@ -1,7 +1,7 @@
 // Validation test: every case should fail at the route boundary BEFORE hitting Anthropic.
 // Each case uses a distinct fake IP so the rate limit doesn't bleed between cases.
 // Cost: 0 Anthropic calls.
-// Run: k6 run loadtest/validation.js
+// Run: k6 run scripts/loadtest/validation.js
 import http from "k6/http";
 import { check } from "k6";
 
