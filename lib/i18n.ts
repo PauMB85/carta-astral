@@ -15,7 +15,7 @@ const DICTIONARIES = {
     nav: {
       brand: "GALGO ASTRAL",
       brandSub: "est. en la luna nueva",
-      links: ["CARTA ASTRAL"],
+      links: [{ label: "CARTA ASTRAL", href: "#form" }],
     },
     hero: {
       eyebrow: "CARTA ASTRAL",
@@ -95,7 +95,7 @@ const DICTIONARIES = {
     nav: {
       brand: "GALGO ASTRAL",
       brandSub: "est. on the new moon",
-      links: ["ASTRAL CHART"],
+      links: [{ label: "ASTRAL CHART", href: "#form" }],
     },
     hero: {
       eyebrow: "ASTRAL CHART",

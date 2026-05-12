@@ -44,11 +44,11 @@ export function SiteHeader({ lang, t }: Props) {
         style={{ letterSpacing: "0.18em", fontWeight: 500 }}
         aria-label="Primary"
       >
-        {t.links.map((label) => (
+        {t.links.map(({ label, href }) => (
           <a
             key={label}
-            href="#"
-            className="text-[11px] no-underline opacity-85 hover:opacity-100 transition-opacity"
+            href={href}
+            className="text-xs no-underline opacity-85 hover:opacity-100 transition-opacity"
             style={{ color: v1.cream }}
           >
             {label}
