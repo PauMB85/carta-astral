@@ -199,14 +199,8 @@ function ConsultForm({ t, isLoading, onSubmit }: ConsultFormProps) {
 
         <fieldset>
           <legend
-            className="font-display block mb-4"
-            style={{
-              color: v1.gold,
-              fontSize: 12,
-              letterSpacing: "0.22em",
-              fontWeight: 500,
-              textTransform: "uppercase",
-            }}
+            className="font-display block mb-4 text-xs font-medium uppercase tracking-[0.22em]"
+            style={{ color: v1.gold }}
           >
             <span style={{ color: v1.goldBright, marginRight: 6 }}>V</span>
             <span aria-hidden="true">·</span>
@@ -241,17 +235,10 @@ function ConsultForm({ t, isLoading, onSubmit }: ConsultFormProps) {
         <button
           type="submit"
           disabled={isLoading}
-          className="font-display mt-4 disabled:opacity-70 disabled:cursor-not-allowed transition-opacity"
+          className="font-display mt-4 border-0 cursor-pointer py-5.5 px-0 text-xs font-medium uppercase tracking-[0.35em] disabled:opacity-70 disabled:cursor-not-allowed transition-opacity"
           style={{
             background: v1.goldBright,
             color: v1.dark,
-            border: "none",
-            padding: "22px 0",
-            cursor: "pointer",
-            letterSpacing: "0.35em",
-            fontSize: 12,
-            fontWeight: 500,
-            textTransform: "uppercase",
           }}
         >
           {isLoading ? t.submitting : t.submit}
@@ -284,14 +271,8 @@ function Field({
   return (
     <div>
       <div
-        className="font-display mb-1"
-        style={{
-          color: v1.gold,
-          fontSize: 12,
-          letterSpacing: "0.22em",
-          fontWeight: 500,
-          textTransform: "uppercase",
-        }}
+        className="font-display mb-1 text-xs font-medium uppercase tracking-[0.22em]"
+        style={{ color: v1.gold }}
       >
         <span style={{ color: v1.goldBright, marginRight: 6 }}>{roman}</span>
         <span aria-hidden="true">·</span>{" "}
