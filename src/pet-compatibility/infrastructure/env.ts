@@ -9,21 +9,33 @@ const schema = z.object({
   STRIPE_PET_COMPATIBILITY_PRICE_ID: z
     .string()
     .min(1, "STRIPE_PET_COMPATIBILITY_PRICE_ID is required"),
-  NEXT_PUBLIC_APP_URL: z
-    .string()
-    .url("NEXT_PUBLIC_APP_URL must be a valid URL"),
+  NEXT_PUBLIC_APP_URL: z.url({
+    error: "NEXT_PUBLIC_APP_URL must be a valid URL",
+  }),
 });
 
-const parsed = schema.safeParse(process.env);
+type PetEnv = z.infer<typeof schema>;
 
-if (!parsed.success) {
-  const fields = z.flattenError(parsed.error).fieldErrors;
-  const missing = Object.entries(fields)
-    .map(([k, v]) => `  - ${k}: ${(v ?? []).join(", ")}`)
-    .join("\n");
-  throw new Error(
-    `Invalid pet-compatibility environment variables:\n${missing}`,
-  );
+let cached: PetEnv | null = null;
+
+function load(): PetEnv {
+  if (cached) return cached;
+  const parsed = schema.safeParse(process.env);
+  if (!parsed.success) {
+    const fields = z.flattenError(parsed.error).fieldErrors;
+    const missing = Object.entries(fields)
+      .map(([k, v]) => `  - ${k}: ${(v ?? []).join(", ")}`)
+      .join("\n");
+    throw new Error(
+      `Invalid pet-compatibility environment variables:\n${missing}`,
+    );
+  }
+  cached = parsed.data;
+  return cached;
 }
 
-export const petEnv = parsed.data;
+export const petEnv = new Proxy({} as PetEnv, {
+  get(_, prop) {
+    return load()[prop as keyof PetEnv];
+  },
+});
