@@ -15,14 +15,16 @@ import type { NatalInput } from "@natal/domain/natal-input";
 import type { Lang } from "@shared/domain/lang";
 import type { Dictionary } from "@/lib/i18n";
 import { v1 } from "@/lib/theme";
+import { PetPremiumBlock } from "@/components/pet-premium-block";
 
 type Props = {
   lang: Lang;
   formCopy: Dictionary["form"];
   readingCopy: Dictionary["reading"];
+  petCopy: Dictionary["pet"];
 };
 
-export function ChartFlow({ lang, formCopy, readingCopy }: Props) {
+export function ChartFlow({ lang, formCopy, readingCopy, petCopy }: Props) {
   const [nombre, setNombre] = useState<string | null>(null);
   const [rateLimited, setRateLimited] = useState(false);
   const [lastSubmittedInput, setLastSubmittedInput] =
@@ -125,6 +127,8 @@ export function ChartFlow({ lang, formCopy, readingCopy }: Props) {
               rateLimited={rateLimited}
               onReset={handleReset}
               t={readingCopy}
+              lang={lang}
+              petCopy={petCopy}
             />
           ) : (
             <ConsultForm
@@ -378,6 +382,8 @@ type ReadingViewProps = {
   rateLimited: boolean;
   onReset: () => void;
   t: Dictionary["reading"];
+  lang: Lang;
+  petCopy: Dictionary["pet"];
 };
 
 function ReadingView({
@@ -388,6 +394,8 @@ function ReadingView({
   rateLimited,
   onReset,
   t,
+  lang,
+  petCopy,
 }: ReadingViewProps) {
   const headingRef = useRef<HTMLHeadingElement>(null);
 
@@ -444,6 +452,13 @@ function ReadingView({
       ) : (
         <ReadingBody reading={reading} isStreaming={isStreaming} t={t} />
       )}
+
+      {!isStreaming &&
+      !rateLimited &&
+      !error &&
+      reading?.status === "ok" ? (
+        <PetPremiumBlock lang={lang} t={petCopy} />
+      ) : null}
 
       <div className="mt-12 text-center">
         <button

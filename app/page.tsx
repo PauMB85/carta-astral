@@ -33,7 +33,12 @@ export default async function Page({ searchParams }: Props) {
         <SiteHeader lang={lang} t={t.nav} />
         <Hero t={t.hero} />
         <Pillars t={t.pillars} />
-        <ChartFlow lang={lang} formCopy={t.form} readingCopy={t.reading} />
+        <ChartFlow
+          lang={lang}
+          formCopy={t.form}
+          readingCopy={t.reading}
+          petCopy={t.pet}
+        />
         <SiteFooter t={t.footer} />
       </main>
     </>
