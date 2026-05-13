@@ -25,6 +25,8 @@ type Props = {
 export function ChartFlow({ lang, formCopy, readingCopy }: Props) {
   const [nombre, setNombre] = useState<string | null>(null);
   const [rateLimited, setRateLimited] = useState(false);
+  const [lastSubmittedInput, setLastSubmittedInput] =
+    useState<NatalInput | null>(null);
 
   const customFetch = useCallback<typeof fetch>(async (input, init) => {
     setRateLimited(false);
@@ -41,6 +43,18 @@ export function ChartFlow({ lang, formCopy, readingCopy }: Props) {
     fetch: customFetch,
   });
 
+  useEffect(() => {
+    if (!isLoading && object?.status === "ok" && lastSubmittedInput) {
+      sessionStorage.setItem(
+        "heda:lastReading",
+        JSON.stringify({
+          natalInput: lastSubmittedInput,
+          reading: object,
+        }),
+      );
+    }
+  }, [isLoading, object, lastSubmittedInput]);
+
   const handleSubmit = (event: SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -53,6 +67,7 @@ export function ChartFlow({ lang, formCopy, readingCopy }: Props) {
       lang,
     };
     setNombre(payload.nombre ?? null);
+    setLastSubmittedInput(payload);
     submit(payload);
   };
 

@@ -12,4 +12,7 @@ export const v1 = {
   goldFaint35: "rgba(201, 165, 90, 0.35)",
   goldFaint60: "rgba(201, 165, 90, 0.60)",
   goldGlow: "rgba(231, 201, 122, 0.35)",
+  errBg: "rgba(120, 60, 160, 0.08)",
+  errBd: "rgba(180, 130, 200, 0.35)",
+  errInk: "#c9aae0",
 } as const;
