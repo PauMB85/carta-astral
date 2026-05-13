@@ -10,12 +10,9 @@ import {
 import Image from "next/image";
 import { experimental_useObject as useObject } from "@ai-sdk/react";
 import type { DeepPartial } from "ai";
-import {
-  readingSchema,
-  type Reading,
-  type BirthInput,
-  type Lang,
-} from "@/lib/schema";
+import { readingSchema, type Reading } from "@natal/domain/reading";
+import type { BirthInput } from "@natal/domain/birth-input";
+import type { Lang } from "@shared/domain/lang";
 import type { Dictionary } from "@/lib/i18n";
 import { v1 } from "@/lib/theme";
 

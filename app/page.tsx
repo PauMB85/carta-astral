@@ -5,7 +5,8 @@ import { Hero } from "@/components/hero";
 import { Pillars } from "@/components/pillars";
 import { ChartFlow } from "@/components/chart-flow";
 import { SiteFooter } from "@/components/site-footer";
-import { getDictionary, pickLang } from "@/lib/i18n";
+import { getDictionary } from "@/lib/i18n";
+import { pickLang } from "@shared/domain/lang";
 
 type Props = {
   searchParams: Promise<{ lang?: string }>;

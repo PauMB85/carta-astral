@@ -1,9 +1,11 @@
 import { anthropic } from "@ai-sdk/anthropic";
 import { streamText, Output } from "ai";
 import { z } from "zod";
-import { SYSTEM_PROMPT, buildUserPrompt } from "@/lib/prompt";
+import { SYSTEM_PROMPT } from "@natal/domain/prompts/system";
+import { buildUserPrompt } from "@natal/domain/prompts/user";
 import { cartaRatelimit, getClientIdentifier } from "@/lib/ratelimit";
-import { birthInputSchema, readingSchema } from "@/lib/schema";
+import { birthInputSchema } from "@natal/domain/birth-input";
+import { readingSchema } from "@natal/domain/reading";
 
 export const maxDuration = 30;
 

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import type { Lang } from "@/lib/schema";
+import type { Lang } from "@shared/domain/lang";
 import type { Dictionary } from "@/lib/i18n";
 import { v1 } from "@/lib/theme";
 

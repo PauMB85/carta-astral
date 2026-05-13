@@ -1,10 +1,6 @@
-import type { Lang } from "@/lib/schema";
+import type { Lang } from "@shared/domain/lang";
 
 export type Dictionary = (typeof DICTIONARIES)[Lang];
-
-export function pickLang(raw: string | undefined): Lang {
-  return raw === "en" ? "en" : "es";
-}
 
 export function getDictionary(lang: Lang): Dictionary {
   return DICTIONARIES[lang];
