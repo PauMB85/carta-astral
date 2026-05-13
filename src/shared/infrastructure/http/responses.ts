@@ -1,4 +1,18 @@
+import { z, type ZodError } from "zod";
 import type { RateLimitResult } from "@shared/application/ports/rate-limit.port";
+
+export function validationFailedResponse(
+  error: ZodError,
+  message: string,
+): Response {
+  return Response.json(
+    {
+      error: message,
+      issues: z.flattenError(error).fieldErrors,
+    },
+    { status: 400 },
+  );
+}
 
 export function rateLimitedResponse(rl: RateLimitResult): Response {
   return Response.json(
