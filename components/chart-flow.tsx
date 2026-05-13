@@ -11,7 +11,7 @@ import Image from "next/image";
 import { experimental_useObject as useObject } from "@ai-sdk/react";
 import type { DeepPartial } from "ai";
 import { readingSchema, type Reading } from "@natal/domain/reading";
-import type { BirthInput } from "@natal/domain/birth-input";
+import type { NatalInput } from "@natal/domain/natal-input";
 import type { Lang } from "@shared/domain/lang";
 import type { Dictionary } from "@/lib/i18n";
 import { v1 } from "@/lib/theme";
@@ -44,7 +44,7 @@ export function ChartFlow({ lang, formCopy, readingCopy }: Props) {
   const handleSubmit = (event: SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    const payload: BirthInput = {
+    const payload: NatalInput = {
       nombre: getString(data, "nombre") || undefined,
       fecha: getString(data, "fecha"),
       hora: getString(data, "hora") || undefined,

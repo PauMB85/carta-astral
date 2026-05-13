@@ -3,7 +3,7 @@ import { langSchema } from "@shared/domain/lang";
 
 const CURRENT_YEAR = new Date().getFullYear();
 
-export const birthInputSchema = z.object({
+export const natalInputSchema = z.object({
   nombre: z
     .string()
     .trim()
@@ -38,4 +38,4 @@ export const birthInputSchema = z.object({
   lang: langSchema.default("es"),
 });
 
-export type BirthInput = z.infer<typeof birthInputSchema>;
+export type NatalInput = z.infer<typeof natalInputSchema>;

@@ -1,5 +1,5 @@
 import { generateReading } from "@natal/infrastructure/composition";
-import { birthInputSchema } from "@natal/domain/birth-input";
+import { natalInputSchema } from "@natal/domain/natal-input";
 import { getClientIp } from "@shared/infrastructure/http/ip";
 import { validationFailedResponse } from "@shared/infrastructure/http/responses";
 
@@ -23,7 +23,7 @@ export async function POST(req: Request) {
     return Response.json({ error: "JSON inválido" }, { status: 400 });
   }
 
-  const parsed = birthInputSchema.safeParse(body);
+  const parsed = natalInputSchema.safeParse(body);
   if (!parsed.success) {
     return validationFailedResponse(
       parsed.error,

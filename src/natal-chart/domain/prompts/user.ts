@@ -1,5 +1,5 @@
 import "server-only";
-import type { BirthInput } from "@natal/domain/birth-input";
+import type { NatalInput } from "@natal/domain/natal-input";
 import {
   formatBirthDate,
   formatPlace,
@@ -11,7 +11,7 @@ const INTEREST_LABELS = {
   general: "Life in general",
 } as const;
 
-export function buildUserPrompt(data: BirthInput): string {
+export function buildUserPrompt(data: NatalInput): string {
   const formattedDate = formatBirthDate(data.fecha);
   const formattedTime = formatTime(data.hora ?? "");
   const formattedPlace = formatPlace(data.lugar ?? "");
