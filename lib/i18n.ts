@@ -121,6 +121,12 @@ const DICTIONARIES = {
         personalityCounter: "{n} / 5 SELECCIONADAS",
         submit: "CONTINUAR AL PAGO · 2,99 €",
         submitting: "Preparando el pago…",
+        errorMissing:
+          "Faltan datos. Asegúrate de elegir tipo, foco y al menos una fecha.",
+        errorNetwork:
+          "Algo se interpuso entre tú y los astros. Inténtalo de nuevo en un momento.",
+        errorRateLimit:
+          "Las estrellas están saturadas. El cosmos pide unos minutos antes de procesar otra petición.",
       },
       petType: { dog: "Perro", cat: "Gato" },
       petTypeSubtitle: { dog: "CANIS", cat: "FELIS" },
@@ -297,6 +303,12 @@ const DICTIONARIES = {
         personalityCounter: "{n} / 5 SELECTED",
         submit: "CONTINUE TO PAYMENT · 2,99 €",
         submitting: "Preparing payment…",
+        errorMissing:
+          "Some details are missing. Make sure you choose pet type, focus, and at least one date.",
+        errorNetwork:
+          "Something stood between you and the stars. Please try again in a moment.",
+        errorRateLimit:
+          "The stars are overwhelmed. The cosmos asks for a few minutes before another request.",
       },
       petType: { dog: "Dog", cat: "Cat" },
       petTypeSubtitle: { dog: "CANIS", cat: "FELIS" },
