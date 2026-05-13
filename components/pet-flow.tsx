@@ -28,7 +28,7 @@ type Stored =
   | { kind: "missing" }
   | { kind: "found"; reading: LastReading };
 
-const STORAGE_KEY = "heda:lastReading";
+const STORAGE_KEY = "heda:lastReading:v1";
 const CHECKING: Stored = { kind: "checking" };
 const MISSING: Stored = { kind: "missing" };
 
