@@ -8,6 +8,8 @@ type Props = {
 const TICKS = Array.from({ length: 12 }, (_, i) => i);
 const PLANETS = [20, 100, 200, 290] as const;
 
+const round = (n: number) => Math.round(n * 1000) / 1000;
+
 export function PetLoading({ title, sub }: Props) {
   return (
     <section
@@ -66,10 +68,10 @@ export function PetLoading({ title, sub }: Props) {
             return (
               <line
                 key={i}
-                x1={90 + Math.cos(a) * r1}
-                y1={90 + Math.sin(a) * r1}
-                x2={90 + Math.cos(a) * r2}
-                y2={90 + Math.sin(a) * r2}
+                x1={round(90 + Math.cos(a) * r1)}
+                y1={round(90 + Math.sin(a) * r1)}
+                x2={round(90 + Math.cos(a) * r2)}
+                y2={round(90 + Math.sin(a) * r2)}
                 stroke={v1.goldBright}
                 strokeWidth="0.7"
                 opacity="0.7"
@@ -79,8 +81,8 @@ export function PetLoading({ title, sub }: Props) {
 
           {PLANETS.map((a, i) => {
             const ra = (a * Math.PI) / 180 - Math.PI / 2;
-            const x = 90 + Math.cos(ra) * 56;
-            const y = 90 + Math.sin(ra) * 56;
+            const x = round(90 + Math.cos(ra) * 56);
+            const y = round(90 + Math.sin(ra) * 56);
             return (
               <g key={i}>
                 <circle
