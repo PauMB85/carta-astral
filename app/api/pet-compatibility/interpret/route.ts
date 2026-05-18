@@ -2,7 +2,7 @@ import { z } from "zod";
 import { generatePetReading } from "@pet/infrastructure/composition";
 import { validationFailedResponse } from "@shared/infrastructure/http/responses";
 
-export const maxDuration = 30;
+export const maxDuration = 60;
 
 const bodySchema = z.object({
   sessionId: z.string().min(1),

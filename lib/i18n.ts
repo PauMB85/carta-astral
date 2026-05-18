@@ -179,6 +179,10 @@ const DICTIONARIES = {
         paymentRequiredTitle: "No vemos el pago todavía",
         paymentRequiredText:
           "Si acabas de pagar, en unos segundos lo confirmamos. Si no, vuelve a intentarlo desde el formulario.",
+        readingFailedTitle: "Hubo un problema generando tu lectura",
+        readingFailedText:
+          "Tu pago se ha confirmado correctamente. La lectura no se completó a tiempo — inténtalo de nuevo, no se te cobrará otra vez.",
+        retry: "REINTENTAR",
         sessionMissingTitle: "No encontramos tu sesión",
         sessionMissingText:
           "El enlace parece haber expirado o pertenecer a otra mascota. Vuelve a empezar desde tu carta natal.",
@@ -361,6 +365,10 @@ const DICTIONARIES = {
         paymentRequiredTitle: "We don't see your payment yet",
         paymentRequiredText:
           "If you just paid, we'll confirm it in a few seconds. If not, please try again from the form.",
+        readingFailedTitle: "Something went wrong generating your reading",
+        readingFailedText:
+          "Your payment has been confirmed. The reading didn't complete in time — please try again, you won't be charged twice.",
+        retry: "RETRY",
         sessionMissingTitle: "We can't find your session",
         sessionMissingText:
           "The link seems to have expired or belong to another pet. Start again from your natal chart.",

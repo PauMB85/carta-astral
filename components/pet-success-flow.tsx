@@ -112,13 +112,13 @@ export function PetSuccessFlow({ sessionId, lang, t }: Props) {
     );
   }
 
-  if (error && !object) {
+  if (error && !object && sessionId) {
     return (
       <PetErrorState
-        title={t.success.paymentRequiredTitle}
-        text={t.form.errorNetwork}
-        ctaLabel={t.success.backToForm}
-        ctaHref={`/pet-compatibility?lang=${lang}`}
+        title={t.success.readingFailedTitle}
+        text={t.success.readingFailedText}
+        ctaLabel={t.success.retry}
+        onCtaAction={() => submit({ sessionId })}
       />
     );
   }

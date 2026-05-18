@@ -5,10 +5,30 @@ type Props = {
   title: string;
   text: string;
   ctaLabel: string;
-  ctaHref: string;
+  ctaHref?: string;
+  onCtaAction?: () => void;
 };
 
-export function PetErrorState({ title, text, ctaLabel, ctaHref }: Props) {
+const CTA_CLASSNAME =
+  "font-display inline-flex items-center gap-3 mt-3 no-underline cursor-pointer transition-colors";
+
+const CTA_STYLE = {
+  color: v1.goldBright,
+  background: "transparent",
+  border: `1px solid ${v1.gold}`,
+  padding: "14px 36px",
+  fontSize: 11,
+  letterSpacing: "0.3em",
+  fontWeight: 500,
+} as const;
+
+export function PetErrorState({
+  title,
+  text,
+  ctaLabel,
+  ctaHref,
+  onCtaAction,
+}: Props) {
   return (
     <section
       className="min-h-[70vh] flex flex-col items-center justify-center text-center px-5 py-16 gap-7"
@@ -56,21 +76,22 @@ export function PetErrorState({ title, text, ctaLabel, ctaHref }: Props) {
         {text}
       </p>
 
-      <Link
-        href={ctaHref}
-        className="font-display inline-flex items-center gap-3 mt-3 no-underline transition-colors"
-        style={{
-          color: v1.goldBright,
-          border: `1px solid ${v1.gold}`,
-          padding: "14px 36px",
-          fontSize: 11,
-          letterSpacing: "0.3em",
-          fontWeight: 500,
-        }}
-      >
-        <span>{ctaLabel}</span>
-        <span aria-hidden="true">→</span>
-      </Link>
+      {ctaHref ? (
+        <Link href={ctaHref} className={CTA_CLASSNAME} style={CTA_STYLE}>
+          <span>{ctaLabel}</span>
+          <span aria-hidden="true">→</span>
+        </Link>
+      ) : onCtaAction ? (
+        <button
+          type="button"
+          onClick={onCtaAction}
+          className={CTA_CLASSNAME}
+          style={CTA_STYLE}
+        >
+          <span>{ctaLabel}</span>
+          <span aria-hidden="true">→</span>
+        </button>
+      ) : null}
     </section>
   );
 }
