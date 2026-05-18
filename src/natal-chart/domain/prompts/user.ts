@@ -21,6 +21,7 @@ export function buildUserPrompt(data: NatalInput): string {
     `Response language: ${data.lang}`,
     "",
     "Provided data:",
+    `- Name: ${data.nombre || "Not specified"}`,
     `- Date of birth: ${formattedDate || "Not specified"}`,
     `- Time of birth: ${formattedTime || "Not specified"}`,
     `- Place of birth: ${formattedPlace || "Not specified"}`,

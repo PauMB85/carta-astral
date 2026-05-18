@@ -43,6 +43,7 @@ export function buildPetUserPrompt(params: {
     `Response language: ${lang}`,
     "",
     "Person's natal data:",
+    `- Name: ${natalInput.nombre || "Not specified"}`,
     `- Date of birth: ${formatBirthDate(natalInput.fecha) || "Not specified"}`,
     `- Time of birth: ${formatTime(natalInput.hora ?? "") || "Not specified"}`,
     `- Place of birth: ${formatPlace(natalInput.lugar ?? "") || "Not specified"}`,
