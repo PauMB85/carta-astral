@@ -3,6 +3,23 @@
 @theme inline {
   --font-display: var(--font-cinzel);
   --font-body: var(--font-cormorant);
+
+  --color-gold: #c9a55a;
+  --color-gold-bright: #e7c97a;
+  --color-dark: #0b0a08;
+  --color-ink: #1a160d;
+  --color-cream: #f5ecd6;
+  --color-dim: rgb(245 236 214 / 55%);
+  --color-gold-faint-15: rgb(201 165 90 / 15%);
+  --color-gold-faint-18: rgb(201 165 90 / 18%);
+  --color-gold-faint-25: rgb(201 165 90 / 25%);
+  --color-gold-faint-30: rgb(201 165 90 / 30%);
+  --color-gold-faint-35: rgb(201 165 90 / 35%);
+  --color-gold-faint-60: rgb(201 165 90 / 60%);
+  --color-gold-glow: rgb(231 201 122 / 35%);
+  --color-err-bg: rgb(120 60 160 / 8%);
+  --color-err-bd: rgb(180 130 200 / 35%);
+  --color-err-ink: #c9aae0;
 }
 
 :root {
@@ -10,8 +27,8 @@
 }
 
 body {
-  background: #0b0a08;
-  color: #f5ecd6;
+  background: var(--color-dark);
+  color: var(--color-cream);
   font-family: var(--font-body), serif;
   min-height: 100vh;
 }

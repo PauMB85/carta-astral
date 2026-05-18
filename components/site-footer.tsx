@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Dictionary } from "@/lib/i18n";
 import type { Lang } from "@shared/domain/lang";
-import { v1 } from "@/lib/theme";
 
 type Props = {
   lang: Lang;
@@ -18,12 +17,7 @@ export function SiteFooter({ lang, t }: Props) {
   ];
 
   return (
-    <footer
-      className="text-center px-5 sm:px-10 lg:px-16 py-14 mt-10 border-t"
-      style={{ borderColor: v1.goldFaint15 }}
-    >
-      <SiteFooterStyles />
-
+    <footer className="text-center px-5 sm:px-10 lg:px-16 py-14 mt-10 border-t border-gold-faint-15">
       <Image
         src="/galgo-astral-logo.png"
         alt=""
@@ -32,33 +26,24 @@ export function SiteFooter({ lang, t }: Props) {
         aria-hidden="true"
         className="w-27.5 sm:w-30 mx-auto mb-4 opacity-90"
       />
-      <p
-        className="font-body italic text-base sm:text-lg max-w-md mx-auto"
-        style={{ color: "rgba(245, 236, 214, 0.5)" }}
-      >
+      <p className="font-body italic text-base sm:text-lg max-w-md mx-auto text-cream/50">
         {t.quote}
       </p>
 
       <nav
-        className="font-display mt-8 flex flex-wrap justify-center gap-x-4 gap-y-2"
+        className="font-display mt-8 flex flex-wrap justify-center gap-x-4 gap-y-2 text-[11px] tracking-[0.18em] font-medium"
         aria-label="Legal"
-        style={{
-          fontSize: 11,
-          letterSpacing: "0.18em",
-          fontWeight: 500,
-        }}
       >
         {legalLinks.map((link, i) => (
           <span key={link.href} className="inline-flex items-center gap-x-4">
             <Link
               href={`${link.href}?lang=${lang}`}
-              className="site-footer-link no-underline"
-              style={{ color: v1.gold }}
+              className="no-underline text-gold hover:text-gold-bright transition-colors motion-reduce:transition-none"
             >
               {link.label}
             </Link>
             {i < legalLinks.length - 1 ? (
-              <span aria-hidden="true" style={{ color: v1.goldFaint35 }}>
+              <span aria-hidden="true" className="text-gold-faint-35">
                 ·
               </span>
             ) : null}
@@ -66,29 +51,9 @@ export function SiteFooter({ lang, t }: Props) {
         ))}
       </nav>
 
-      <div
-        className="font-display mt-6"
-        style={{
-          color: v1.gold,
-          fontSize: 12,
-          letterSpacing: "0.15em",
-          fontWeight: 500,
-        }}
-      >
+      <div className="font-display mt-6 text-gold text-[12px] tracking-[0.15em] font-medium">
         {t.credits}
       </div>
     </footer>
-  );
-}
-
-function SiteFooterStyles() {
-  return (
-    <style>{`
-      .site-footer-link { transition: color 0.2s; }
-      .site-footer-link:hover { color: ${v1.goldBright}; }
-      @media (prefers-reduced-motion: reduce) {
-        .site-footer-link { transition: none !important; }
-      }
-    `}</style>
   );
 }
