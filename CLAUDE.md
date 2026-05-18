@@ -120,3 +120,30 @@ bun run build   # next build
 bun run lint    # eslint
 bun x tsc --noEmit   # typecheck manual
 ```
+
+## Deuda técnica
+
+### Migración de bloques `<style>` a utilidades Tailwind v4 (siguiente cleanup)
+
+Varios componentes usan bloques `<style>` internos con interpolación de `v1.x` para expresar `:hover`, `::after`, `:checked`, `@keyframes` y otros casos que el inline `style={{...}}` no cubre. Este patrón se heredó del codebase inicial y no es óptimo en 2026 con Tailwind v4: re-inyecta el `<style>` por render, sin scoping real, sin tree-shaking, sin tooling de CSS.
+
+Plan acordado para la próxima fase de limpieza:
+
+1. Mover los tokens de `v1` ([lib/theme.ts](lib/theme.ts)) a CSS custom properties dentro de `@theme inline` en [app/globals.css](app/globals.css).
+2. Reescribir los `<style>` blocks como utilidades Tailwind v4 (`hover:`, `checked:`, `after:`, `motion-reduce:`, etc.) usando las nuevas custom properties (`text-[--color-gold]`, `hover:bg-[--color-gold-bright]`, ...).
+3. Eliminar los componentes auxiliares `*Styles()` cuando ya no se usen.
+4. Ajustar el resto de inline `style={{ color: v1.gold }}` para que consuman las mismas custom properties (opcional pero más coherente).
+
+Componentes afectados (aprox.):
+
+- [chart-form.tsx](components/chart-form.tsx) (`FormStyles`)
+- [chart-reading-states.tsx](components/chart-reading-states.tsx) (`ReadingPlaceholder` + `Spinner`)
+- [chart-reading-view.tsx](components/chart-reading-view.tsx) (`StreamingCursor`)
+- [pet-form.tsx](components/pet-form.tsx) (`PetTermsStyles`)
+- [pet-form-fields.tsx](components/pet-form-fields.tsx) (`PetFormStyles`)
+- [pet-loading.tsx](components/pet-loading.tsx) (`PetLoadingStyles`)
+- [pet-premium-block.tsx](components/pet-premium-block.tsx) (`PetPremiumBlockStyles`)
+- [pet-reading-view-parts/share-button.tsx](components/pet-reading-view-parts/share-button.tsx) (`ShareButtonStyles`)
+- [site-footer.tsx](components/site-footer.tsx) (`SiteFooterStyles`)
+
+Tamaño estimado: medio día. Resultado: menos JS en el bundle de cada componente, CSS optimizado por Tailwind, mejor DX (autocompletado de utilidades, sin template strings).

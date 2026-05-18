@@ -125,7 +125,14 @@ export function PetFlow({ lang, t }: Props) {
   if (submitting) {
     return <PetLoading title={t.loading.title} sub={t.loading.sub} />;
   }
-  return <PetForm t={t} submitError={submitError} onSubmit={handleSubmit} />;
+  return (
+    <PetForm
+      lang={lang}
+      t={t}
+      submitError={submitError}
+      onSubmit={handleSubmit}
+    />
+  );
 }
 
 function readStoredReading(value: unknown): LastReading | null {

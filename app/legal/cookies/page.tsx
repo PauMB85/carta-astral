@@ -291,7 +291,7 @@ export default async function CookiesPage({ searchParams }: Props) {
       >
         <SiteHeader lang={lang} t={t.nav} />
         <LegalLayout {...content} />
-        <SiteFooter t={t.footer} />
+        <SiteFooter lang={lang} t={t.footer} />
       </main>
     </>
   );

@@ -1,7 +1,9 @@
 "use client";
 
 import { useRef, useState, type SubmitEvent } from "react";
+import Link from "next/link";
 import type { Dictionary } from "@/lib/i18n";
+import type { Lang } from "@shared/domain/lang";
 import { v1 } from "@/lib/theme";
 import { petDataSchema, type PetData } from "@pet/domain/pet-data";
 import { DogIcon, CatIcon } from "@/components/pet-icons";
@@ -17,6 +19,7 @@ import {
 } from "@/components/pet-form-fields";
 
 type Props = {
+  lang: Lang;
   t: Dictionary["pet"];
   submitError: string | null;
   onSubmit: (petData: PetData) => void;
@@ -51,7 +54,7 @@ const FOCUS_KEYS: readonly FocusKey[] = [
 
 const GENDER_KEYS: readonly GenderKey[] = ["male", "female", "unknown"];
 
-export function PetForm({ t, submitError, onSubmit }: Props) {
+export function PetForm({ lang, t, submitError, onSubmit }: Props) {
   const [name, setName] = useState("");
   const [type, setType] = useState<PetType | null>(null);
   const [birthDate, setBirthDate] = useState("");
@@ -59,6 +62,7 @@ export function PetForm({ t, submitError, onSubmit }: Props) {
   const [gender, setGender] = useState<GenderKey | null>(null);
   const [personality, setPersonality] = useState<PersonalityKey[]>([]);
   const [focus, setFocus] = useState<FocusKey | null>(null);
+  const [acceptedTerms, setAcceptedTerms] = useState(false);
   const [showDatesError, setShowDatesError] = useState(false);
   const [localError, setLocalError] = useState<string | null>(null);
   const datesRef = useRef<HTMLDivElement>(null);
@@ -98,6 +102,11 @@ export function PetForm({ t, submitError, onSubmit }: Props) {
     const parsed = petDataSchema.safeParse(formData);
     if (!parsed.success) {
       setLocalError(t.form.errorMissing);
+      return;
+    }
+
+    if (!acceptedTerms) {
+      setLocalError(t.form.errorTerms);
       return;
     }
 
@@ -263,8 +272,18 @@ export function PetForm({ t, submitError, onSubmit }: Props) {
         </Section>
       </div>
 
+      <TermsCheckbox
+        lang={lang}
+        t={t.form.terms}
+        checked={acceptedTerms}
+        onToggle={() => {
+          setAcceptedTerms((prev) => !prev);
+          setLocalError(null);
+        }}
+      />
+
       {displayError ? (
-        <div className="mt-9">
+        <div className="mt-6">
           <InlineError message={displayError} />
         </div>
       ) : null}
@@ -318,5 +337,103 @@ function Header({ t }: { t: Dictionary["pet"]["form"] }) {
         {t.sub}
       </p>
     </header>
+  );
+}
+
+function TermsCheckbox({
+  lang,
+  t,
+  checked,
+  onToggle,
+}: {
+  lang: Lang;
+  t: Dictionary["pet"]["form"]["terms"];
+  checked: boolean;
+  onToggle: () => void;
+}) {
+  return (
+    <label
+      className="pet-terms-row flex items-start gap-3 mt-8 cursor-pointer"
+      style={{ color: v1.cream }}
+    >
+      <input
+        type="checkbox"
+        checked={checked}
+        onChange={onToggle}
+        className="pet-terms-checkbox mt-1 shrink-0"
+        aria-required="true"
+      />
+      <span className="font-body italic text-sm sm:text-base leading-relaxed">
+        {t.prefix}
+        <Link
+          href={`/legal/terminos?lang=${lang}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="pet-terms-link"
+          style={{ color: v1.goldBright }}
+          onClick={(e) => e.stopPropagation()}
+        >
+          {t.termsLabel}
+        </Link>
+        {t.conjunction}
+        <Link
+          href={`/legal/privacidad?lang=${lang}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="pet-terms-link"
+          style={{ color: v1.goldBright }}
+          onClick={(e) => e.stopPropagation()}
+        >
+          {t.privacyLabel}
+        </Link>
+        {t.acceptanceEnd}{" "}
+        <span style={{ color: v1.dim }}>{t.withdrawal}</span>
+      </span>
+      <PetTermsStyles />
+    </label>
+  );
+}
+
+function PetTermsStyles() {
+  return (
+    <style>{`
+      .pet-terms-checkbox {
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        border: 1px solid ${v1.goldFaint35};
+        background: transparent;
+        cursor: pointer;
+        position: relative;
+        transition: border-color 0.2s, background 0.2s;
+        flex-shrink: 0;
+      }
+      .pet-terms-checkbox:hover { border-color: ${v1.gold}; }
+      .pet-terms-checkbox:checked {
+        background: ${v1.goldBright};
+        border-color: ${v1.goldBright};
+      }
+      .pet-terms-checkbox:checked::after {
+        content: '';
+        position: absolute;
+        left: 6px;
+        top: 1px;
+        width: 5px;
+        height: 11px;
+        border-right: 2px solid ${v1.dark};
+        border-bottom: 2px solid ${v1.dark};
+        transform: rotate(45deg);
+      }
+      .pet-terms-link {
+        text-decoration: underline;
+        text-underline-offset: 3px;
+        font-style: normal;
+        transition: color 0.2s;
+      }
+      .pet-terms-link:hover { color: ${v1.cream}; }
+      @media (prefers-reduced-motion: reduce) {
+        .pet-terms-checkbox, .pet-terms-link { transition: none !important; }
+      }
+    `}</style>
   );
 }

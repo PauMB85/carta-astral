@@ -34,7 +34,7 @@ export default async function PetSuccessPage({ searchParams }: Props) {
       >
         <SiteHeader lang={lang} t={t.nav} />
         <PetSuccessFlow sessionId={sessionId} lang={lang} t={t.pet} />
-        <SiteFooter t={t.footer} />
+        <SiteFooter lang={lang} t={t.footer} />
       </main>
     </>
   );

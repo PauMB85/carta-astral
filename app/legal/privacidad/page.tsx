@@ -574,7 +574,7 @@ export default async function PrivacidadPage({ searchParams }: Props) {
       >
         <SiteHeader lang={lang} t={t.nav} />
         <LegalLayout {...content} />
-        <SiteFooter t={t.footer} />
+        <SiteFooter lang={lang} t={t.footer} />
       </main>
     </>
   );

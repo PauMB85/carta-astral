@@ -30,7 +30,7 @@ export default async function PetCompatibilityPage({ searchParams }: Props) {
       >
         <SiteHeader lang={lang} t={t.nav} />
         <PetFlow lang={lang} t={t.pet} />
-        <SiteFooter t={t.footer} />
+        <SiteFooter lang={lang} t={t.footer} />
       </main>
     </>
   );

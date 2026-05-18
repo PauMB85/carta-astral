@@ -85,6 +85,12 @@ const DICTIONARIES = {
       quote:
         "« Quien observa el cielo de su mascota, observa el suyo propio. »",
       credits: "GALGO ASTRAL · MMXXVI · SUB LUNA NOVA",
+      legal: {
+        avisoLegal: "Aviso Legal",
+        privacidad: "Política de Privacidad",
+        terminos: "Términos y Condiciones",
+        cookies: "Política de Cookies",
+      },
     },
     pet: {
       prelude: {
@@ -127,6 +133,17 @@ const DICTIONARIES = {
           "Algo se interpuso entre tú y los astros. Inténtalo de nuevo en un momento.",
         errorRateLimit:
           "Las estrellas están saturadas. El cosmos pide unos minutos antes de procesar otra petición.",
+        errorTerms:
+          "Debes aceptar los términos y la política de privacidad para continuar.",
+        terms: {
+          prefix: "He leído y acepto los ",
+          termsLabel: "Términos y Condiciones",
+          conjunction: " y la ",
+          privacyLabel: "Política de Privacidad",
+          acceptanceEnd: ".",
+          withdrawal:
+            "Entiendo que la generación de la lectura comenzará al confirmar el pago, lo que implica la pérdida del derecho de desistimiento sobre este servicio digital personalizado.",
+        },
       },
       petType: { dog: "Perro", cat: "Gato" },
       petTypeSubtitle: { dog: "CANIS", cat: "FELIS" },
@@ -271,6 +288,12 @@ const DICTIONARIES = {
       quote:
         "« To observe your pet's sky is to observe your own. »",
       credits: "GALGO ASTRAL · MMXXVI · SUB LUNA NOVA",
+      legal: {
+        avisoLegal: "Legal Notice",
+        privacidad: "Privacy Policy",
+        terminos: "Terms and Conditions",
+        cookies: "Cookie Policy",
+      },
     },
     pet: {
       prelude: {
@@ -313,6 +336,17 @@ const DICTIONARIES = {
           "Something stood between you and the stars. Please try again in a moment.",
         errorRateLimit:
           "The stars are overwhelmed. The cosmos asks for a few minutes before another request.",
+        errorTerms:
+          "You must accept the terms and privacy policy to continue.",
+        terms: {
+          prefix: "I have read and accept the ",
+          termsLabel: "Terms and Conditions",
+          conjunction: " and the ",
+          privacyLabel: "Privacy Policy",
+          acceptanceEnd: ".",
+          withdrawal:
+            "I understand that the reading will be generated upon confirming payment, which entails waiving the right of withdrawal over this personalised digital service.",
+        },
       },
       petType: { dog: "Dog", cat: "Cat" },
       petTypeSubtitle: { dog: "CANIS", cat: "FELIS" },

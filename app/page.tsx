@@ -39,7 +39,7 @@ export default async function Page({ searchParams }: Props) {
           readingCopy={t.reading}
           petCopy={t.pet}
         />
-        <SiteFooter t={t.footer} />
+        <SiteFooter lang={lang} t={t.footer} />
       </main>
     </>
   );
