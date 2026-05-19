@@ -1,40 +1,40 @@
 # Brand — Galgo Astral
 
-Guía visual de marca de la app de carta astral. Toda la paleta y los tokens viven en [lib/theme.ts](../lib/theme.ts) bajo el objeto `v1`.
+Guía visual de marca de la app de carta astral. Toda la paleta y los tokens viven en [app/globals.css](../app/globals.css) bajo `@theme inline` como CSS custom properties. Tailwind v4 las expone como utility classes (`text-gold`, `bg-dark`, `border-gold-faint-25`, ...). Para atributos SVG que no aceptan clases (`stroke=`, `fill=`, `stopColor=`) se usa `var(--color-X)`.
 
 ## Paleta
 
 ### Colores base
 
-| Token        | Hex       | Rol                                                              |
-| ------------ | --------- | ---------------------------------------------------------------- |
-| `dark`       | `#0b0a08` | Fondo principal (lo pinta `CosmosBg` + `body`)                    |
-| `ink`        | `#1a160d` | Fondo de cards y formularios (un pelín más claro que `dark`)     |
-| `gold`       | `#c9a55a` | Oro base — bordes, eyebrows en mayúsculas, iconos                |
-| `goldBright` | `#e7c97a` | Oro brillante — títulos, números romanos, focus visible, CTA     |
-| `cream`      | `#f5ecd6` | Texto principal (párrafos, descripciones)                        |
+| Token          | Hex       | Utility ejemplo   | Rol                                                              |
+| -------------- | --------- | ----------------- | ---------------------------------------------------------------- |
+| `dark`         | `#0b0a08` | `bg-dark`         | Fondo principal (lo pinta `CosmosBg` + `body`)                    |
+| `ink`          | `#1a160d` | `bg-ink`          | Fondo de cards y formularios (un pelín más claro que `dark`)     |
+| `gold`         | `#c9a55a` | `text-gold`       | Oro base — bordes, eyebrows en mayúsculas, iconos                |
+| `gold-bright`  | `#e7c97a` | `text-gold-bright`| Oro brillante — títulos, números romanos, focus visible, CTA    |
+| `cream`        | `#f5ecd6` | `text-cream`      | Texto principal (párrafos, descripciones)                        |
 
 ### Variantes semi-transparentes
 
-| Token          | Valor                          | Uso                                            |
-| -------------- | ------------------------------ | ---------------------------------------------- |
-| `dim`          | `rgba(245, 236, 214, 0.55)`    | Texto secundario, captions                     |
-| `goldFaint15`  | `rgba(201, 165, 90, 0.15)`     | Divisores muy sutiles (header border)          |
-| `goldFaint25`  | `rgba(201, 165, 90, 0.25)`     | Bordes de cards / highlights                   |
-| `goldFaint30`  | `rgba(201, 165, 90, 0.30)`     | Borders de radio cards no seleccionados        |
-| `goldFaint35`  | `rgba(201, 165, 90, 0.35)`     | Underline de inputs, outline secundario        |
-| `goldGlow`     | `rgba(231, 201, 122, 0.35)`    | `drop-shadow` del logo en hero/header          |
+| Token            | Valor                       | Uso                                            |
+| ---------------- | --------------------------- | ---------------------------------------------- |
+| `dim`            | `rgb(245 236 214 / 55%)`    | Texto secundario, captions                     |
+| `gold-faint-15`  | `rgb(201 165 90 / 15%)`     | Divisores muy sutiles (header border)          |
+| `gold-faint-25`  | `rgb(201 165 90 / 25%)`     | Bordes de cards / highlights                   |
+| `gold-faint-30`  | `rgb(201 165 90 / 30%)`     | Borders de radio cards no seleccionados        |
+| `gold-faint-35`  | `rgb(201 165 90 / 35%)`     | Underline de inputs, outline secundario        |
+| `gold-glow`      | `rgb(231 201 122 / 35%)`    | `drop-shadow` del logo en hero/header          |
 
-> Los tokens `goldFaint18` y `goldFaint60` también están definidos en `lib/theme.ts` pero hoy no se usan activamente. Quedan disponibles si hace falta una variante intermedia.
+> Para alphas no contemplados en los tokens fijos, usa la sintaxis Tailwind alpha (`text-cream/65`, `bg-gold/10`) o arbitrary value (`text-[rgb(220_200_255_/_85%)]`).
 
 ### Excepción — color de error
 
-El error state usa un púrpura sutil **fuera de la paleta dorada**, inline en [`ReadingError`](../components/chart-flow.tsx) (no es un token reutilizable):
+El error state usa un púrpura sutil **fuera de la paleta dorada**. Dos variantes coexisten:
 
-- Background: `rgba(120, 60, 160, 0.08)`
-- Border: `rgba(180, 130, 200, 0.2)`
+- **Chart reading** ([`ReadingError`](../components/chart-reading-states.tsx)): mantiene los valores originales del primer diseño con arbitrary values (`bg-[rgb(120_60_160_/_8%)]`, `border-[rgb(180_130_200_/_20%)]`, `text-[rgb(220_200_255_/_85%)]`).
+- **Pet feature** ([`InlineError`](../components/pet-form-fields.tsx) y [`PetErrorState`](../components/pet-error-state.tsx)): usa tokens dedicados `--color-err-bg`, `--color-err-bd`, `--color-err-ink` definidos en `@theme inline` con alphas ligeramente más visibles para el contexto de feedback inline.
 
-Razón: señaliza error sin agresividad cromática. El púrpura encaja con el tono místico y se distingue del dorado dominante sin gritar.
+Razón: señalizan error sin agresividad cromática. El púrpura encaja con el tono místico y se distingue del dorado dominante sin gritar.
 
 ## Tipografía
 

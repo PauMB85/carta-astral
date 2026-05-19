@@ -32,7 +32,6 @@ lib/
   format.ts             Formateo de fecha/hora/lugar para el prompt
   ratelimit.ts          Sliding window 5 req/h por IP (Upstash). server-only. Prefix por NODE_ENV
   i18n.ts               Dictionary es/en + pickLang(raw)
-  theme.ts              Tokens v1 (oro, dark, cream, faints) usados en estilos inline del nuevo diseño
 components/
   cosmos-bg.tsx         Fondo nocturno + estrellas (PRNG sembrado para SSR estable)
   site-header.tsx       Header con toggle ES/EN (Link a /?lang=...)
@@ -95,10 +94,10 @@ Cuando se supera el límite, el route handler devuelve `429` con `Retry-After`, 
 
 > Guía completa de marca (paleta, tipografía, iconografía, voz) en [docs/brand.md](docs/brand.md).
 
-- **Paleta** vive en [lib/theme.ts](lib/theme.ts) como objeto `v1` (oro `#c9a55a` / oroBright `#e7c97a` / dark `#0b0a08` / cream `#f5ecd6` + variantes faint). Se aplica vía estilos inline en componentes, no via Tailwind utilities
+- **Paleta** vive en [app/globals.css](app/globals.css) bajo `@theme inline` como CSS custom properties (`--color-gold`, `--color-gold-bright`, `--color-dark`, `--color-cream`, `--color-gold-faint-{15,25,30,35}`, etc.). Tailwind v4 las expone como utilities (`text-gold`, `bg-dark`, `border-gold-faint-25`, ...). Para SVG attributes que no aceptan clases (`stroke=`, `fill=`, `stopColor=`) se usa `var(--color-X)` directo
 - **Tipografía**: `font-display` (Cinzel) para eyebrows y CTAs, `font-body` (Cormorant Garamond) para títulos grandes en italic y texto corrido. Las dos clases viven en [globals.css](app/globals.css) y los tokens en `@theme`
-- **Cosmos background**: [cosmos-bg.tsx](components/cosmos-bg.tsx) renderiza `fixed inset-0 -z-10` con un fondo `v1.dark` + radial gradients dorados sutiles + 80 estrellas SVG con PRNG sembrado y animación `v1-twinkle` inline
-- Cualquier animación local (en `<style>` dentro del componente) debe respetar `@media (prefers-reduced-motion: reduce)`. globals.css aplica un `transition-duration: 0.01ms` global como red de seguridad
+- **Cosmos background**: [cosmos-bg.tsx](components/cosmos-bg.tsx) renderiza `fixed inset-0 -z-10` con un fondo `var(--color-dark)` + radial gradients dorados sutiles + 80 estrellas SVG con PRNG sembrado y animación `animate-twinkle` (token definido en `@theme`)
+- **Animaciones**: tokens `--animate-*` viven en `@theme inline` en [globals.css](app/globals.css). Se usan vía utility classes Tailwind (`animate-twinkle`, `animate-float`, `animate-wheel-spin`, `animate-pet-loading-spin`, `animate-streaming-pulse`, ...) siempre acompañadas de `motion-reduce:animate-none`. globals.css aplica un `transition-duration: 0.01ms` global como red de seguridad para transitions
 
 ## Variables de entorno
 
@@ -121,29 +120,3 @@ bun run lint    # eslint
 bun x tsc --noEmit   # typecheck manual
 ```
 
-## Deuda técnica
-
-### Migración de bloques `<style>` a utilidades Tailwind v4 (siguiente cleanup)
-
-Varios componentes usan bloques `<style>` internos con interpolación de `v1.x` para expresar `:hover`, `::after`, `:checked`, `@keyframes` y otros casos que el inline `style={{...}}` no cubre. Este patrón se heredó del codebase inicial y no es óptimo en 2026 con Tailwind v4: re-inyecta el `<style>` por render, sin scoping real, sin tree-shaking, sin tooling de CSS.
-
-Plan acordado para la próxima fase de limpieza:
-
-1. Mover los tokens de `v1` ([lib/theme.ts](lib/theme.ts)) a CSS custom properties dentro de `@theme inline` en [app/globals.css](app/globals.css).
-2. Reescribir los `<style>` blocks como utilidades Tailwind v4 (`hover:`, `checked:`, `after:`, `motion-reduce:`, etc.) usando las nuevas custom properties (`text-[--color-gold]`, `hover:bg-[--color-gold-bright]`, ...).
-3. Eliminar los componentes auxiliares `*Styles()` cuando ya no se usen.
-4. Ajustar el resto de inline `style={{ color: v1.gold }}` para que consuman las mismas custom properties (opcional pero más coherente).
-
-Componentes afectados (aprox.):
-
-- [chart-form.tsx](components/chart-form.tsx) (`FormStyles`)
-- [chart-reading-states.tsx](components/chart-reading-states.tsx) (`ReadingPlaceholder` + `Spinner`)
-- [chart-reading-view.tsx](components/chart-reading-view.tsx) (`StreamingCursor`)
-- [pet-form.tsx](components/pet-form.tsx) (`PetTermsStyles`)
-- [pet-form-fields.tsx](components/pet-form-fields.tsx) (`PetFormStyles`)
-- [pet-loading.tsx](components/pet-loading.tsx) (`PetLoadingStyles`)
-- [pet-premium-block.tsx](components/pet-premium-block.tsx) (`PetPremiumBlockStyles`)
-- [pet-reading-view-parts/share-button.tsx](components/pet-reading-view-parts/share-button.tsx) (`ShareButtonStyles`)
-- [site-footer.tsx](components/site-footer.tsx) (`SiteFooterStyles`)
-
-Tamaño estimado: medio día. Resultado: menos JS en el bundle de cada componente, CSS optimizado por Tailwind, mejor DX (autocompletado de utilidades, sin template strings).
