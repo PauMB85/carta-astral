@@ -1,4 +1,5 @@
 import type { Dictionary } from "@/lib/i18n";
+import { AstrolabeLoader } from "@/components/astrolabe-loader";
 
 export function ReadingPlaceholder({
   t,
@@ -6,9 +7,13 @@ export function ReadingPlaceholder({
   t: Dictionary["reading"];
 }) {
   return (
-    <div className="text-center py-10" role="status" aria-live="polite">
-      <Spinner />
-      <p className="font-display mt-4 text-gold text-xs font-medium">
+    <div
+      className="py-10 flex flex-col items-center text-center"
+      role="status"
+      aria-live="polite"
+    >
+      <AstrolabeLoader className="w-24 h-24" />
+      <p className="font-display mt-5 text-gold text-xs font-medium">
         {t.streaming}
       </p>
       <p className="font-body italic text-sm mt-2 text-cream/60 animate-streaming-pulse motion-reduce:animate-none">
@@ -70,44 +75,15 @@ export function ReadingError({
 }) {
   return (
     <div
-      className="text-center p-6 bg-[rgb(120_60_160_/_8%)] border border-[rgb(180_130_200_/_20%)]"
+      className="text-center p-6 bg-err-bg border border-[rgb(180_130_200/20%)]"
       role="alert"
     >
-      <p className="font-display mb-2 text-[rgb(220_200_255_/_85%)] text-xs tracking-[0.4em] font-medium">
+      <p className="font-display mb-2 text-[rgb(220_200_255/85%)] text-xs tracking-[0.4em] font-medium">
         {eyebrow}
       </p>
       <p className="font-body italic leading-relaxed text-cream/90">
         {message}
       </p>
     </div>
-  );
-}
-
-function Spinner() {
-  return (
-    <svg
-      className="mx-auto animate-spin motion-reduce:animate-none"
-      width="28"
-      height="28"
-      viewBox="0 0 28 28"
-      aria-hidden="true"
-    >
-      <circle
-        cx="14"
-        cy="14"
-        r="11"
-        stroke="var(--color-gold-bright)"
-        strokeOpacity="0.25"
-        strokeWidth="1.5"
-        fill="none"
-      />
-      <path
-        d="M 14 3 A 11 11 0 0 1 25 14"
-        stroke="var(--color-gold-bright)"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        fill="none"
-      />
-    </svg>
   );
 }
