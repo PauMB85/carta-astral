@@ -2,7 +2,9 @@
 
 import { useState, type ReactNode, type SubmitEvent } from "react";
 import type { Dictionary } from "@/lib/i18n";
-import { v1 } from "@/lib/theme";
+
+const INPUT_CLASSES =
+  "w-full bg-transparent border-0 border-b border-gold-faint-35 text-cream font-body italic text-[22px] pt-2 pb-2.5 outline-none [color-scheme:dark] placeholder:text-cream/35 placeholder:italic focus:border-gold-bright [&::-webkit-calendar-picker-indicator]:invert-[0.85] [&::-webkit-calendar-picker-indicator]:sepia [&::-webkit-calendar-picker-indicator]:saturate-[5] [&::-webkit-calendar-picker-indicator]:hue-rotate-[5deg] [&::-webkit-calendar-picker-indicator]:opacity-70 [&::-webkit-calendar-picker-indicator]:cursor-pointer";
 
 type ConsultFormProps = {
   t: Dictionary["form"];
@@ -15,74 +17,54 @@ export function ConsultForm({ t, isLoading, onSubmit }: ConsultFormProps) {
 
   return (
     <form noValidate onSubmit={onSubmit} aria-busy={isLoading}>
-      <FormStyles />
-
       <div className="text-center mb-12">
-        <div
-          className="font-display mb-4"
-          style={{
-            color: v1.gold,
-            fontSize: 12,
-            letterSpacing: "0.4em",
-            fontWeight: 500,
-          }}
-        >
+        <div className="font-display mb-4 text-gold text-xs tracking-[0.4em] font-medium">
           {t.eyebrow}
         </div>
-        <h2
-          className="font-body italic m-0 text-4xl sm:text-5xl lg:text-[56px] font-normal"
-          style={{ color: v1.goldBright }}
-        >
+        <h2 className="font-body italic m-0 text-4xl sm:text-5xl lg:text-[56px] font-normal text-gold-bright">
           {t.title}
         </h2>
-        <p
-          className="font-body italic mt-3 mb-0 text-base sm:text-lg"
-          style={{ color: "rgba(245,236,214,0.65)" }}
-        >
+        <p className="font-body italic mt-3 mb-0 text-base sm:text-lg text-cream/65">
           {t.sub}
         </p>
       </div>
 
       <div className="flex flex-col gap-9">
         <Field roman="I" label={t.name}>
-          <V1Input
+          <input
             name="nombre"
             type="text"
             placeholder={t.namePlaceholder}
             autoComplete="given-name"
+            className={INPUT_CLASSES}
           />
         </Field>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-9">
           <Field roman="II" label={t.date}>
-            <V1Input name="fecha" type="date" required />
+            <input name="fecha" type="date" required className={INPUT_CLASSES} />
           </Field>
           <Field roman="III" label={t.time}>
-            <V1Input name="hora" type="time" />
-            <div
-              className="font-body italic text-xs mt-1"
-              style={{ color: "rgba(245, 236, 214, 0.4)" }}
-            >
+            <input name="hora" type="time" className={INPUT_CLASSES} />
+            <div className="font-body italic text-xs mt-1 text-cream/40">
               {t.timeHint}
             </div>
           </Field>
         </div>
 
         <Field roman="IV" label={t.place}>
-          <V1Input
+          <input
             name="lugar"
             type="text"
             placeholder={t.placePlaceholder}
             autoComplete="address-level2"
+            className={INPUT_CLASSES}
           />
         </Field>
 
         <fieldset>
-          <legend
-            className="font-display block mb-4 text-xs font-medium uppercase tracking-[0.22em]"
-            style={{ color: v1.gold }}
-          >
-            <span style={{ color: v1.goldBright, marginRight: 6 }}>V</span>
+          <legend className="font-display block mb-4 text-gold text-xs font-medium uppercase tracking-[0.22em]">
+            <span className="text-gold-bright mr-1.5">V</span>
             <span aria-hidden="true">·</span>
             <span> </span>
             {t.purpose}
@@ -115,23 +97,12 @@ export function ConsultForm({ t, isLoading, onSubmit }: ConsultFormProps) {
         <button
           type="submit"
           disabled={isLoading}
-          className="font-display mt-4 border-0 cursor-pointer py-5.5 px-0 text-xs font-medium uppercase tracking-[0.35em] disabled:opacity-70 disabled:cursor-not-allowed transition-opacity"
-          style={{
-            background: v1.goldBright,
-            color: v1.dark,
-          }}
+          className="font-display mt-4 border-0 cursor-pointer py-5.5 px-0 text-xs font-medium uppercase tracking-[0.35em] disabled:opacity-70 disabled:cursor-not-allowed transition-opacity bg-gold-bright text-dark"
         >
           {isLoading ? t.submitting : t.submit}
         </button>
 
-        <div
-          className="text-center font-body italic"
-          style={{
-            fontSize: 13,
-            color: "rgba(201, 165, 90, 0.6)",
-            marginTop: -8,
-          }}
-        >
+        <div className="text-center font-body italic text-[13px] -mt-2 text-gold/60">
           {t.sealed}
         </div>
       </div>
@@ -150,26 +121,13 @@ function Field({
 }) {
   return (
     <div>
-      <div
-        className="font-display mb-1 text-xs font-medium uppercase tracking-[0.22em]"
-        style={{ color: v1.gold }}
-      >
-        <span style={{ color: v1.goldBright, marginRight: 6 }}>{roman}</span>
+      <div className="font-display mb-1 text-gold text-xs font-medium uppercase tracking-[0.22em]">
+        <span className="text-gold-bright mr-1.5">{roman}</span>
         <span aria-hidden="true">·</span>{" "}
         {label}
       </div>
       {children}
     </div>
-  );
-}
-
-function V1Input(props: React.InputHTMLAttributes<HTMLInputElement>) {
-  return (
-    <input
-      {...props}
-      className="v1-input"
-      style={{ colorScheme: "dark", ...props.style }}
-    />
   );
 }
 
@@ -208,63 +166,16 @@ function RadioCard({
         className="sr-only peer"
       />
       <span
-        className="block text-center font-body transition-all"
-        style={{
-          background: selected ? "rgba(201, 165, 90, 0.1)" : "transparent",
-          border: `1px solid ${selected ? v1.goldBright : v1.goldFaint30}`,
-          padding: "24px 20px",
-          color: v1.cream,
-        }}
+        className={`block text-center font-body transition-all px-5 py-6 text-cream ${selected ? "bg-gold/10 border border-gold-bright" : "bg-transparent border border-gold-faint-30"}`}
       >
-        <span
-          className="font-display block mb-2 leading-none"
-          style={{
-            color: v1.goldBright,
-            fontSize: 22,
-            fontWeight: 500,
-          }}
-        >
+        <span className="font-display block mb-2 leading-none text-gold-bright text-[22px] font-medium">
           {roman}
         </span>
         <span className="block italic text-lg">{label}</span>
-        <span
-          className="font-display block mt-2 uppercase"
-          style={{
-            color: v1.gold,
-            fontSize: 12,
-            fontWeight: 500,
-          }}
-        >
+        <span className="font-display block mt-2 uppercase text-gold text-xs font-medium">
           {sub}
         </span>
       </span>
     </label>
-  );
-}
-
-function FormStyles() {
-  return (
-    <style>{`
-      .v1-input {
-        width: 100%;
-        background: transparent;
-        border: none;
-        border-bottom: 1px solid ${v1.goldFaint35};
-        color: ${v1.cream};
-        font-family: var(--font-body), serif;
-        font-size: 22px;
-        padding: 8px 0 10px;
-        outline: none;
-        font-style: italic;
-      }
-      .v1-input::placeholder { color: rgba(245, 236, 214, 0.35); font-style: italic; }
-      .v1-input:focus { border-bottom-color: ${v1.goldBright}; }
-      .v1-input[type="date"]::-webkit-calendar-picker-indicator,
-      .v1-input[type="time"]::-webkit-calendar-picker-indicator {
-        filter: invert(0.85) sepia(1) saturate(5) hue-rotate(5deg);
-        opacity: 0.7;
-        cursor: pointer;
-      }
-    `}</style>
   );
 }

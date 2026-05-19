@@ -5,7 +5,6 @@ import type { DeepPartial } from "ai";
 import type { Reading } from "@natal/domain/reading";
 import type { Lang } from "@shared/domain/lang";
 import type { Dictionary } from "@/lib/i18n";
-import { v1 } from "@/lib/theme";
 import { PetPremiumBlock } from "@/components/pet-premium-block";
 import {
   NeedsMoreData,
@@ -49,22 +48,13 @@ export function ReadingView({
       className="text-left"
     >
       <div className="text-center mb-10">
-        <p
-          className="font-display"
-          style={{
-            color: v1.gold,
-            fontSize: 12,
-            letterSpacing: "0.4em",
-            fontWeight: 500,
-          }}
-        >
+        <p className="font-display text-gold text-xs tracking-[0.4em] font-medium">
           {t.eyebrow}
         </p>
         <h2
           ref={headingRef}
           tabIndex={-1}
-          className="font-body italic mt-3 m-0 text-4xl sm:text-5xl lg:text-[56px] font-normal focus-visible:outline-none"
-          style={{ color: v1.goldBright }}
+          className="font-body italic mt-3 m-0 text-4xl sm:text-5xl lg:text-[56px] font-normal focus-visible:outline-none text-gold-bright"
         >
           {nombre ? `${t.titlePrefix} ${nombre}` : t.titleFallback}
         </h2>
@@ -104,12 +94,7 @@ export function ReadingView({
           type="button"
           onClick={onReset}
           disabled={isStreaming}
-          className="font-display bg-transparent border-0 py-3.5 px-7 text-xs font-medium uppercase tracking-[0.32em] transition-opacity disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
-          style={{
-            color: v1.cream,
-            borderBottom: `1px solid ${v1.goldFaint35}`,
-            cursor: isStreaming ? "not-allowed" : "pointer",
-          }}
+          className="font-display bg-transparent py-3.5 px-7 text-xs font-medium uppercase tracking-[0.32em] transition-opacity disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 text-cream border-b border-b-gold-faint-35"
         >
           {isStreaming ? t.consulting : t.newConsult}
         </button>
@@ -146,10 +131,7 @@ function ReadingBody({
   return (
     <div className="flex flex-col gap-10">
       {summary ? (
-        <p
-          className="font-body italic max-w-xl mx-auto text-center text-lg sm:text-xl leading-relaxed"
-          style={{ color: "rgba(245, 236, 214, 0.85)" }}
-        >
+        <p className="font-body italic max-w-xl mx-auto text-center text-lg sm:text-xl leading-relaxed text-cream/85">
           {summary}
           {isStreaming ? <StreamingCursor /> : null}
         </p>
@@ -159,15 +141,7 @@ function ReadingBody({
 
       {sections.length > 0 ? (
         <div>
-          <p
-            className="font-display text-center mb-6"
-            style={{
-              color: v1.gold,
-              fontSize: 12,
-              letterSpacing: "0.4em",
-              fontWeight: 500,
-            }}
-          >
+          <p className="font-display text-center mb-6 text-gold text-xs tracking-[0.4em] font-medium">
             {t.sectionsLabel}
           </p>
           <div className="flex flex-col gap-7">
@@ -186,10 +160,7 @@ function ReadingBody({
       {tips.length > 0 ? <TipsBlock tips={tips} t={t} /> : null}
 
       {disclaimer ? (
-        <p
-          className="font-body italic text-xs text-center max-w-md mx-auto leading-relaxed"
-          style={{ color: "rgba(245, 236, 214, 0.4)" }}
-        >
+        <p className="font-body italic text-xs text-center max-w-md mx-auto leading-relaxed text-cream/40">
           {disclaimer}
         </p>
       ) : null}
@@ -203,27 +174,13 @@ function HighlightsList({ items }: { items: string[] }) {
       {items.map((item, i) => (
         <li
           key={i}
-          className="flex items-start gap-3 px-5 py-4"
-          style={{
-            background: "rgba(201, 165, 90, 0.05)",
-            border: `1px solid ${v1.goldFaint25}`,
-          }}
+          className="flex items-start gap-3 px-5 py-4 bg-gold/5 border border-gold-faint-25"
         >
           <span
             aria-hidden="true"
-            style={{
-              width: 6,
-              height: 6,
-              marginTop: 9,
-              background: v1.goldBright,
-              flexShrink: 0,
-              transform: "rotate(45deg)",
-            }}
+            className="w-1.5 h-1.5 mt-2.25 bg-gold-bright shrink-0 rotate-45"
           />
-          <span
-            className="font-body leading-relaxed"
-            style={{ color: "rgba(245, 236, 214, 0.9)", fontSize: 17 }}
-          >
+          <span className="font-body leading-relaxed text-cream/90 text-[17px]">
             {item}
           </span>
         </li>
@@ -245,29 +202,17 @@ function ReadingSectionCard({
     <article>
       <div className="flex items-baseline gap-3 mb-2">
         <span
-          className="font-display"
-          style={{
-            color: v1.goldBright,
-            fontSize: 12,
-            letterSpacing: "0.32em",
-            fontWeight: 500,
-          }}
+          className="font-display text-gold-bright text-xs tracking-[0.32em] font-medium"
           aria-hidden="true"
         >
           {String(index + 1).padStart(2, "0")}
         </span>
-        <h3
-          className="font-body italic m-0 text-2xl sm:text-3xl font-normal"
-          style={{ color: v1.goldBright }}
-        >
+        <h3 className="font-body italic m-0 text-2xl sm:text-3xl font-normal text-gold-bright">
           {title}
         </h3>
       </div>
       {content ? (
-        <p
-          className="font-body leading-relaxed text-base sm:text-lg"
-          style={{ color: "rgba(245, 236, 214, 0.85)" }}
-        >
+        <p className="font-body leading-relaxed text-base sm:text-lg text-cream/85">
           {content}
         </p>
       ) : null}
@@ -283,22 +228,8 @@ function TipsBlock({
   t: Dictionary["reading"];
 }) {
   return (
-    <section
-      className="px-6 py-8 sm:px-8"
-      style={{
-        background: "rgba(201, 165, 90, 0.05)",
-        border: `1px solid ${v1.goldFaint25}`,
-      }}
-    >
-      <p
-        className="font-display text-center mb-4"
-        style={{
-          color: v1.gold,
-          fontSize: 12,
-          letterSpacing: "0.4em",
-          fontWeight: 500,
-        }}
-      >
+    <section className="px-6 py-8 sm:px-8 bg-gold/5 border border-gold-faint-25">
+      <p className="font-display text-center mb-4 text-gold text-xs tracking-[0.4em] font-medium">
         {t.tipsLabel}
       </p>
       <ul className="space-y-3 max-w-xl mx-auto">
@@ -306,18 +237,9 @@ function TipsBlock({
           <li key={i} className="flex items-start gap-3">
             <span
               aria-hidden="true"
-              className="shrink-0 mt-2.5"
-              style={{
-                width: 5,
-                height: 5,
-                background: v1.goldBright,
-                transform: "rotate(45deg)",
-              }}
+              className="w-1.25 h-1.25 shrink-0 mt-2.5 bg-gold-bright rotate-45"
             />
-            <span
-              className="font-body italic leading-relaxed"
-              style={{ color: "rgba(245, 236, 214, 0.9)" }}
-            >
+            <span className="font-body italic leading-relaxed text-cream/90">
               {tip}
             </span>
           </li>
@@ -331,13 +253,7 @@ function StreamingCursor() {
   return (
     <span
       aria-hidden="true"
-      className="inline-block align-middle ml-1"
-      style={{
-        width: 2,
-        height: 18,
-        background: v1.goldBright,
-        animation: "v1-pulse 1.4s ease-in-out infinite",
-      }}
+      className="inline-block align-middle ml-1 w-0.5 h-4.5 bg-gold-bright animate-streaming-cursor motion-reduce:animate-none"
     />
   );
 }

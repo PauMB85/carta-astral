@@ -24,11 +24,23 @@
   --animate-pet-loading-spin: pet-loading-spin 24s linear infinite;
   --animate-pet-loading-pulse: pet-loading-pulse 3s ease-in-out infinite;
   --animate-pet-loading-dots: pet-loading-dots 1.6s steps(4) infinite;
+  --animate-streaming-pulse: streaming-pulse 2.4s ease-in-out infinite;
+  --animate-streaming-cursor: streaming-pulse 1.4s ease-in-out infinite;
 }
 
 @keyframes pet-loading-spin {
   to {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes streaming-pulse {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
   }
 }
 
