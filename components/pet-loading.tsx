@@ -1,5 +1,3 @@
-import { v1 } from "@/lib/theme";
-
 type Props = {
   title: string;
   sub: string;
@@ -9,6 +7,9 @@ const TICKS = Array.from({ length: 12 }, (_, i) => i);
 const PLANETS = [20, 100, 200, 290] as const;
 
 const round = (n: number) => Math.round(n * 1000) / 1000;
+
+const GOLD = "var(--color-gold)";
+const GOLD_BRIGHT = "var(--color-gold-bright)";
 
 export function PetLoading({ title, sub }: Props) {
   return (
@@ -27,8 +28,8 @@ export function PetLoading({ title, sub }: Props) {
         >
           <defs>
             <radialGradient id="petLoadingBg" cx="0.5" cy="0.5" r="0.6">
-              <stop offset="0%" stopColor={v1.ink} />
-              <stop offset="100%" stopColor={v1.dark} />
+              <stop offset="0%" stopColor="var(--color-ink)" />
+              <stop offset="100%" stopColor="var(--color-dark)" />
             </radialGradient>
           </defs>
 
@@ -37,7 +38,7 @@ export function PetLoading({ title, sub }: Props) {
             cy="90"
             r="86"
             fill="url(#petLoadingBg)"
-            stroke={v1.gold}
+            stroke={GOLD}
             strokeWidth="0.6"
             opacity="0.85"
           />
@@ -46,7 +47,7 @@ export function PetLoading({ title, sub }: Props) {
             cy="90"
             r="78"
             fill="none"
-            stroke={v1.gold}
+            stroke={GOLD}
             strokeWidth="0.4"
             opacity="0.5"
           />
@@ -55,7 +56,7 @@ export function PetLoading({ title, sub }: Props) {
             cy="90"
             r="56"
             fill="none"
-            stroke={v1.gold}
+            stroke={GOLD}
             strokeWidth="0.4"
             opacity="0.45"
           />
@@ -71,7 +72,7 @@ export function PetLoading({ title, sub }: Props) {
                 y1={round(90 + Math.sin(a) * r1)}
                 x2={round(90 + Math.cos(a) * r2)}
                 y2={round(90 + Math.sin(a) * r2)}
-                stroke={v1.goldBright}
+                stroke={GOLD_BRIGHT}
                 strokeWidth="0.7"
                 opacity="0.7"
               />
@@ -89,16 +90,16 @@ export function PetLoading({ title, sub }: Props) {
                   cy={y}
                   r="2.5"
                   fill="none"
-                  stroke={v1.goldBright}
+                  stroke={GOLD_BRIGHT}
                   strokeWidth="0.6"
                   opacity="0.8"
                 />
-                <circle cx={x} cy={y} r="1" fill={v1.goldBright} />
+                <circle cx={x} cy={y} r="1" fill={GOLD_BRIGHT} />
               </g>
             );
           })}
 
-          <circle cx="90" cy="90" r="2" fill={v1.goldBright} />
+          <circle cx="90" cy="90" r="2" fill={GOLD_BRIGHT} />
         </svg>
 
         <div className="absolute inset-0 flex items-center justify-center animate-pet-loading-pulse motion-reduce:animate-none">
@@ -116,14 +117,14 @@ export function PetLoading({ title, sub }: Props) {
                 x2="0"
                 y2="1"
               >
-                <stop offset="0%" stopColor={v1.goldBright} />
-                <stop offset="100%" stopColor={v1.gold} />
+                <stop offset="0%" stopColor={GOLD_BRIGHT} />
+                <stop offset="100%" stopColor={GOLD} />
               </linearGradient>
             </defs>
             <path
               d="M 22 12 a 18 18 0 1 0 14 28 a 14 14 0 1 1 -14 -28 z"
               fill="url(#petLoadingMoon)"
-              stroke={v1.gold}
+              stroke={GOLD}
               strokeWidth="0.6"
             />
           </svg>

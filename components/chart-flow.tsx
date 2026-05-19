@@ -13,7 +13,6 @@ import { readingSchema } from "@natal/domain/reading";
 import type { NatalInput } from "@natal/domain/natal-input";
 import type { Lang } from "@shared/domain/lang";
 import type { Dictionary } from "@/lib/i18n";
-import { v1 } from "@/lib/theme";
 import { ConsultForm } from "@/components/chart-form";
 import { ReadingView } from "@/components/chart-reading-view";
 
@@ -88,17 +87,14 @@ export function ChartFlow({ lang, formCopy, readingCopy, petCopy }: Props) {
       className="relative px-5 sm:px-10 lg:px-16 py-16 sm:py-20 lg:py-24"
     >
       <div
-        className="relative max-w-180 mx-auto"
+        className="relative max-w-180 mx-auto border border-gold py-14 px-7"
         style={{
           background: `linear-gradient(180deg, rgba(26,22,13,0.95), rgba(11,10,8,0.98))`,
-          border: `1px solid ${v1.gold}`,
-          padding: "56px 28px",
         }}
       >
         <div
           aria-hidden="true"
-          className="absolute pointer-events-none"
-          style={{ inset: 12, border: `1px solid ${v1.goldFaint30}` }}
+          className="absolute pointer-events-none inset-3 border border-gold-faint-30"
         />
         <Image
           src="/galgo-astral-logo.png"
@@ -107,12 +103,7 @@ export function ChartFlow({ lang, formCopy, readingCopy, petCopy }: Props) {
           width={1024}
           height={1536}
           priority
-          className="absolute left-1/2 -translate-x-1/2 w-22 h-22 sm:w-27.5 sm:h-27.5 object-contain rounded-full p-3"
-          style={{
-            top: -50,
-            background: v1.dark,
-            border: `1px solid ${v1.gold}`,
-          }}
+          className="absolute left-1/2 -translate-x-1/2 -top-12.5 w-22 h-22 sm:w-27.5 sm:h-27.5 object-contain rounded-full p-3 bg-dark border border-gold"
         />
 
         <div className="relative pt-8 sm:px-12">

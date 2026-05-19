@@ -1,5 +1,3 @@
-import { v1 } from "@/lib/theme";
-
 type Props = {
   title: string;
   content: string;
@@ -8,21 +6,10 @@ type Props = {
 export function NarrativeSection({ title, content }: Props) {
   return (
     <div className="my-6">
-      <div
-        className="font-display mb-3"
-        style={{
-          color: v1.goldBright,
-          fontSize: 13,
-          letterSpacing: "0.28em",
-          fontWeight: 500,
-        }}
-      >
+      <div className="font-display mb-3 text-gold-bright text-[13px] tracking-[0.28em] font-medium">
         {title}
       </div>
-      <div
-        className="font-body italic"
-        style={{ color: v1.cream, fontSize: 18, lineHeight: 1.65 }}
-      >
+      <div className="font-body italic text-cream text-lg leading-[1.65]">
         {content
           .split(/\n+/)
           .filter((p) => p.trim().length > 0)

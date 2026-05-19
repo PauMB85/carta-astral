@@ -4,7 +4,6 @@ import { useEffect, useRef } from "react";
 import type { DeepPartial } from "ai";
 import type { Dictionary } from "@/lib/i18n";
 import type { PetReading } from "@pet/domain/pet-reading";
-import { v1 } from "@/lib/theme";
 import { HighlightItem } from "@/components/pet-reading-view-parts/highlight-item";
 import { NarrativeSection } from "@/components/pet-reading-view-parts/narrative-section";
 import { ReadingDisclaimer } from "@/components/pet-reading-view-parts/reading-disclaimer";
@@ -59,22 +58,13 @@ export function PetReadingView({ reading, isStreaming, t }: Props) {
       className="max-w-180 mx-auto px-5 sm:px-10 py-12"
     >
       <header className="text-center pt-2 pb-3">
-        <p
-          className="font-display m-0"
-          style={{
-            color: v1.gold,
-            fontSize: 11,
-            letterSpacing: "0.45em",
-            fontWeight: 500,
-          }}
-        >
+        <p className="font-display m-0 text-gold text-[11px] tracking-[0.45em] font-medium">
           {t.success.eyebrow}
         </p>
         <h1
           ref={headingRef}
           tabIndex={-1}
-          className="font-body italic mt-5 m-0 text-4xl sm:text-5xl font-normal leading-tight focus-visible:outline-none"
-          style={{ color: v1.cream, letterSpacing: "-0.01em" }}
+          className="font-body italic mt-5 m-0 text-4xl sm:text-5xl font-normal leading-tight focus-visible:outline-none text-cream tracking-[-0.01em]"
         >
           {title || "…"}
         </h1>

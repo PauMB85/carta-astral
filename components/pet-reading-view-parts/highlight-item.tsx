@@ -1,4 +1,3 @@
-import { v1 } from "@/lib/theme";
 import { toRoman } from "@/components/pet-reading-view-parts/roman";
 
 type Props = {
@@ -11,31 +10,13 @@ export function HighlightItem({ index, title, content }: Props) {
   return (
     <div className="flex items-start gap-4 py-3">
       <span
-        className="font-display shrink-0"
+        className="font-display shrink-0 text-gold-bright text-lg min-w-7 text-center"
         aria-hidden="true"
-        style={{
-          color: v1.goldBright,
-          fontSize: 18,
-          minWidth: 28,
-          textAlign: "center",
-        }}
       >
         {toRoman(index)}
       </span>
-      <div
-        className="font-body italic"
-        style={{ color: v1.cream, fontSize: 18, lineHeight: 1.45 }}
-      >
-        <strong
-          className="font-display block mb-1"
-          style={{
-            fontStyle: "normal",
-            fontWeight: 500,
-            fontSize: 11,
-            letterSpacing: "0.22em",
-            color: v1.gold,
-          }}
-        >
+      <div className="font-body italic text-cream text-lg leading-[1.45]">
+        <strong className="font-display block mb-1 not-italic font-medium text-[11px] tracking-[0.22em] text-gold">
           {title}
         </strong>
         {content}

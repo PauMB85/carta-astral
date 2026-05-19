@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Lang } from "@shared/domain/lang";
 import type { Dictionary } from "@/lib/i18n";
-import { v1 } from "@/lib/theme";
 
 type Props = {
   lang: Lang;
@@ -11,10 +10,7 @@ type Props = {
 
 export function SiteHeader({ lang, t }: Props) {
   return (
-    <header
-      className="grid grid-cols-2 lg:grid-cols-[1fr_auto_1fr] items-center gap-4 px-5 py-5 sm:px-10 sm:py-6 lg:px-16 lg:py-8 border-b"
-      style={{ borderColor: v1.goldFaint15 }}
-    >
+    <header className="grid grid-cols-2 lg:grid-cols-[1fr_auto_1fr] items-center gap-4 px-5 py-5 sm:px-10 sm:py-6 lg:px-16 lg:py-8 border-b border-b-gold-faint-15">
       <div className="flex items-center gap-3 sm:gap-4 col-span-2 lg:col-span-1 order-1 lg:order-1">
         <Image
           src="/galgo-astral-logo.png"
@@ -22,48 +18,36 @@ export function SiteHeader({ lang, t }: Props) {
           width={1024}
           height={1536}
           priority
-          className="h-14 w-auto sm:h-16 lg:h-22"
-          style={{ filter: `drop-shadow(0 0 24px ${v1.goldGlow})` }}
+          className="h-14 w-auto sm:h-16 lg:h-22 drop-shadow-[0_0_24px_var(--color-gold-glow)]"
         />
-        <div
-          className="font-display leading-none"
-          style={{ color: v1.goldBright, letterSpacing: "0.18em", fontWeight: 500 }}
-        >
+        <div className="font-display leading-none text-gold-bright tracking-[0.18em] font-medium">
           <div className="text-base sm:text-lg">{t.brand}</div>
-          <div
-            className="font-body italic mt-1"
-            style={{ color: v1.gold, fontSize: 12 }}
-          >
+          <div className="font-body italic mt-1 text-gold text-xs">
             {t.brandSub}
           </div>
         </div>
       </div>
 
       <nav
-        className="hidden lg:flex justify-center gap-9 order-2 font-display"
-        style={{ letterSpacing: "0.18em", fontWeight: 500 }}
+        className="hidden lg:flex justify-center gap-9 order-2 font-display tracking-[0.18em] font-medium"
         aria-label="Primary"
       >
         {t.links.map(({ label, href }) => (
           <a
             key={label}
             href={href}
-            className="text-xs no-underline opacity-85 hover:opacity-100 transition-opacity"
-            style={{ color: v1.cream }}
+            className="text-xs no-underline opacity-85 hover:opacity-100 transition-opacity text-cream"
           >
             {label}
           </a>
         ))}
       </nav>
 
-      <div
-        className="flex justify-end items-center gap-2 order-2 lg:order-3 font-display text-xs"
-        style={{ letterSpacing: "0.2em", fontWeight: 500 }}
-      >
+      <div className="flex justify-end items-center gap-2 order-2 lg:order-3 font-display text-xs tracking-[0.2em] font-medium">
         <LangLink targetLang="es" current={lang}>
           ES
         </LangLink>
-        <span aria-hidden="true" style={{ color: "rgba(201,165,90,0.4)" }}>
+        <span aria-hidden="true" className="text-gold/40">
           ·
         </span>
         <LangLink targetLang="en" current={lang}>
@@ -90,10 +74,7 @@ function LangLink({
       replace
       scroll={false}
       aria-current={isActive ? "true" : undefined}
-      className="transition-colors"
-      style={{
-        color: isActive ? v1.goldBright : "rgba(245, 236, 214, 0.4)",
-      }}
+      className={`transition-colors ${isActive ? "text-gold-bright" : "text-cream/40"}`}
     >
       {children}
     </Link>
