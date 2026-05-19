@@ -74,9 +74,9 @@ const CONTENT_ES: LegalContent = {
         <p>
           El acceso y uso del sitio web atribuye la condición de usuario e
           implica la aceptación de las presentes condiciones, así como de los{" "}
-          <a href="/legal/terminos">Términos y Condiciones</a> y de la{" "}
-          <a href="/legal/privacidad">Política de Privacidad</a> publicadas en
-          este mismo sitio.
+          <a href="/legal/terminos?lang=es">Términos y Condiciones</a> y de la{" "}
+          <a href="/legal/privacidad?lang=es">Política de Privacidad</a>{" "}
+          publicadas en este mismo sitio.
         </p>
       ),
     },

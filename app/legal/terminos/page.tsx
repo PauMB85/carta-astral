@@ -37,7 +37,7 @@ const CONTENT_ES: LegalContent = {
         <p>
           El servicio es prestado por Pau H. Maravi Busquets (NIF 37342698J),
           con domicilio en Islas Baleares, España. Información completa en el{" "}
-          <a href="/legal/aviso-legal">Aviso Legal</a>.
+          <a href="/legal/aviso-legal?lang=es">Aviso Legal</a>.
         </p>
       ),
     },

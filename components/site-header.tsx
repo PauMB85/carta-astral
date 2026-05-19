@@ -1,7 +1,9 @@
+import { Suspense } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import type { Lang } from "@shared/domain/lang";
 import type { Dictionary } from "@/lib/i18n";
+import { LangLink } from "@/components/lang-link";
 
 type Props = {
   lang: Lang;
@@ -52,39 +54,34 @@ export function SiteHeader({ lang, t }: Props) {
       </nav>
 
       <div className="flex justify-end items-center gap-2 order-2 lg:order-3 font-display text-xs tracking-[0.2em] font-medium">
-        <LangLink targetLang="es" current={lang}>
-          ES
-        </LangLink>
-        <span aria-hidden="true" className="text-gold/40">
-          ·
-        </span>
-        <LangLink targetLang="en" current={lang}>
-          EN
-        </LangLink>
+        <Suspense fallback={<LangToggleFallback current={lang} />}>
+          <LangLink targetLang="es" current={lang}>
+            ES
+          </LangLink>
+          <span aria-hidden="true" className="text-gold/40">
+            ·
+          </span>
+          <LangLink targetLang="en" current={lang}>
+            EN
+          </LangLink>
+        </Suspense>
       </div>
     </header>
   );
 }
 
-function LangLink({
-  targetLang,
-  current,
-  children,
-}: {
-  targetLang: Lang;
-  current: Lang;
-  children: React.ReactNode;
-}) {
-  const isActive = current === targetLang;
+function LangToggleFallback({ current }: { current: Lang }) {
   return (
-    <Link
-      href={`/?lang=${targetLang}`}
-      replace
-      scroll={false}
-      aria-current={isActive ? "true" : undefined}
-      className={`transition-colors ${isActive ? "text-gold-bright" : "text-cream/40"}`}
-    >
-      {children}
-    </Link>
+    <>
+      <span className={current === "es" ? "text-gold-bright" : "text-cream/40"}>
+        ES
+      </span>
+      <span aria-hidden="true" className="text-gold/40">
+        ·
+      </span>
+      <span className={current === "en" ? "text-gold-bright" : "text-cream/40"}>
+        EN
+      </span>
+    </>
   );
 }
