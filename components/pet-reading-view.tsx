@@ -12,7 +12,7 @@ import { ReadingDisclaimer } from "@/components/pet-reading-view-parts/reading-d
 import { RitualCard } from "@/components/pet-reading-view-parts/ritual-card";
 import { ScorePanel } from "@/components/pet-reading-view-parts/score-panel";
 import { SectionHeading } from "@/components/pet-reading-view-parts/section-heading";
-import { ShareButton } from "@/components/pet-reading-view-parts/share-button";
+import { ShareButton } from "@/components/share-button";
 import { TipItem } from "@/components/pet-reading-view-parts/tip-item";
 
 type Props = {

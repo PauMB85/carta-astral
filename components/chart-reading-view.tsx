@@ -6,6 +6,7 @@ import type { Reading } from "@natal/domain/reading";
 import type { Lang } from "@shared/domain/lang";
 import type { Dictionary } from "@/lib/i18n";
 import { PetPremiumBlock } from "@/components/pet-premium-block";
+import { ShareButton } from "@/components/share-button";
 import {
   NeedsMoreData,
   ReadingError,
@@ -40,6 +41,22 @@ export function ReadingView({
   useEffect(() => {
     headingRef.current?.focus();
   }, []);
+
+  const handleShare = async () => {
+    if (typeof navigator === "undefined" || !navigator.share) return;
+    const shareTitle = nombre ? `${t.titlePrefix} ${nombre}` : t.titleFallback;
+    const summary =
+      typeof reading?.summary === "string" ? reading.summary : "";
+    try {
+      await navigator.share({
+        title: shareTitle,
+        text: summary,
+        url: window.location.href,
+      });
+    } catch {
+      // User cancelled or share unsupported. Silent no-op.
+    }
+  };
 
   return (
     <article
@@ -86,7 +103,10 @@ export function ReadingView({
       !rateLimited &&
       !error &&
       reading?.status === "ok" ? (
-        <PetPremiumBlock lang={lang} t={petCopy} />
+        <>
+          <ShareButton label={t.share} onShare={handleShare} />
+          <PetPremiumBlock lang={lang} t={petCopy} />
+        </>
       ) : null}
 
       <div className="mt-12 text-center">
