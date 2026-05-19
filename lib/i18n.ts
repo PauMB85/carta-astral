@@ -191,6 +191,7 @@ const DICTIONARIES = {
         tipsLabel: "PARA LOS PRÓXIMOS 30 DÍAS",
         ritualEyebrow: "RITUAL PARA AMBOS",
         share: "COMPARTIR MI LECTURA",
+        anotherPet: "CONSULTAR OTRA MASCOTA",
         disclaimer:
           "Galgo Astral · Esta lectura es una interpretación simbólica realizada a partir de la fecha proporcionada. No sustituye la valoración de un veterinario ni de un profesional de la conducta animal. Trazada a mano por nuestras astrólogas en Isla Negra.",
         paymentRequiredTitle: "No vemos el pago todavía",
@@ -394,6 +395,7 @@ const DICTIONARIES = {
         tipsLabel: "FOR THE NEXT 30 DAYS",
         ritualEyebrow: "A RITUAL FOR BOTH",
         share: "SHARE MY READING",
+        anotherPet: "READ ANOTHER PET",
         disclaimer:
           "Galgo Astral · This reading is a symbolic interpretation based on the date provided. It does not replace the assessment of a veterinarian nor of an animal behaviour specialist. Hand-drawn by our astrologers on Isla Negra.",
         paymentRequiredTitle: "We don't see your payment yet",

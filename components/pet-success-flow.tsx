@@ -133,6 +133,6 @@ export function PetSuccessFlow({ sessionId, lang, t }: Props) {
   }
 
   return (
-    <PetReadingView reading={object} isStreaming={isLoading} t={t} />
+    <PetReadingView reading={object} isStreaming={isLoading} lang={lang} t={t} />
   );
 }

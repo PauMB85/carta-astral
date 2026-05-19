@@ -1,8 +1,10 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Link from "next/link";
 import type { DeepPartial } from "ai";
 import type { Dictionary } from "@/lib/i18n";
+import type { Lang } from "@shared/domain/lang";
 import type { PetReading } from "@pet/domain/pet-reading";
 import { HighlightItem } from "@/components/pet-reading-view-parts/highlight-item";
 import { NarrativeSection } from "@/components/pet-reading-view-parts/narrative-section";
@@ -16,10 +18,14 @@ import { TipItem } from "@/components/pet-reading-view-parts/tip-item";
 type Props = {
   reading: DeepPartial<PetReading> | undefined;
   isStreaming: boolean;
+  lang: Lang;
   t: Dictionary["pet"];
 };
 
-export function PetReadingView({ reading, isStreaming, t }: Props) {
+const SECONDARY_LINK =
+  "font-display py-3 px-2 text-xs font-medium uppercase tracking-[0.3em] text-cream border-b border-b-gold-faint-35 transition-colors motion-reduce:transition-none hover:text-gold-bright hover:border-b-gold-bright";
+
+export function PetReadingView({ reading, isStreaming, lang, t }: Props) {
   const headingRef = useRef<HTMLHeadingElement>(null);
 
   useEffect(() => {
@@ -126,6 +132,18 @@ export function PetReadingView({ reading, isStreaming, t }: Props) {
       ) : null}
 
       <ShareButton label={t.success.share} onShare={() => shareReading(reading)} />
+
+      <div className="mt-7 flex flex-wrap items-center justify-center gap-x-9 gap-y-3">
+        <Link
+          href={`/pet-compatibility?lang=${lang}`}
+          className={SECONDARY_LINK}
+        >
+          {t.success.anotherPet}
+        </Link>
+        <Link href={`/?lang=${lang}`} className={SECONDARY_LINK}>
+          {t.success.backToHome}
+        </Link>
+      </div>
 
       <ReadingDisclaimer text={t.success.disclaimer} />
     </article>
