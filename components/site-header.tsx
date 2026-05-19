@@ -9,9 +9,17 @@ type Props = {
 };
 
 export function SiteHeader({ lang, t }: Props) {
+  const homeHref = `/?lang=${lang}`;
+  const resolveLinkHref = (href: string) =>
+    href.startsWith("#") ? `${homeHref}${href}` : href;
+
   return (
     <header className="grid grid-cols-2 lg:grid-cols-[1fr_auto_1fr] items-center gap-4 px-5 py-5 sm:px-10 sm:py-6 lg:px-16 lg:py-8 border-b border-b-gold-faint-15">
-      <div className="flex items-center gap-3 sm:gap-4 col-span-2 lg:col-span-1 order-1 lg:order-1">
+      <Link
+        href={homeHref}
+        aria-label={t.brand}
+        className="flex items-center gap-3 sm:gap-4 col-span-2 lg:col-span-1 order-1 lg:order-1 no-underline text-inherit transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:opacity-90"
+      >
         <Image
           src="/galgo-astral-logo.png"
           alt=""
@@ -26,7 +34,7 @@ export function SiteHeader({ lang, t }: Props) {
             {t.brandSub}
           </div>
         </div>
-      </div>
+      </Link>
 
       <nav
         className="hidden lg:flex justify-center gap-9 order-2 font-display tracking-[0.18em] font-medium"
@@ -35,7 +43,7 @@ export function SiteHeader({ lang, t }: Props) {
         {t.links.map(({ label, href }) => (
           <a
             key={label}
-            href={href}
+            href={resolveLinkHref(href)}
             className="text-xs no-underline opacity-85 hover:opacity-100 transition-opacity text-cream"
           >
             {label}
