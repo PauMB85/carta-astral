@@ -126,7 +126,7 @@ const DICTIONARIES = {
           "Necesitamos al menos una fecha — la del nacimiento o la del día que llegó a tu vida. Los astros no pueden trazar un mapa sin un punto de partida.",
         personalityHint: "elige hasta 5",
         personalityCounter: "{n} / 5 SELECCIONADAS",
-        submit: "CONTINUAR AL PAGO · 2,99 €",
+        submit: "TRAZAR NUESTRA LECTURA · 2,99 €",
         submitting: "Preparando el pago…",
         errorMissing:
           "Faltan datos. Asegúrate de elegir tipo, foco y al menos una fecha.",
@@ -331,7 +331,7 @@ const DICTIONARIES = {
           "We need at least one date — the day of their birth or the day they entered your life. The stars cannot trace a map without a starting point.",
         personalityHint: "choose up to 5",
         personalityCounter: "{n} / 5 SELECTED",
-        submit: "CONTINUE TO PAYMENT · 2,99 €",
+        submit: "TRACE OUR READING · 2,99 €",
         submitting: "Preparing payment…",
         errorMissing:
           "Some details are missing. Make sure you choose pet type, focus, and at least one date.",
