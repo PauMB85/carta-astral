@@ -3,7 +3,6 @@
 import Link from "next/link";
 import type { Dictionary } from "@/lib/i18n";
 import type { Lang } from "@shared/domain/lang";
-import { v1 } from "@/lib/theme";
 
 type Props = {
   lang: Lang;
@@ -13,99 +12,45 @@ type Props = {
 export function PetPremiumBlock({ lang, t }: Props) {
   return (
     <div className="mt-12">
-      <PetPremiumBlockStyles />
-
-      <div
-        className="pt-6 mb-6"
-        style={{ borderTop: `1px solid ${v1.goldFaint15}` }}
-      >
-        <div
-          className="font-display"
-          style={{
-            fontSize: 11,
-            letterSpacing: "0.4em",
-            color: v1.gold,
-            fontWeight: 500,
-          }}
-        >
+      <div className="pt-6 mb-6 border-t border-gold-faint-15">
+        <div className="font-display text-gold text-[11px] tracking-[0.4em] font-medium">
           {t.prelude.eyebrow}
         </div>
-        <p
-          className="font-body italic mt-3 mb-0 text-base sm:text-lg leading-relaxed"
-          style={{ color: v1.dim }}
-        >
+        <p className="font-body italic mt-3 mb-0 text-base sm:text-lg leading-relaxed text-dim">
           {t.prelude.quote}
         </p>
       </div>
 
-      <div
-        className="relative"
-        style={{
-          background: v1.ink,
-          border: `1px solid ${v1.goldFaint25}`,
-          padding: "44px 36px",
-          boxShadow:
-            "0 0 36px rgba(231, 201, 122, 0.06), inset 0 0 0 1px rgba(0, 0, 0, 0.4)",
-        }}
-      >
+      <div className="relative bg-ink border border-gold-faint-25 px-9 py-11 shadow-[0_0_36px_rgba(231,201,122,0.06),inset_0_0_0_1px_rgba(0,0,0,0.4)]">
         <Corner pos="top-left" />
         <Corner pos="bottom-right" />
 
-        <div
-          className="font-display mb-4"
-          style={{
-            fontSize: 11,
-            letterSpacing: "0.45em",
-            color: v1.gold,
-            fontWeight: 500,
-          }}
-        >
+        <div className="font-display mb-4 text-gold text-[11px] tracking-[0.45em] font-medium">
           {t.premium.eyebrow}
         </div>
 
-        <h3
-          className="font-body italic m-0 mb-4 text-3xl sm:text-[32px] font-normal leading-tight"
-          style={{ color: v1.cream }}
-        >
+        <h3 className="font-body italic m-0 mb-4 text-3xl sm:text-[32px] font-normal leading-tight text-cream">
           {t.premium.title}
         </h3>
 
-        <p
-          className="font-body italic mt-0 mb-6 text-base sm:text-lg leading-relaxed"
-          style={{ color: v1.dim }}
-        >
+        <p className="font-body italic mt-0 mb-6 text-base sm:text-lg leading-relaxed text-dim">
           {t.premium.sub}
         </p>
 
-        <div
-          className="font-display flex justify-between items-center mb-6 py-4"
-          style={{
-            fontSize: 12,
-            letterSpacing: "0.3em",
-            color: v1.goldBright,
-            borderTop: `1px solid ${v1.goldFaint15}`,
-            borderBottom: `1px solid ${v1.goldFaint15}`,
-          }}
-        >
+        <div className="font-display flex justify-between items-center mb-6 py-4 text-[12px] tracking-[0.3em] text-gold-bright border-t border-b border-gold-faint-15">
           <span>{t.premium.priceLabel}</span>
-          <span style={{ fontSize: 16 }}>{t.premium.priceAmount}</span>
+          <span className="text-base">{t.premium.priceAmount}</span>
         </div>
 
         <Link
           href={`/pet-compatibility?lang=${lang}`}
-          className="pet-cta font-display flex items-center justify-center gap-3 no-underline w-full"
-          style={{
-            background: v1.goldBright,
-            color: v1.dark,
-            padding: "18px 32px",
-            minHeight: 54,
-            fontSize: 11,
-            letterSpacing: "0.25em",
-            fontWeight: 500,
-          }}
+          className="group font-display flex items-center justify-center gap-3 no-underline w-full bg-gold-bright text-dark px-8 py-4.5 min-h-13.5 text-[11px] tracking-[0.25em] font-medium transition-colors duration-250 motion-reduce:transition-none hover:bg-cream"
         >
           <span>{t.premium.cta}</span>
-          <span className="pet-cta-arrow" aria-hidden="true">
+          <span
+            aria-hidden="true"
+            className="inline-block transition-transform duration-250 motion-reduce:transition-none group-hover:translate-x-1"
+          >
             →
           </span>
         </Link>
@@ -119,45 +64,14 @@ function Corner({ pos }: { pos: "top-left" | "bottom-right" }) {
     return (
       <span
         aria-hidden="true"
-        style={{
-          position: "absolute",
-          top: -1,
-          left: -1,
-          width: 18,
-          height: 18,
-          borderTop: `1px solid ${v1.gold}`,
-          borderLeft: `1px solid ${v1.gold}`,
-        }}
+        className="absolute -top-px -left-px w-4.5 h-4.5 border-t border-l border-gold"
       />
     );
   }
   return (
     <span
       aria-hidden="true"
-      style={{
-        position: "absolute",
-        bottom: -1,
-        right: -1,
-        width: 18,
-        height: 18,
-        borderBottom: `1px solid ${v1.gold}`,
-        borderRight: `1px solid ${v1.gold}`,
-      }}
+      className="absolute -bottom-px -right-px w-4.5 h-4.5 border-b border-r border-gold"
     />
-  );
-}
-
-function PetPremiumBlockStyles() {
-  return (
-    <style>{`
-      .pet-cta { transition: background 0.25s; }
-      .pet-cta:hover { background: ${v1.cream}; }
-      .pet-cta-arrow { transition: transform 0.25s; display: inline-block; }
-      .pet-cta:hover .pet-cta-arrow { transform: translateX(4px); }
-      @media (prefers-reduced-motion: reduce) {
-        .pet-cta, .pet-cta-arrow { transition: none !important; }
-        .pet-cta:hover .pet-cta-arrow { transform: none !important; }
-      }
-    `}</style>
   );
 }

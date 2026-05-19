@@ -4,7 +4,6 @@ import { useRef, useState, type SubmitEvent } from "react";
 import Link from "next/link";
 import type { Dictionary } from "@/lib/i18n";
 import type { Lang } from "@shared/domain/lang";
-import { v1 } from "@/lib/theme";
 import { petDataSchema, type PetData } from "@pet/domain/pet-data";
 import { DogIcon, CatIcon } from "@/components/pet-icons";
 import {
@@ -15,8 +14,10 @@ import {
   PersonalityTag,
   PurposeCard,
   InlineError,
-  PetFormStyles,
 } from "@/components/pet-form-fields";
+
+const INPUT_CLASSES =
+  "w-full bg-transparent border-0 border-b border-gold-faint-35 text-cream font-body italic text-[22px] py-2.5 outline-none [color-scheme:dark] focus:border-gold-bright placeholder:text-cream/25 placeholder:italic";
 
 type Props = {
   lang: Lang;
@@ -125,15 +126,13 @@ export function PetForm({ lang, t, submitError, onSubmit }: Props) {
       onSubmit={handleSubmit}
       className="relative max-w-180 mx-auto px-5 sm:px-10 py-12"
     >
-      <PetFormStyles />
-
       <Header t={t.form} />
 
       <div className="flex flex-col">
         <Section num="I" label={t.form.sectionName}>
           <input
             type="text"
-            className="pet-form-input"
+            className={INPUT_CLASSES}
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder={t.form.namePlaceholder}
@@ -171,7 +170,7 @@ export function PetForm({ lang, t, submitError, onSubmit }: Props) {
             <SubField label={t.form.birthDateLabel}>
               <input
                 type="date"
-                className="pet-form-input"
+                className={INPUT_CLASSES}
                 value={birthDate}
                 onChange={(e) => {
                   setBirthDate(e.target.value);
@@ -182,7 +181,7 @@ export function PetForm({ lang, t, submitError, onSubmit }: Props) {
             <SubField label={t.form.adoptionDateLabel}>
               <input
                 type="date"
-                className="pet-form-input"
+                className={INPUT_CLASSES}
                 value={adoptionDate}
                 onChange={(e) => {
                   setAdoptionDate(e.target.value);
@@ -191,10 +190,7 @@ export function PetForm({ lang, t, submitError, onSubmit }: Props) {
               />
             </SubField>
           </div>
-          <p
-            className="font-body italic text-sm mt-3 leading-relaxed"
-            style={{ color: v1.dim }}
-          >
+          <p className="font-body italic text-sm mt-3 leading-relaxed text-dim">
             {t.form.datesMicrocopy}
           </p>
           {showDatesError ? <InlineError message={t.form.datesError} /> : null}
@@ -241,15 +237,7 @@ export function PetForm({ lang, t, submitError, onSubmit }: Props) {
               );
             })}
           </div>
-          <p
-            className="font-display mt-4 m-0"
-            style={{
-              color: v1.gold,
-              fontSize: 10,
-              letterSpacing: "0.25em",
-              fontWeight: 500,
-            }}
-          >
+          <p className="font-display mt-4 m-0 text-gold text-[10px] tracking-[0.25em] font-medium">
             {counterText}
           </p>
         </Section>
@@ -290,19 +278,13 @@ export function PetForm({ lang, t, submitError, onSubmit }: Props) {
 
       <button
         type="submit"
-        className="pet-form-submit font-display mt-9 w-full flex items-center justify-center gap-3 border-0 cursor-pointer"
-        style={{
-          background: v1.goldBright,
-          color: v1.dark,
-          padding: "18px 32px",
-          minHeight: 54,
-          fontSize: 11,
-          letterSpacing: "0.25em",
-          fontWeight: 500,
-        }}
+        className="group font-display mt-9 w-full flex items-center justify-center gap-3 border-0 cursor-pointer bg-gold-bright text-dark px-8 py-4.5 min-h-13.5 text-[11px] tracking-[0.25em] font-medium transition-colors duration-250 motion-reduce:transition-none hover:bg-cream"
       >
         <span>{t.form.submit}</span>
-        <span className="pet-form-arrow" aria-hidden="true">
+        <span
+          aria-hidden="true"
+          className="inline-block transition-transform duration-250 motion-reduce:transition-none group-hover:translate-x-1"
+        >
           →
         </span>
       </button>
@@ -313,27 +295,13 @@ export function PetForm({ lang, t, submitError, onSubmit }: Props) {
 function Header({ t }: { t: Dictionary["pet"]["form"] }) {
   return (
     <header className="text-center mb-10">
-      <p
-        className="font-display m-0"
-        style={{
-          color: v1.gold,
-          fontSize: 11,
-          letterSpacing: "0.45em",
-          fontWeight: 500,
-        }}
-      >
+      <p className="font-display m-0 text-gold text-[11px] tracking-[0.45em] font-medium">
         {t.eyebrow}
       </p>
-      <h1
-        className="font-body italic mt-4 m-0 text-4xl sm:text-5xl font-normal leading-tight"
-        style={{ color: v1.cream }}
-      >
+      <h1 className="font-body italic mt-4 m-0 text-4xl sm:text-5xl font-normal leading-tight text-cream">
         {t.title}
       </h1>
-      <p
-        className="font-body italic mt-3 m-0 text-base sm:text-lg"
-        style={{ color: v1.dim }}
-      >
+      <p className="font-body italic mt-3 m-0 text-base sm:text-lg text-dim">
         {t.sub}
       </p>
     </header>
@@ -352,16 +320,13 @@ function TermsCheckbox({
   onToggle: () => void;
 }) {
   return (
-    <label
-      className="pet-terms-row flex items-start gap-3 mt-8 cursor-pointer"
-      style={{ color: v1.cream }}
-    >
+    <label className="flex items-start gap-3 mt-8 cursor-pointer text-cream">
       <input
         type="checkbox"
         checked={checked}
         onChange={onToggle}
-        className="pet-terms-checkbox mt-1 shrink-0"
         aria-required="true"
+        className="appearance-none w-5 h-5 mt-1 shrink-0 cursor-pointer relative border border-gold-faint-35 bg-transparent transition-colors motion-reduce:transition-none hover:border-gold checked:bg-gold-bright checked:border-gold-bright after:content-[''] after:absolute after:left-1.5 after:top-px after:w-1.25 after:h-2.75 after:border-r-2 after:border-b-2 after:border-dark after:rotate-45 after:hidden checked:after:block"
       />
       <span className="font-body italic text-sm sm:text-base leading-relaxed">
         {t.prefix}
@@ -369,9 +334,8 @@ function TermsCheckbox({
           href={`/legal/terminos?lang=${lang}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="pet-terms-link"
-          style={{ color: v1.goldBright }}
           onClick={(e) => e.stopPropagation()}
+          className="underline underline-offset-[3px] not-italic text-gold-bright transition-colors motion-reduce:transition-none hover:text-cream"
         >
           {t.termsLabel}
         </Link>
@@ -380,60 +344,13 @@ function TermsCheckbox({
           href={`/legal/privacidad?lang=${lang}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="pet-terms-link"
-          style={{ color: v1.goldBright }}
           onClick={(e) => e.stopPropagation()}
+          className="underline underline-offset-[3px] not-italic text-gold-bright transition-colors motion-reduce:transition-none hover:text-cream"
         >
           {t.privacyLabel}
         </Link>
-        {t.acceptanceEnd}{" "}
-        <span style={{ color: v1.dim }}>{t.withdrawal}</span>
+        {t.acceptanceEnd} <span className="text-dim">{t.withdrawal}</span>
       </span>
-      <PetTermsStyles />
     </label>
-  );
-}
-
-function PetTermsStyles() {
-  return (
-    <style>{`
-      .pet-terms-checkbox {
-        appearance: none;
-        width: 20px;
-        height: 20px;
-        border: 1px solid ${v1.goldFaint35};
-        background: transparent;
-        cursor: pointer;
-        position: relative;
-        transition: border-color 0.2s, background 0.2s;
-        flex-shrink: 0;
-      }
-      .pet-terms-checkbox:hover { border-color: ${v1.gold}; }
-      .pet-terms-checkbox:checked {
-        background: ${v1.goldBright};
-        border-color: ${v1.goldBright};
-      }
-      .pet-terms-checkbox:checked::after {
-        content: '';
-        position: absolute;
-        left: 6px;
-        top: 1px;
-        width: 5px;
-        height: 11px;
-        border-right: 2px solid ${v1.dark};
-        border-bottom: 2px solid ${v1.dark};
-        transform: rotate(45deg);
-      }
-      .pet-terms-link {
-        text-decoration: underline;
-        text-underline-offset: 3px;
-        font-style: normal;
-        transition: color 0.2s;
-      }
-      .pet-terms-link:hover { color: ${v1.cream}; }
-      @media (prefers-reduced-motion: reduce) {
-        .pet-terms-checkbox, .pet-terms-link { transition: none !important; }
-      }
-    `}</style>
   );
 }

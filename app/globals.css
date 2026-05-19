@@ -20,6 +20,41 @@
   --color-err-bg: rgb(120 60 160 / 8%);
   --color-err-bd: rgb(180 130 200 / 35%);
   --color-err-ink: #c9aae0;
+
+  --animate-pet-loading-spin: pet-loading-spin 24s linear infinite;
+  --animate-pet-loading-pulse: pet-loading-pulse 3s ease-in-out infinite;
+  --animate-pet-loading-dots: pet-loading-dots 1.6s steps(4) infinite;
+}
+
+@keyframes pet-loading-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pet-loading-pulse {
+  0%,
+  100% {
+    opacity: 0.85;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes pet-loading-dots {
+  0% {
+    content: "";
+  }
+  25% {
+    content: ".";
+  }
+  50% {
+    content: "..";
+  }
+  75% {
+    content: "...";
+  }
 }
 
 :root {

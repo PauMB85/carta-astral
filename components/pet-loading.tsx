@@ -17,14 +17,13 @@ export function PetLoading({ title, sub }: Props) {
       role="status"
       aria-live="polite"
     >
-      <PetLoadingStyles />
-
-      <div className="relative w-44 h-44 pet-loading-ring">
+      <div className="relative w-44 h-44">
         <svg
           viewBox="0 0 180 180"
           width="180"
           height="180"
           aria-hidden="true"
+          className="animate-pet-loading-spin motion-reduce:animate-none origin-center"
         >
           <defs>
             <radialGradient id="petLoadingBg" cx="0.5" cy="0.5" r="0.6">
@@ -102,7 +101,7 @@ export function PetLoading({ title, sub }: Props) {
           <circle cx="90" cy="90" r="2" fill={v1.goldBright} />
         </svg>
 
-        <div className="absolute inset-0 flex items-center justify-center pet-loading-crescent">
+        <div className="absolute inset-0 flex items-center justify-center animate-pet-loading-pulse motion-reduce:animate-none">
           <svg
             width="60"
             height="60"
@@ -132,43 +131,17 @@ export function PetLoading({ title, sub }: Props) {
       </div>
 
       <div className="text-center max-w-md">
-        <p
-          className="font-body italic m-0 text-2xl sm:text-[28px] leading-snug"
-          style={{ color: v1.cream }}
-        >
+        <p className="font-body italic m-0 text-2xl sm:text-[28px] leading-snug text-cream">
           {title}
-          <span aria-hidden="true" className="pet-loading-dots" />
+          <span
+            aria-hidden="true"
+            className="after:content-[''] after:animate-pet-loading-dots motion-reduce:after:animate-none"
+          />
         </p>
-        <p
-          className="font-display mt-5 m-0"
-          style={{
-            color: v1.dim,
-            fontSize: 11,
-            letterSpacing: "0.4em",
-            fontWeight: 500,
-          }}
-        >
+        <p className="font-display mt-5 m-0 text-dim text-[11px] tracking-[0.4em] font-medium">
           {sub}
         </p>
       </div>
     </section>
-  );
-}
-
-function PetLoadingStyles() {
-  return (
-    <style>{`
-      .pet-loading-ring svg { animation: pet-loading-spin 24s linear infinite; transform-origin: 50% 50%; }
-      .pet-loading-crescent { animation: pet-loading-pulse 3s ease-in-out infinite; }
-      .pet-loading-dots::after { content: ''; animation: pet-loading-dots 1.6s steps(4) infinite; }
-      @keyframes pet-loading-spin { to { transform: rotate(360deg); } }
-      @keyframes pet-loading-pulse { 0%, 100% { opacity: 0.85; } 50% { opacity: 1; } }
-      @keyframes pet-loading-dots { 0% { content: ''; } 25% { content: '.'; } 50% { content: '..'; } 75% { content: '...'; } }
-      @media (prefers-reduced-motion: reduce) {
-        .pet-loading-ring svg,
-        .pet-loading-crescent,
-        .pet-loading-dots::after { animation: none !important; }
-      }
-    `}</style>
   );
 }
