@@ -1,5 +1,3 @@
-import { v1 } from "@/lib/theme";
-
 const STARS = (() => {
   let seed = 0xc05705;
   const rand = () => {
@@ -17,18 +15,18 @@ const STARS = (() => {
   }));
 })();
 
+const BACKGROUND_GRADIENT = `
+  radial-gradient(ellipse at 50% 0%, rgba(201, 165, 90, 0.08), transparent 60%),
+  radial-gradient(ellipse at 50% 100%, rgba(201, 165, 90, 0.05), transparent 60%),
+  var(--color-dark)
+`;
+
 export function CosmosBg() {
   return (
     <div
       aria-hidden="true"
       className="fixed inset-0 -z-10 overflow-hidden"
-      style={{
-        background: `
-          radial-gradient(ellipse at 50% 0%, rgba(201, 165, 90, 0.08), transparent 60%),
-          radial-gradient(ellipse at 50% 100%, rgba(201, 165, 90, 0.05), transparent 60%),
-          ${v1.dark}
-        `,
-      }}
+      style={{ background: BACKGROUND_GRADIENT }}
     >
       <svg className="absolute inset-0 w-full h-full">
         {STARS.map((s) => (
@@ -37,24 +35,13 @@ export function CosmosBg() {
             cx={`${s.x}%`}
             cy={`${s.y}%`}
             r={s.r}
-            fill={v1.goldBright}
+            fill="var(--color-gold-bright)"
             opacity={0.4}
-            style={{
-              animation: `v1-twinkle 4s ease-in-out infinite`,
-              animationDelay: `${s.delay}s`,
-            }}
+            className="animate-twinkle motion-reduce:animate-none"
+            style={{ animationDelay: `${s.delay}s` }}
           />
         ))}
       </svg>
-      <style>{`
-        @keyframes v1-twinkle {
-          0%, 100% { opacity: 0.2; transform: scale(0.8); }
-          50% { opacity: 1; transform: scale(1.1); }
-        }
-        @media (prefers-reduced-motion: reduce) {
-          svg circle { animation: none !important; }
-        }
-      `}</style>
     </div>
   );
 }

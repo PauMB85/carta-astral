@@ -1,5 +1,3 @@
-import { v1 } from "@/lib/theme";
-
 const ZODIAC_SIGILS: ReadonlyArray<{ name: string; paths: ReadonlyArray<string> }> = [
   { name: "Aries", paths: ["M 4 18 Q 4 8 12 8 Q 20 8 20 18", "M 4 18 Q 4 14 7 14", "M 20 18 Q 20 14 17 14"] },
   { name: "Tauro", paths: ["M 12 18 m -5 0 a 5 5 0 1 0 10 0 a 5 5 0 1 0 -10 0", "M 7 13 Q 4 6 9 6", "M 17 13 Q 20 6 15 6"] },
@@ -33,6 +31,9 @@ const ASPECT_PAIRS: ReadonlyArray<readonly [number, number]> = [
   [150, 330],
 ];
 
+const GOLD = "var(--color-gold)";
+const GOLD_BRIGHT = "var(--color-gold-bright)";
+
 type Props = {
   size?: number;
   spin?: boolean;
@@ -55,17 +56,14 @@ export function NatalWheel({ size = 520, spin = true, className }: Props) {
   };
 
   return (
-    <>
-      <WheelStyles />
-      <svg
-        viewBox={`0 0 ${size} ${size}`}
-        width={size}
-        height={size}
-        className={className}
-        style={{ display: "block", overflow: "visible" }}
-        role="img"
-        aria-label="Carta natal"
-      >
+    <svg
+      viewBox={`0 0 ${size} ${size}`}
+      width={size}
+      height={size}
+      className={`${className ?? ""} block overflow-visible`}
+      role="img"
+      aria-label="Carta natal"
+    >
       <defs>
         <radialGradient id="wheel-bg" cx="0.5" cy="0.5" r="0.6">
           <stop offset="0%" stopColor="#1a160d" />
@@ -81,20 +79,23 @@ export function NatalWheel({ size = 520, spin = true, className }: Props) {
         </filter>
       </defs>
 
-      <g className={spin ? "wheel-spin" : undefined} style={{ transformOrigin: `${cx}px ${cy}px` }}>
-        <circle cx={cx} cy={cy} r={rOuter} fill="url(#wheel-bg)" stroke={v1.gold} strokeWidth="1" />
-        <circle cx={cx} cy={cy} r={rOuter - 4} fill="none" stroke={v1.gold} strokeWidth="0.4" opacity="0.5" />
-        <circle cx={cx} cy={cy} r={rZodiac} fill="none" stroke={v1.gold} strokeWidth="0.8" />
-        <circle cx={cx} cy={cy} r={rInner} fill="none" stroke={v1.gold} strokeWidth="0.6" />
-        <circle cx={cx} cy={cy} r={rInner * 0.88} fill="none" stroke={v1.gold} strokeWidth="0.3" opacity="0.5" />
-        <circle cx={cx} cy={cy} r={rCenter} fill="none" stroke={v1.gold} strokeWidth="0.6" opacity="0.7" />
-        <circle cx={cx} cy={cy} r={rCenter * 0.7} fill="none" stroke={v1.gold} strokeWidth="0.4" opacity="0.5" />
+      <g
+        className={spin ? "animate-wheel-spin motion-reduce:animate-none" : undefined}
+        style={{ transformOrigin: `${cx}px ${cy}px` }}
+      >
+        <circle cx={cx} cy={cy} r={rOuter} fill="url(#wheel-bg)" stroke={GOLD} strokeWidth="1" />
+        <circle cx={cx} cy={cy} r={rOuter - 4} fill="none" stroke={GOLD} strokeWidth="0.4" opacity="0.5" />
+        <circle cx={cx} cy={cy} r={rZodiac} fill="none" stroke={GOLD} strokeWidth="0.8" />
+        <circle cx={cx} cy={cy} r={rInner} fill="none" stroke={GOLD} strokeWidth="0.6" />
+        <circle cx={cx} cy={cy} r={rInner * 0.88} fill="none" stroke={GOLD} strokeWidth="0.3" opacity="0.5" />
+        <circle cx={cx} cy={cy} r={rCenter} fill="none" stroke={GOLD} strokeWidth="0.6" opacity="0.7" />
+        <circle cx={cx} cy={cy} r={rCenter * 0.7} fill="none" stroke={GOLD} strokeWidth="0.4" opacity="0.5" />
 
         {Array.from({ length: 12 }, (_, i) => {
           const a = i * 30;
           const [x1, y1] = polar(a, rInner);
           const [x2, y2] = polar(a, rOuter);
-          return <line key={`div-${i}`} x1={x1} y1={y1} x2={x2} y2={y2} stroke={v1.gold} strokeWidth="0.6" opacity="0.7" />;
+          return <line key={`div-${i}`} x1={x1} y1={y1} x2={x2} y2={y2} stroke={GOLD} strokeWidth="0.6" opacity="0.7" />;
         })}
 
         {Array.from({ length: 36 }, (_, i) => {
@@ -102,13 +103,13 @@ export function NatalWheel({ size = 520, spin = true, className }: Props) {
           const a = i * 10;
           const [x1, y1] = polar(a, rZodiac);
           const [x2, y2] = polar(a, rZodiac + (rOuter - rZodiac) * 0.4);
-          return <line key={`tick-${i}`} x1={x1} y1={y1} x2={x2} y2={y2} stroke={v1.gold} strokeWidth="0.4" opacity="0.5" />;
+          return <line key={`tick-${i}`} x1={x1} y1={y1} x2={x2} y2={y2} stroke={GOLD} strokeWidth="0.4" opacity="0.5" />;
         })}
 
         {Array.from({ length: 12 }, (_, i) => {
           const a = i * 30 + 15;
           const [px, py] = polar(a, (rOuter + rZodiac) / 2);
-          return <circle key={`mt-${i}`} cx={px} cy={py} r={size * 0.006} fill={v1.goldBright} opacity="0.85" />;
+          return <circle key={`mt-${i}`} cx={px} cy={py} r={size * 0.006} fill={GOLD_BRIGHT} opacity="0.85" />;
         })}
 
         {ZODIAC_SIGILS.map((sigil, i) => {
@@ -122,7 +123,7 @@ export function NatalWheel({ size = 520, spin = true, className }: Props) {
                   key={idx}
                   d={d}
                   fill="none"
-                  stroke={v1.goldBright}
+                  stroke={GOLD_BRIGHT}
                   strokeWidth="0.9"
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -137,19 +138,19 @@ export function NatalWheel({ size = 520, spin = true, className }: Props) {
           const a = i * 30;
           const [x1, y1] = polar(a, rCenter);
           const [x2, y2] = polar(a, rInner);
-          return <line key={`h-${i}`} x1={x1} y1={y1} x2={x2} y2={y2} stroke={v1.gold} strokeWidth="0.4" opacity="0.4" />;
+          return <line key={`h-${i}`} x1={x1} y1={y1} x2={x2} y2={y2} stroke={GOLD} strokeWidth="0.4" opacity="0.4" />;
         })}
 
         {ASPECT_PAIRS.map(([a1, a2], i) => {
           const [x1, y1] = polar(a1, rCenter * 0.95);
           const [x2, y2] = polar(a2, rCenter * 0.95);
-          return <line key={`a-${i}`} x1={x1} y1={y1} x2={x2} y2={y2} stroke={v1.gold} strokeWidth="0.5" opacity="0.45" />;
+          return <line key={`a-${i}`} x1={x1} y1={y1} x2={x2} y2={y2} stroke={GOLD} strokeWidth="0.5" opacity="0.45" />;
         })}
 
         {Array.from({ length: 12 }, (_, i) => {
           const a = i * 30 + 15;
           const [dx, dy] = polar(a, rInner * 0.97);
-          return <circle key={`id-${i}`} cx={dx} cy={dy} r={size * 0.004} fill={v1.gold} opacity="0.6" />;
+          return <circle key={`id-${i}`} cx={dx} cy={dy} r={size * 0.004} fill={GOLD} opacity="0.6" />;
         })}
 
         <g filter="url(#wheel-glow)">
@@ -158,16 +159,16 @@ export function NatalWheel({ size = 520, spin = true, className }: Props) {
             const ms = size * 0.012;
             return (
               <g key={`p-${i}`}>
-                <circle cx={px} cy={py} r={ms * 1.6} fill="none" stroke={v1.goldBright} strokeWidth="0.6" opacity="0.7" />
-                <circle cx={px} cy={py} r={ms * 0.6} fill={v1.goldBright} />
+                <circle cx={px} cy={py} r={ms * 1.6} fill="none" stroke={GOLD_BRIGHT} strokeWidth="0.6" opacity="0.7" />
+                <circle cx={px} cy={py} r={ms * 0.6} fill={GOLD_BRIGHT} />
               </g>
             );
           })}
         </g>
 
         <g transform={`translate(${cx}, ${cy})`}>
-          <circle r={rCenter * 0.18} fill="none" stroke={v1.goldBright} strokeWidth="0.6" />
-          <circle r={size * 0.005} fill={v1.goldBright} />
+          <circle r={rCenter * 0.18} fill="none" stroke={GOLD_BRIGHT} strokeWidth="0.6" />
+          <circle r={size * 0.005} fill={GOLD_BRIGHT} />
           {[0, 90, 180, 270].map((a) => {
             const [x, y] = polar(a, rCenter * 0.45);
             return (
@@ -176,29 +177,13 @@ export function NatalWheel({ size = 520, spin = true, className }: Props) {
                 cx={x - cx}
                 cy={y - cy}
                 r={size * 0.003}
-                fill={v1.goldBright}
+                fill={GOLD_BRIGHT}
                 opacity="0.8"
               />
             );
           })}
         </g>
-        </g>
-      </svg>
-    </>
-  );
-}
-
-function WheelStyles() {
-  return (
-    <style>{`
-      @keyframes v1-wheel-spin {
-        from { transform: rotate(0deg); }
-        to   { transform: rotate(360deg); }
-      }
-      .wheel-spin { animation: v1-wheel-spin 240s linear infinite; }
-      @media (prefers-reduced-motion: reduce) {
-        .wheel-spin { animation: none !important; }
-      }
-    `}</style>
+      </g>
+    </svg>
   );
 }
