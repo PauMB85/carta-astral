@@ -1,5 +1,5 @@
 import type { Dictionary } from "@/lib/i18n";
-import { AstrolabeLoader } from "@/components/astrolabe-loader";
+import { GalgoProgress, GalgoSpinner } from "@/components/galgo-spinner";
 
 export function ReadingPlaceholder({
   t,
@@ -12,13 +12,14 @@ export function ReadingPlaceholder({
       role="status"
       aria-live="polite"
     >
-      <AstrolabeLoader className="w-24 h-24" />
-      <p className="font-display mt-5 text-gold text-xs font-medium">
+      <GalgoSpinner size="md" />
+      <p className="font-display mt-6 text-gold text-xs font-medium">
         {t.streaming}
       </p>
       <p className="font-body italic text-sm mt-2 text-cream/60 animate-streaming-pulse motion-reduce:animate-none">
         {t.streamingSub}
       </p>
+      <GalgoProgress className="mt-8" />
     </div>
   );
 }

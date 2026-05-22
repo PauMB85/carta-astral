@@ -108,7 +108,11 @@ export function PetSuccessFlow({ sessionId, lang, t }: Props) {
 
   if (phase.kind === "verifying") {
     return (
-      <PetLoading title={t.success.waitingPayment} sub={t.loading.sub} />
+      <PetLoading
+        title={t.success.waitingPayment}
+        sub={t.loading.sub}
+        quote={t.loading.quote}
+      />
     );
   }
 
@@ -128,6 +132,7 @@ export function PetSuccessFlow({ sessionId, lang, t }: Props) {
       <PetLoading
         title={t.success.streamingTitle}
         sub={t.success.streamingSub}
+        quote={t.loading.quote}
       />
     );
   }

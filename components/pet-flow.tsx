@@ -123,7 +123,13 @@ export function PetFlow({ lang, t }: Props) {
     return <PetNoChartError lang={lang} t={t.noChart} />;
   }
   if (submitting) {
-    return <PetLoading title={t.loading.title} sub={t.loading.sub} />;
+    return (
+      <PetLoading
+        title={t.loading.title}
+        sub={t.loading.sub}
+        quote={t.loading.quote}
+      />
+    );
   }
   return (
     <PetForm

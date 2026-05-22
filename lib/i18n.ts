@@ -185,6 +185,7 @@ const DICTIONARIES = {
       loading: {
         title: "Preparando tu lectura astral",
         sub: "EN UNOS INSTANTES TE LLEVAREMOS AL PAGO SEGURO",
+        quote: "Cada vínculo deja una huella única en el cosmos.",
       },
       success: {
         eyebrow: "COMPATIBILIDAD ASTRAL",
@@ -392,6 +393,7 @@ const DICTIONARIES = {
       loading: {
         title: "Preparing your astral reading",
         sub: "IN A MOMENT WE'LL TAKE YOU TO SECURE PAYMENT",
+        quote: "Every bond leaves a unique mark on the cosmos.",
       },
       success: {
         eyebrow: "ASTRAL COMPATIBILITY",

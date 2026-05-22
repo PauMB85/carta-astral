@@ -6,6 +6,7 @@
 
   --color-gold: #c9a55a;
   --color-gold-bright: #e7c97a;
+  --color-gold-warm: #f4d488;
   --color-dark: #0b0a08;
   --color-ink: #1a160d;
   --color-cream: #f5ecd6;
@@ -19,14 +20,20 @@
   --color-err-bd: rgb(180 130 200 / 35%);
   --color-err-ink: #c9aae0;
 
-  --animate-pet-loading-spin: pet-loading-spin 24s linear infinite;
-  --animate-pet-loading-pulse: pet-loading-pulse 3s ease-in-out infinite;
   --animate-pet-loading-dots: pet-loading-dots 1.6s steps(4) infinite;
   --animate-streaming-pulse: streaming-pulse 2.4s ease-in-out infinite;
   --animate-streaming-cursor: streaming-pulse 1.4s ease-in-out infinite;
   --animate-twinkle: twinkle 4s ease-in-out infinite;
   --animate-float: float 8s ease-in-out infinite;
   --animate-wheel-spin: pet-loading-spin 240s linear infinite;
+  --animate-spinner-halo: spinner-halo 4.2s ease-in-out infinite;
+  --animate-spinner-glow: spinner-glow 4.2s ease-in-out infinite;
+  --animate-spinner-moon: pet-loading-spin 8s linear infinite;
+  --animate-spinner-moon-counter: spinner-moon-counter 8s linear infinite;
+  --animate-spinner-twinkle: spinner-twinkle 2.4s ease-in-out infinite;
+  --animate-spinner-comet: spinner-comet 4.2s ease-in-out infinite alternate;
+  --animate-spinner-tail: spinner-tail 8.4s steps(1, end) infinite;
+  --animate-spinner-head: spinner-head 1.2s ease-in-out infinite;
 }
 
 @keyframes pet-loading-spin {
@@ -131,12 +138,77 @@
   color: var(--color-cream);
 }
 
-@keyframes pet-loading-pulse {
+@keyframes spinner-halo {
   0%,
   100% {
+    transform: scale(0.9);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+}
+
+@keyframes spinner-glow {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 12px rgb(231 201 122 / 22%));
+  }
+  50% {
+    filter: drop-shadow(0 0 22px rgb(231 201 122 / 45%));
+  }
+}
+
+@keyframes spinner-moon-counter {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes spinner-twinkle {
+  0%,
+  100% {
+    opacity: 0.2;
+    transform: translate(-50%, -50%) scale(0.7);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.15);
+  }
+}
+
+@keyframes spinner-comet {
+  from {
+    left: 0%;
+  }
+  to {
+    left: 100%;
+  }
+}
+
+@keyframes spinner-tail {
+  0%,
+  49.999% {
+    transform: translate(-100%, -50%) scaleX(1);
+  }
+  50%,
+  100% {
+    transform: translate(0%, -50%) scaleX(-1);
+  }
+}
+
+@keyframes spinner-head {
+  0%,
+  100% {
+    transform: scale(0.85);
     opacity: 0.85;
   }
   50% {
+    transform: scale(1.1);
     opacity: 1;
   }
 }
