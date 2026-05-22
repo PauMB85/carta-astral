@@ -12,7 +12,7 @@ export function makeCreatePetCheckout(deps: {
   payment: PaymentPort;
   repo: PetOrderRepository;
   rateLimit: RateLimitPort;
-  config: { priceId: string; appUrl: string };
+  config: { priceId: string; couponId: string; appUrl: string };
 }) {
   return async function createPetCheckout(
     input: {
@@ -31,6 +31,7 @@ export function makeCreatePetCheckout(deps: {
 
     const { sessionId, url } = await deps.payment.createCheckoutSession({
       priceId: deps.config.priceId,
+      couponId: deps.config.couponId,
       successUrl,
       cancelUrl,
     });

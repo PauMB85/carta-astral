@@ -1,0 +1,723 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Brand — Galgo Astral</title>
+    <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com"
+    />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        color-scheme: dark;
+
+        --font-display: "Cinzel", serif;
+        --font-body: "Cormorant Garamond", serif;
+
+        --color-gold: #c9a55a;
+        --color-gold-bright: #e7c97a;
+        --color-dark: #0b0a08;
+        --color-ink: #1a160d;
+        --color-cream: #f5ecd6;
+        --color-dim: rgb(245 236 214 / 55%);
+        --color-gold-faint-15: rgb(201 165 90 / 15%);
+        --color-gold-faint-25: rgb(201 165 90 / 25%);
+        --color-gold-faint-30: rgb(201 165 90 / 30%);
+        --color-gold-faint-35: rgb(201 165 90 / 35%);
+        --color-gold-glow: rgb(231 201 122 / 35%);
+        --color-err-bg: rgb(120 60 160 / 8%);
+        --color-err-bd: rgb(180 130 200 / 35%);
+        --color-err-ink: #c9aae0;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: var(--color-dark);
+        color: var(--color-cream);
+        font-family: var(--font-body);
+        font-size: 18px;
+        line-height: 1.65;
+        min-height: 100vh;
+      }
+
+      .page {
+        max-width: 880px;
+        margin: 0 auto;
+        padding: 80px 32px 120px;
+      }
+
+      .eyebrow {
+        font-family: var(--font-display);
+        text-transform: uppercase;
+        letter-spacing: 0.32em;
+        font-size: 11px;
+        color: var(--color-gold);
+        margin: 0 0 16px;
+      }
+
+      h1 {
+        font-family: var(--font-body);
+        font-style: italic;
+        font-weight: 500;
+        font-size: clamp(40px, 6vw, 64px);
+        line-height: 1.05;
+        margin: 0 0 16px;
+        color: var(--color-gold-bright);
+      }
+
+      .lede {
+        color: var(--color-dim);
+        font-size: 19px;
+        margin: 0 0 24px;
+        max-width: 64ch;
+      }
+
+      h2 {
+        font-family: var(--font-body);
+        font-style: italic;
+        font-weight: 500;
+        font-size: clamp(28px, 3.5vw, 36px);
+        color: var(--color-gold-bright);
+        margin: 64px 0 8px;
+      }
+
+      h3 {
+        font-family: var(--font-display);
+        text-transform: uppercase;
+        letter-spacing: 0.22em;
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--color-gold);
+        margin: 40px 0 16px;
+      }
+
+      p {
+        margin: 0 0 16px;
+      }
+
+      a {
+        color: var(--color-gold-bright);
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+      a:hover {
+        color: var(--color-cream);
+      }
+
+      hr {
+        border: 0;
+        border-top: 1px solid var(--color-gold-faint-15);
+        margin: 48px 0;
+      }
+
+      .divider {
+        height: 1px;
+        background: var(--color-gold-faint-25);
+        margin: 16px 0 32px;
+      }
+
+      /* Tables */
+      .table-wrap {
+        overflow-x: auto;
+        margin: 16px 0 24px;
+        border: 1px solid var(--color-gold-faint-15);
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 15px;
+      }
+      th,
+      td {
+        text-align: left;
+        padding: 12px 16px;
+        border-bottom: 1px solid var(--color-gold-faint-15);
+        vertical-align: top;
+      }
+      tr:last-child td {
+        border-bottom: 0;
+      }
+      th {
+        color: var(--color-gold);
+        font-family: var(--font-display);
+        font-size: 11px;
+        letter-spacing: 0.22em;
+        font-weight: 500;
+        text-transform: uppercase;
+        background: rgb(201 165 90 / 4%);
+      }
+      td {
+        color: var(--color-cream);
+      }
+      td code {
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 13px;
+        color: var(--color-gold-bright);
+      }
+
+      /* Color swatches grid */
+      .swatches {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 16px;
+        margin: 24px 0 16px;
+      }
+      .swatch {
+        background: var(--color-ink);
+        border: 1px solid var(--color-gold-faint-25);
+        padding: 20px;
+      }
+      .swatch .chip {
+        height: 80px;
+        margin-bottom: 16px;
+        border: 1px solid var(--color-gold-faint-15);
+      }
+      .swatch .token {
+        font-family: var(--font-display);
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+        font-size: 11px;
+        color: var(--color-gold);
+        margin-bottom: 4px;
+      }
+      .swatch .hex {
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 13px;
+        color: var(--color-gold-bright);
+        margin-bottom: 8px;
+      }
+      .swatch .role {
+        font-size: 15px;
+        color: var(--color-cream);
+        line-height: 1.5;
+      }
+
+      /* Specific chip backgrounds */
+      .chip-dark { background: var(--color-dark); }
+      .chip-ink { background: var(--color-ink); }
+      .chip-gold { background: var(--color-gold); }
+      .chip-gold-bright { background: var(--color-gold-bright); }
+      .chip-cream { background: var(--color-cream); }
+      .chip-dim {
+        background: var(--color-dim);
+        background-color: var(--color-dim);
+      }
+      .chip-gold-faint-15 {
+        background:
+          repeating-conic-gradient(var(--color-dark) 0 25%, var(--color-ink) 0 50%) 0 0 / 16px 16px,
+          var(--color-gold-faint-15);
+      }
+      .chip-gold-faint-25 {
+        background:
+          repeating-conic-gradient(var(--color-dark) 0 25%, var(--color-ink) 0 50%) 0 0 / 16px 16px,
+          var(--color-gold-faint-25);
+      }
+      .chip-gold-faint-30 {
+        background:
+          repeating-conic-gradient(var(--color-dark) 0 25%, var(--color-ink) 0 50%) 0 0 / 16px 16px,
+          var(--color-gold-faint-30);
+      }
+      .chip-gold-faint-35 {
+        background:
+          repeating-conic-gradient(var(--color-dark) 0 25%, var(--color-ink) 0 50%) 0 0 / 16px 16px,
+          var(--color-gold-faint-35);
+      }
+      .chip-gold-glow {
+        background:
+          radial-gradient(circle at 50% 50%, var(--color-gold-glow), transparent 70%),
+          var(--color-dark);
+      }
+      .chip-err-bg { background: var(--color-err-bg); }
+      .chip-err-bd { background: var(--color-err-bd); }
+      .chip-err-ink { background: var(--color-err-ink); }
+
+      /* Proportion bar 70/20/10 */
+      .proportion {
+        display: flex;
+        height: 56px;
+        border: 1px solid var(--color-gold-faint-25);
+        margin: 16px 0 8px;
+      }
+      .proportion span {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--font-display);
+        font-size: 11px;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+      }
+      .prop-dark {
+        flex: 70;
+        background: var(--color-dark);
+        color: var(--color-dim);
+        border-right: 1px solid var(--color-gold-faint-15);
+      }
+      .prop-cream {
+        flex: 20;
+        background: var(--color-ink);
+        color: var(--color-cream);
+        border-right: 1px solid var(--color-gold-faint-15);
+      }
+      .prop-gold {
+        flex: 10;
+        background: var(--color-gold);
+        color: var(--color-dark);
+      }
+
+      /* Typography samples */
+      .type-sample {
+        background: var(--color-ink);
+        border: 1px solid var(--color-gold-faint-25);
+        padding: 24px;
+        margin: 12px 0 24px;
+      }
+      .type-sample .meta {
+        font-family: var(--font-display);
+        text-transform: uppercase;
+        letter-spacing: 0.22em;
+        font-size: 10px;
+        color: var(--color-gold);
+        margin-bottom: 12px;
+      }
+      .type-display {
+        font-family: var(--font-display);
+        text-transform: uppercase;
+        letter-spacing: 0.32em;
+        font-size: 14px;
+        color: var(--color-gold-bright);
+      }
+      .type-body-title {
+        font-family: var(--font-body);
+        font-style: italic;
+        font-size: 36px;
+        line-height: 1.1;
+        color: var(--color-gold-bright);
+      }
+      .type-body-text {
+        font-family: var(--font-body);
+        font-size: 18px;
+        color: var(--color-cream);
+      }
+
+      /* Tracking ladder */
+      .tracking {
+        display: grid;
+        gap: 8px;
+        margin: 12px 0 24px;
+      }
+      .tracking-row {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 14px 16px;
+        background: var(--color-ink);
+        border: 1px solid var(--color-gold-faint-15);
+      }
+      .tracking-row .label {
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 12px;
+        color: var(--color-dim);
+        min-width: 110px;
+      }
+      .tracking-row .text {
+        font-family: var(--font-display);
+        text-transform: uppercase;
+        font-size: 12px;
+        color: var(--color-gold-bright);
+      }
+      .t-005 { letter-spacing: 0.05em; }
+      .t-018 { letter-spacing: 0.18em; }
+      .t-032 { letter-spacing: 0.32em; }
+      .t-040 { letter-spacing: 0.4em; }
+
+      /* Error block */
+      .error-block {
+        background: var(--color-err-bg);
+        border: 1px solid var(--color-err-bd);
+        color: var(--color-err-ink);
+        padding: 20px 24px;
+        margin: 12px 0 24px;
+        font-style: italic;
+      }
+
+      /* Snippet block */
+      pre {
+        background: var(--color-ink);
+        border: 1px solid var(--color-gold-faint-25);
+        padding: 20px 24px;
+        margin: 16px 0 24px;
+        overflow-x: auto;
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 13px;
+        line-height: 1.7;
+        color: var(--color-cream);
+      }
+
+      .note {
+        border-left: 2px solid var(--color-gold-faint-35);
+        padding: 4px 0 4px 20px;
+        margin: 16px 0 24px;
+        color: var(--color-dim);
+        font-style: italic;
+      }
+
+      ul {
+        padding-left: 20px;
+      }
+      li {
+        margin-bottom: 6px;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <p class="eyebrow">Guía de marca</p>
+      <h1>Brand — Galgo Astral</h1>
+      <p class="lede">
+        Guía visual de marca de la app de carta astral. Toda la paleta y los
+        tokens viven en <code>app/globals.css</code> bajo
+        <code>@theme inline</code> como CSS custom properties. Tailwind v4 las
+        expone como utility classes (<code>text-gold</code>,
+        <code>bg-dark</code>, <code>border-gold-faint-25</code>…). Para
+        atributos SVG que no aceptan clases (<code>stroke=</code>,
+        <code>fill=</code>, <code>stopColor=</code>) se usa
+        <code>var(--color-X)</code>.
+      </p>
+
+      <hr />
+
+      <h2>Paleta</h2>
+
+      <h3>Colores base</h3>
+      <div class="swatches">
+        <div class="swatch">
+          <div class="chip chip-dark"></div>
+          <div class="token">dark</div>
+          <div class="hex">#0b0a08</div>
+          <div class="role">
+            Fondo principal (lo pinta <code>CosmosBg</code> + <code>body</code>).
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="chip chip-ink"></div>
+          <div class="token">ink</div>
+          <div class="hex">#1a160d</div>
+          <div class="role">
+            Fondo de cards y formularios — un pelín más claro que
+            <code>dark</code>.
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="chip chip-gold"></div>
+          <div class="token">gold</div>
+          <div class="hex">#c9a55a</div>
+          <div class="role">
+            Oro base — bordes, eyebrows en mayúsculas, iconos.
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="chip chip-gold-bright"></div>
+          <div class="token">gold-bright</div>
+          <div class="hex">#e7c97a</div>
+          <div class="role">
+            Oro brillante — títulos, números romanos, focus visible, CTAs.
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="chip chip-cream"></div>
+          <div class="token">cream</div>
+          <div class="hex">#f5ecd6</div>
+          <div class="role">
+            Texto principal — párrafos, descripciones.
+          </div>
+        </div>
+      </div>
+
+      <h3>Variantes semi-transparentes</h3>
+      <p style="color: var(--color-dim); font-size: 14px; margin-bottom: 16px">
+        Los chips muestran el color sobre un patrón ajedrezado para que se
+        aprecie la transparencia.
+      </p>
+      <div class="swatches">
+        <div class="swatch">
+          <div class="chip chip-dim"></div>
+          <div class="token">dim</div>
+          <div class="hex">rgb(245 236 214 / 55%)</div>
+          <div class="role">Texto secundario, captions.</div>
+        </div>
+        <div class="swatch">
+          <div class="chip chip-gold-faint-15"></div>
+          <div class="token">gold-faint-15</div>
+          <div class="hex">rgb(201 165 90 / 15%)</div>
+          <div class="role">Divisores muy sutiles (border del header).</div>
+        </div>
+        <div class="swatch">
+          <div class="chip chip-gold-faint-25"></div>
+          <div class="token">gold-faint-25</div>
+          <div class="hex">rgb(201 165 90 / 25%)</div>
+          <div class="role">Bordes de cards y highlights.</div>
+        </div>
+        <div class="swatch">
+          <div class="chip chip-gold-faint-30"></div>
+          <div class="token">gold-faint-30</div>
+          <div class="hex">rgb(201 165 90 / 30%)</div>
+          <div class="role">Bordes de radio cards no seleccionados.</div>
+        </div>
+        <div class="swatch">
+          <div class="chip chip-gold-faint-35"></div>
+          <div class="token">gold-faint-35</div>
+          <div class="hex">rgb(201 165 90 / 35%)</div>
+          <div class="role">Underline de inputs, outline secundario.</div>
+        </div>
+        <div class="swatch">
+          <div class="chip chip-gold-glow"></div>
+          <div class="token">gold-glow</div>
+          <div class="hex">rgb(231 201 122 / 35%)</div>
+          <div class="role">
+            <code>drop-shadow</code> del logo en hero y header.
+          </div>
+        </div>
+      </div>
+
+      <p class="note">
+        Para alphas no contemplados en los tokens fijos, usa la sintaxis Tailwind
+        alpha (<code>text-cream/65</code>, <code>bg-gold/10</code>) o arbitrary
+        value (<code>text-[rgb(220_200_255_/_85%)]</code>).
+      </p>
+
+      <h3>Excepción — color de error</h3>
+      <p>
+        El error state usa un púrpura sutil <strong>fuera de la paleta dorada</strong>.
+        Señaliza sin agresividad cromática y encaja con el tono místico
+        distinguiéndose del dorado dominante sin gritar.
+      </p>
+      <div class="swatches">
+        <div class="swatch">
+          <div class="chip chip-err-bg"></div>
+          <div class="token">err-bg</div>
+          <div class="hex">rgb(120 60 160 / 8%)</div>
+          <div class="role">Fondo de bloques de error.</div>
+        </div>
+        <div class="swatch">
+          <div class="chip chip-err-bd"></div>
+          <div class="token">err-bd</div>
+          <div class="hex">rgb(180 130 200 / 35%)</div>
+          <div class="role">Borde de bloques de error.</div>
+        </div>
+        <div class="swatch">
+          <div class="chip chip-err-ink"></div>
+          <div class="token">err-ink</div>
+          <div class="hex">#c9aae0</div>
+          <div class="role">Texto de error.</div>
+        </div>
+      </div>
+      <div class="error-block">
+        Algo se nubló entre los astros. Vuelve a intentarlo en unos instantes.
+      </div>
+      <ul>
+        <li>
+          <strong>Chart reading</strong> (<code>ReadingError</code>): mantiene
+          los valores originales del primer diseño con arbitrary values.
+        </li>
+        <li>
+          <strong>Pet feature</strong> (<code>InlineError</code>,
+          <code>PetErrorState</code>): usa tokens dedicados
+          <code>--color-err-bg</code>, <code>--color-err-bd</code>,
+          <code>--color-err-ink</code> con alphas ligeramente más visibles para
+          contexto inline.
+        </li>
+      </ul>
+
+      <hr />
+
+      <h2>Tipografía</h2>
+      <p>
+        Cargadas con <code>next/font/google</code> en <code>app/layout.tsx</code>.
+        Las clases utilitarias <code>font-display</code> y
+        <code>font-body</code> viven en <code>app/globals.css</code>.
+        <code>font-display</code> añade <code>letter-spacing: 0.08em</code> por
+        defecto.
+      </p>
+
+      <div class="type-sample">
+        <div class="meta">Cinzel — font-display</div>
+        <div class="type-display">RITUAL DE CONSULTA</div>
+      </div>
+
+      <div class="type-sample">
+        <div class="meta">Cormorant Garamond — font-body (italic)</div>
+        <div class="type-body-title">El cielo revela tu carta sellada</div>
+      </div>
+
+      <div class="type-sample">
+        <div class="meta">Cormorant Garamond — font-body (regular)</div>
+        <div class="type-body-text">
+          Los astros responden a quien pregunta con precisión. Indica fecha,
+          hora y lugar exactos para que la lectura sea fiel.
+        </div>
+      </div>
+
+      <h3>Letter spacing — eyebrow pattern</h3>
+      <p>
+        El brand cultiva el patrón "small-caps eyebrow con tracking ancho" como
+        acento visual. Es deliberado y forma parte de la identidad. React
+        Doctor o axe-core pueden marcarlos como falsos positivos.
+      </p>
+      <div class="tracking">
+        <div class="tracking-row">
+          <span class="label">0.05em</span>
+          <span class="text t-005">Body sutil</span>
+        </div>
+        <div class="tracking-row">
+          <span class="label">0.18em</span>
+          <span class="text t-018">Créditos · etiquetas</span>
+        </div>
+        <div class="tracking-row">
+          <span class="label">0.32em</span>
+          <span class="text t-032">Eyebrows · CTAs</span>
+        </div>
+        <div class="tracking-row">
+          <span class="label">0.40em</span>
+          <span class="text t-040">Números romanos</span>
+        </div>
+      </div>
+
+      <hr />
+
+      <h2>Iconografía</h2>
+      <p>
+        Vive en <code>app/</code> (file-based metadata de Next 16).
+      </p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Archivo</th>
+              <th>Tamaño</th>
+              <th>Uso</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>app/icon.png</code></td>
+              <td>256×256</td>
+              <td>Favicon en pestañas (Chrome, Firefox, Safari, Edge).</td>
+            </tr>
+            <tr>
+              <td><code>app/apple-icon.png</code></td>
+              <td>180×180</td>
+              <td>Icono al guardar en pantalla de inicio iOS.</td>
+            </tr>
+            <tr>
+              <td><code>public/galgo-astral-logo.png</code></td>
+              <td>1024×1536</td>
+              <td>
+                Logo usado en <code>SiteHeader</code>, <code>Hero</code>,
+                <code>ChartFlow</code>, <code>SiteFooter</code>.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        La imagen de marca es <strong>el galgo silueteado bajo la luna
+        creciente</strong>, con borde circular tipo astrolabio dorado. Refuerza el
+        imaginario "carta astral trazada a mano".
+      </p>
+
+      <hr />
+
+      <h2>Cómo se aplica — regla 70 / 20 / 10</h2>
+      <div class="proportion" aria-hidden="true">
+        <span class="prop-dark">70% · DARK + INK</span>
+        <span class="prop-cream">20% · CREAM</span>
+        <span class="prop-gold">10% · GOLD</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>%</th>
+              <th>Tono</th>
+              <th>Dónde</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>~70%</td>
+              <td><code>dark</code> + <code>ink</code></td>
+              <td>Fondo, secciones, atmósfera.</td>
+            </tr>
+            <tr>
+              <td>~20%</td>
+              <td><code>cream</code> + <code>dim</code></td>
+              <td>Texto, contenido.</td>
+            </tr>
+            <tr>
+              <td>~10%</td>
+              <td>
+                <code>gold</code> + <code>gold-bright</code> + faints
+              </td>
+              <td>Acentos: bordes, eyebrows, números, CTAs, divisores.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">
+        El dorado <strong>nunca llena un bloque sólido grande</strong>. Aparece
+        siempre como línea, texto, borde o glow.
+      </p>
+
+      <hr />
+
+      <h2>Voz y tono</h2>
+      <p>
+        El contenido de la carta astral (system prompt en
+        <code>lib/prompt.ts</code>) cultiva una voz:
+      </p>
+      <ul>
+        <li><strong>Cálida y empática</strong>, nunca fatalista.</li>
+        <li>
+          <strong>Evocadora</strong>, con vocabulario propio: <em>lectura
+          sellada</em>, <em>consultar otra alma</em>, <em>sub luna nova</em>,
+          <em>trazada a mano</em>, <em>ad astra per aspera</em>.
+        </li>
+        <li>
+          <strong>Cercana</strong> pero no plana — pide precisión a quien
+          pregunta ("Los astros responden a quien pregunta con precisión").
+        </li>
+      </ul>
+      <p>
+        El diccionario completo de UI vive en <code>lib/i18n.ts</code> con
+        versiones <code>es</code> y <code>en</code>.
+      </p>
+
+      <hr />
+
+      <h2>Snippet exportable</h2>
+      <p>Para copiar a Figma o cualquier guía externa:</p>
+      <pre>Galgo Astral — paleta
+─────────────────────────
+#0b0a08  Cosmos      background
+#1a160d  Ink         surfaces
+#c9a55a  Gold        accents
+#e7c97a  Gold Bright highlights
+#f5ecd6  Cream       text</pre>
+    </main>
+  </body>
+</html>

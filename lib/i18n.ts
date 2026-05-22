@@ -103,8 +103,10 @@ const DICTIONARIES = {
         eyebrow: "LECTURA PREMIUM",
         title: "Descubre tu vínculo astral con tu mascota",
         sub: "Tu carta también habla de cómo amas y conectas. Ahora puedes descubrir una lectura simbólica sobre tu vínculo con tu perro o gato.",
-        priceLabel: "LECTURA PREMIUM",
-        priceAmount: "2,99 €",
+        priceBlessing: "BENDICIÓN DE LA LUNA NUEVA",
+        priceLabel: "PRECIO",
+        priceOriginal: "2,99 €",
+        priceFinal: "0,99 €",
         cta: "VER COMPATIBILIDAD CON MI MASCOTA",
       },
       form: {
@@ -126,7 +128,7 @@ const DICTIONARIES = {
           "Necesitamos al menos una fecha — la del nacimiento o la del día que llegó a tu vida. Los astros no pueden trazar un mapa sin un punto de partida.",
         personalityHint: "elige hasta 5",
         personalityCounter: "{n} / 5 SELECCIONADAS",
-        submit: "TRAZAR NUESTRA LECTURA · 2,99 €",
+        submit: "TRAZAR NUESTRA LECTURA · 0,99 €",
         submitting: "Preparando el pago…",
         errorMissing:
           "Faltan datos. Asegúrate de elegir tipo, foco y al menos una fecha.",
@@ -308,8 +310,10 @@ const DICTIONARIES = {
         eyebrow: "PREMIUM READING",
         title: "Discover your astral bond with your pet",
         sub: "Your chart also speaks of how you love and connect. Now you can uncover a symbolic reading of your bond with your dog or cat.",
-        priceLabel: "PREMIUM READING",
-        priceAmount: "2,99 €",
+        priceBlessing: "NEW MOON BLESSING",
+        priceLabel: "PRICE",
+        priceOriginal: "2,99 €",
+        priceFinal: "0,99 €",
         cta: "VIEW COMPATIBILITY WITH MY PET",
       },
       form: {
@@ -331,7 +335,7 @@ const DICTIONARIES = {
           "We need at least one date — the day of their birth or the day they entered your life. The stars cannot trace a map without a starting point.",
         personalityHint: "choose up to 5",
         personalityCounter: "{n} / 5 SELECTED",
-        submit: "TRACE OUR READING · 2,99 €",
+        submit: "TRACE OUR READING · 0,99 €",
         submitting: "Preparing payment…",
         errorMissing:
           "Some details are missing. Make sure you choose pet type, focus, and at least one date.",

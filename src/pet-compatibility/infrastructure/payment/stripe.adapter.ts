@@ -22,12 +22,14 @@ export function makeStripeAdapter(): PaymentPort {
   return {
     async createCheckoutSession({
       priceId,
+      couponId,
       successUrl,
       cancelUrl,
     }: CreateCheckoutInput): Promise<CreateCheckoutOutput> {
       const session = await stripe.checkout.sessions.create({
         mode: "payment",
         line_items: [{ price: priceId, quantity: 1 }],
+        discounts: [{ coupon: couponId }],
         success_url: successUrl,
         cancel_url: cancelUrl,
       });

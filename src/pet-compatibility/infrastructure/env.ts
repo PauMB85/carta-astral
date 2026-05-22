@@ -9,6 +9,9 @@ const schema = z.object({
   STRIPE_PET_COMPATIBILITY_PRICE_ID: z
     .string()
     .min(1, "STRIPE_PET_COMPATIBILITY_PRICE_ID is required"),
+  STRIPE_PET_COMPATIBILITY_COUPON_ID: z
+    .string()
+    .min(1, "STRIPE_PET_COMPATIBILITY_COUPON_ID is required"),
   NEXT_PUBLIC_APP_URL: z.url({
     error: "NEXT_PUBLIC_APP_URL must be a valid URL",
   }),

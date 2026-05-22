@@ -28,6 +28,7 @@ function wire(): Wired {
       rateLimit,
       config: {
         priceId: petEnv.STRIPE_PET_COMPATIBILITY_PRICE_ID,
+        couponId: petEnv.STRIPE_PET_COMPATIBILITY_COUPON_ID,
         appUrl: petEnv.NEXT_PUBLIC_APP_URL,
       },
     }),

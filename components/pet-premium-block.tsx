@@ -37,9 +37,19 @@ export function PetPremiumBlock({ lang, t }: Props) {
           {t.premium.sub}
         </p>
 
-        <div className="font-display flex justify-between items-center mb-6 py-4 text-[12px] tracking-[0.3em] text-gold-bright border-t border-b border-gold-faint-15">
-          <span>{t.premium.priceLabel}</span>
-          <span className="text-base">{t.premium.priceAmount}</span>
+        <div className="font-display mb-6 py-4 border-t border-b border-gold-faint-15">
+          <div className="text-center mb-2.5 text-gold text-[10px] tracking-[0.45em] font-medium">
+            {t.premium.priceBlessing}
+          </div>
+          <div className="flex justify-between items-center text-[12px] tracking-[0.3em] text-gold-bright">
+            <span>{t.premium.priceLabel}</span>
+            <span className="text-base">
+              <span className="line-through mr-3 text-cream/45">
+                {t.premium.priceOriginal}
+              </span>
+              {t.premium.priceFinal}
+            </span>
+          </div>
         </div>
 
         <Link

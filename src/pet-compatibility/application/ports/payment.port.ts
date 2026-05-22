@@ -1,5 +1,6 @@
 export interface CreateCheckoutInput {
   priceId: string;
+  couponId: string;
   successUrl: string;
   cancelUrl: string;
 }

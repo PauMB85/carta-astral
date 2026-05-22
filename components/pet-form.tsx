@@ -276,9 +276,11 @@ export function PetForm({ lang, t, submitError, onSubmit }: Props) {
         </div>
       ) : null}
 
+      <PriceBlessing t={t.premium} />
+
       <button
         type="submit"
-        className="group font-display mt-9 w-full flex items-center justify-center gap-3 border-0 cursor-pointer bg-gold-bright text-dark px-8 py-4.5 min-h-13.5 text-[11px] tracking-[0.25em] font-medium transition-colors duration-250 motion-reduce:transition-none hover:bg-cream"
+        className="group font-display mt-6 w-full flex items-center justify-center gap-3 border-0 cursor-pointer bg-gold-bright text-dark px-8 py-4.5 min-h-13.5 text-[11px] tracking-[0.25em] font-medium transition-colors duration-250 motion-reduce:transition-none hover:bg-cream"
       >
         <span>{t.form.submit}</span>
         <span
@@ -289,6 +291,25 @@ export function PetForm({ lang, t, submitError, onSubmit }: Props) {
         </span>
       </button>
     </form>
+  );
+}
+
+function PriceBlessing({ t }: { t: Dictionary["pet"]["premium"] }) {
+  return (
+    <div className="font-display mt-9 py-4 border-t border-b border-gold-faint-15">
+      <div className="text-center mb-2.5 text-gold text-[10px] tracking-[0.45em] font-medium">
+        {t.priceBlessing}
+      </div>
+      <div className="flex justify-between items-center text-[12px] tracking-[0.3em] text-gold-bright">
+        <span>{t.priceLabel}</span>
+        <span className="text-base">
+          <span className="line-through mr-3 text-cream/45">
+            {t.priceOriginal}
+          </span>
+          {t.priceFinal}
+        </span>
+      </div>
+    </div>
   );
 }
 

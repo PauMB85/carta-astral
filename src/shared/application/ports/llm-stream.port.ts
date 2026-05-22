@@ -13,5 +13,5 @@ export interface LLMStreamRequest<TSchema extends z.ZodTypeAny> {
 export interface LLMStreamPort {
   streamObject<TSchema extends z.ZodTypeAny>(
     req: LLMStreamRequest<TSchema>,
-  ): Response;
+  ): Promise<Response>;
 }
