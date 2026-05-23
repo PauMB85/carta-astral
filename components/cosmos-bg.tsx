@@ -11,7 +11,8 @@ const STARS = (() => {
     x: rand() * 100,
     y: rand() * 100,
     r: (id % 4) * 0.4 + 0.6,
-    delay: (id % 7) * 0.5,
+    delay: rand() * 8,
+    duration: 7 + rand() * 5,
   }));
 })();
 
@@ -38,7 +39,10 @@ export function CosmosBg() {
             fill="var(--color-gold-bright)"
             opacity={0.4}
             className="animate-twinkle motion-reduce:animate-none"
-            style={{ animationDelay: `${s.delay}s` }}
+            style={{
+              animationDelay: `${s.delay}s`,
+              animationDuration: `${s.duration}s`,
+            }}
           />
         ))}
       </svg>
