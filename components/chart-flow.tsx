@@ -103,6 +103,7 @@ export function ChartFlow({ lang, formCopy, readingCopy, petCopy }: Props) {
           width={1024}
           height={1536}
           priority
+          sizes="(min-width: 640px) 110px, 88px"
           className="absolute left-1/2 -translate-x-1/2 -top-12.5 w-22 h-22 sm:w-27.5 sm:h-27.5 object-contain rounded-full p-3 bg-dark border border-gold"
         />
 

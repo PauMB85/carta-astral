@@ -28,6 +28,7 @@ export function SiteHeader({ lang, t }: Props) {
           width={1024}
           height={1536}
           priority
+          sizes="(min-width: 1024px) 60px, (min-width: 640px) 45px, 40px"
           className="h-14 w-auto sm:h-16 lg:h-22 drop-shadow-[0_0_24px_var(--color-gold-glow)]"
         />
         <div className="font-display leading-none text-gold-bright tracking-[0.18em] font-medium">
